@@ -1,0 +1,53 @@
+import { FileItem } from './types';
+
+export const mockFiles: FileItem[] = [
+  {
+    id: '1',
+    name: 'Design_Brief',
+    extension: 'PDF',
+    size: '250 KB',
+    version: 'V1',
+    fileType: 'Artwork',
+    reviewRequired: true,
+    documentReference: 'DC_final.pdf',
+  },
+  {
+    id: '2',
+    name: 'Documents',
+    extension: 'PDF',
+    size: '250 KB',
+    version: 'V1',
+    fileType: 'Artwork',
+    reviewRequired: true,
+    documentReference: 'DC_final.pdf',
+  },
+  {
+    id: '3',
+    name: 'User_Research_Notes',
+    extension: 'PDF',
+    size: '204 KB',
+    version: 'V1',
+    fileType: 'Artwork',
+    reviewRequired: true,
+    documentReference: 'DC_final.pdf',
+  },
+  {
+    id: '4',
+    name: 'Notes',
+    extension: 'FIG',
+    size: '250 KB',
+    version: 'V1',
+    fileType: 'Artwork',
+    reviewRequired: true,
+    documentReference: 'DC_final.pdf',
+  },
+  {
+    id: '5',
+    name: 'Notes',
+    extension: 'FIG',
+    size: '250 KB',
+    version: 'V1',
+    fileType: 'Others',
+    reviewRequired: false,
+  },
+];
