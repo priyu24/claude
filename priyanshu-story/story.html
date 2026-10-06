@@ -85,12 +85,12 @@ p { margin: 0; }
 /* ---------- 0 intro ---------- */
 .s-intro { --bg: var(--ink); }
 .s-intro .psst { font-family: var(--font-hand); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--yellow); transform: rotate(-6deg); }
-.s-intro .name { font-size: clamp(3.4rem, 12vw, 9.5rem); line-height: .95; font-weight: 700; letter-spacing: -.02em; }
+.s-intro .name { font-size: clamp(3.4rem, 12vw, 9.5rem); line-height: .95; font-weight: 500; letter-spacing: -.02em; }
 .s-intro .name span { display: inline-block; }
 .s-intro .name span:first-child { color: var(--pink); } .s-intro .name span:last-child { color: var(--yellow); }
 .s-intro .name span:hover { animation: jelly .6s; }
 @keyframes jelly { 30% { transform: scale(1.15, .85); } 50% { transform: scale(.9, 1.1); } 70% { transform: scale(1.04, .97); } }
-.hindi-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 5vw, 3.4rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
+.hindi-name { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.8rem, 5vw, 3.4rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
 .intro-line { font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 600; max-width: 34ch; line-height: 1.4; }
 .intro-line .hi { font-size: 1.2em; }
 .s-intro em { font-style: normal; display: inline-block; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 5s linear infinite; }
@@ -174,9 +174,16 @@ p { margin: 0; }
 .s-eng .eq { position: absolute; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: clamp(.9rem, 1.8vw, 1.3rem); opacity: .35; animation: drift linear infinite; white-space: nowrap; z-index: 1; }
 @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-120vh); } }
 .s-eng h2 { font-size: clamp(2rem, 6vw, 5rem); max-width: 16ch; }
-.s-eng .wtf { font-family: var(--font-hand); font-size: clamp(2rem, 6vw, 4rem); color: var(--ink); position: relative; display: inline-block; transform: rotate(-3deg); }
+.s-eng .wtf { font-family: var(--font-hand); font-size: clamp(1.6rem, 3.4vw, 2.8rem); white-space: nowrap; color: var(--ink); position: relative; display: inline-block; transform: rotate(-3deg); }
 .s-eng.play .wtf { animation: glitch 2.6s 1.4s infinite; }
 @keyframes glitch { 0%, 86%, 100% { transform: rotate(-3deg); text-shadow: none; } 88% { transform: rotate(2deg) translateX(6px); text-shadow: -4px 0 var(--grey), 4px 0 #555; } 92% { transform: rotate(-6deg) translateX(-6px); } 95% { transform: rotate(0) skewX(12deg); } }
+.s-eng .inner { grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(24px, 5vw, 64px); width: min(100%, 1080px); }
+.s-eng .copy { display: grid; gap: 18px; justify-items: center; min-width: 0; }
+.grad { position: relative; width: min(340px, 34vw); max-width: 100%; margin: 0; rotate: -3deg; cursor: pointer; }
+.grad img { filter: grayscale(1) contrast(.9) brightness(1.05); transition: filter .7s ease; }
+.grad:hover img, .grad:focus-visible img, .grad.color img { filter: none; }
+.grad .peek { position: absolute; right: -18px; top: -22px; font-size: 1.3rem; color: var(--paper); transform: rotate(8deg); transition: opacity .4s; }
+.grad:hover .peek, .grad.color .peek { opacity: 0; }
 .s-eng p { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 600; max-width: 36ch; }
 
 /* ---------- 6 pen drive ---------- */
@@ -281,6 +288,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .s-eng .inner { grid-template-columns: 1fr; gap: 14px; }
+  .s-eng .grad { order: -1; width: min(180px, 48vw); }
+  .s-eng h2 { font-size: 1.9rem; }
+
   .s-end .inner { grid-template-columns: 1fr; gap: 8px; }
   .s-end .deck-wrap { order: -1; }
   .s-end .deck { width: min(130px, 34vw); }
@@ -377,10 +388,17 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-eng" data-teaser>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">Like every confused kid, I ended up in engineering.</h2>
-      <p class="pop" style="--d:.5">No one told me colour could be a career. So the colour drained out.</p>
-      <span class="wtf pop" style="--d:.9" lang="hi">भाई, ये क्या हो रहा था?</span>
-      <span class="hint pop" style="--d:1.1">(bro, what the f*** was happening?)</span>
+      <div class="copy">
+        <h2 class="disp pop" style="--d:.1">Like every confused kid, I ended up in engineering.</h2>
+        <p class="pop" style="--d:.5">No one told me colour could be a career. So the colour drained out. I still got the engineering degree.</p>
+        <span class="wtf pop" style="--d:.9" lang="hi">भाई, ये क्या हो रहा था?</span>
+        <span class="hint pop" style="--d:1.1">(bro, what the f*** was happening?)</span>
+      </div>
+      <figure class="snap grad pop" style="--d:.3" tabindex="0" aria-label="Priyanshu receiving an engineering degree, class of 2021. Hover or tap to bring the colour back.">
+        <img src="img/grad.jpg" alt="Priyanshu receiving the engineering degree certificate at the Class of 2021 graduation">
+        <figcaption>engineering degree ✓ · class of 2021</figcaption>
+        <span class="peek hand">hover me</span>
+      </figure>
     </div>
     <button class="next">Then someone passed around a pen drive… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -614,6 +632,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   });
 
   /* ---------- 5: engineering equations drifting up ---------- */
+  $('.grad').addEventListener('click', e => e.currentTarget.classList.toggle('color'));
   const eng = $('.s-eng'), EQ = ['∫ f(x) dx = F(x) + C', 'V = I × R', 'σ = F / A', '∇ · E = ρ / ε₀', 'F = m·a', 'sin²θ + cos²θ = 1', 'career plan = null', 'dy/dx = ?', 'Δ = b² − 4ac'];
   EQ.concat(EQ).forEach((t, i) => {
     const s = document.createElement('span'); s.className = 'eq'; s.textContent = t;
@@ -725,7 +744,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       if (Math.hypot(dx, dy) > 2) ang = Math.atan2(dy, dx);
       mx = e.clientX; my = e.clientY; hue += .06;
       trail.push({ x: mx, y: my, c: css(PAINTS[Math.floor(hue) % 6]), life: 1 });
-      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .deck, .s-feel'));
+      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .deck, .grad, .s-feel'));
     });
   }
   let curAng = ang;
