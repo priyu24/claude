@@ -1,0 +1,627 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Priyanshu Feels Too Much</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Hanken+Grotesk:wght@400;500;700&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: one white sheet of paper, chapters stacked down it, each chapter "painted" in one bucket colour. */
+:root {
+  --paper: #ffffff;
+  --ink: #17141f;
+  --muted: #6b6578;
+  --line: #ece9f2;
+  --gray-bg: #eeeeee;
+  --gray-ink: #8a8a8a;
+  --red: #ff4b3e;
+  --yellow: #ffc21a;
+  --blue: #2f6bff;
+  --green: #12b76a;
+  --pink: #ff5fae;
+  --purple: #8b5cf6;
+  --font-display: "Bagel Fat One", "Arial Black", Impact, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #131119; --ink: #f6f3fb; --muted: #a39db1; --line: #2a2634;
+    --gray-bg: #1c1c1c; --gray-ink: #7a7a7a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131119; --ink: #f6f3fb; --muted: #a39db1; --line: #2a2634;
+  --gray-bg: #1c1c1c; --gray-ink: #7a7a7a; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 18px; line-height: 1.6;
+  overflow-x: hidden;
+}
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: max(16px, 4vw); }
+h1, h2 { font-family: var(--font-display); font-weight: 400; line-height: .95; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.4rem, 7vw, 4.6rem); }
+p { margin: 0; max-width: 60ch; }
+.prose { display: grid; gap: 1.1em; }
+.label { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.hand { font-family: var(--font-hand); font-size: 1.5rem; line-height: 1.2; }
+.c-red { color: var(--red); } .c-yellow { color: var(--yellow); } .c-blue { color: var(--blue); }
+.c-green { color: var(--green); } .c-pink { color: var(--pink); } .c-purple { color: var(--purple); }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding-block: 72px 56px; border-bottom: 1px solid var(--line); }
+#paint { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; cursor: crosshair; }
+.hero .wrap { position: relative; display: grid; gap: 28px; pointer-events: none; }
+.hero .wrap > * { pointer-events: auto; }
+.hero h1 { font-size: clamp(3.4rem, 13vw, 9.5rem); }
+.hero h1 span { display: inline-block; transition: transform .2s; }
+.hero h1 span:hover { transform: translateY(-6px) rotate(-4deg); }
+.hero .sub { font-size: clamp(1.15rem, 2.4vw, 1.45rem); max-width: 34ch; }
+.pots { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.pot {
+  width: 46px; height: 52px; border: 0; padding: 0; background: none; position: relative;
+}
+.pot::before { /* bucket */
+  content: ""; position: absolute; inset: 10px 4px 0; border-radius: 4px 4px 12px 12px;
+  background: var(--c); transition: transform .15s;
+}
+.pot::after { /* handle */
+  content: ""; position: absolute; left: 8px; right: 8px; top: 0; height: 22px;
+  border: 3px solid var(--muted); border-bottom: 0; border-radius: 30px 30px 0 0;
+}
+.pot:hover::before { transform: translateY(-3px); }
+.pot[aria-pressed="true"]::before { box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--c); }
+.pots .hand { color: var(--muted); margin-left: 6px; }
+.clear { background: none; border: 1.5px solid var(--line); color: var(--muted); border-radius: 99px; padding: 4px 14px; font-size: .9rem; }
+
+/* ---------- chapters ---------- */
+.chapter { padding-block: clamp(64px, 10vw, 120px); }
+.chapter .wrap { display: grid; gap: 40px; }
+.head { display: grid; gap: 14px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.two > * { min-width: 0; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; gap: 32px; } }
+
+/* feelings meter */
+.meter { display: grid; gap: 10px; }
+.meter-row { display: grid; grid-template-columns: 7.5em 1fr; align-items: center; gap: 14px; font-weight: 500; }
+.meter-row .bar { height: 14px; border-radius: 99px; background: var(--line); position: relative; overflow: visible; }
+.meter-row .fill { position: absolute; inset: 0 auto 0 0; border-radius: 99px; background: var(--c); width: var(--w); }
+.meter-row.over .fill { width: calc(var(--w) + 18%); }
+.meter-row.over .fill::after { content: "too much"; position: absolute; right: -4px; top: -26px; font-family: var(--font-hand); font-size: 1.2rem; color: var(--c); transform: rotate(-4deg); }
+
+/* bucket set (the birthday gift) */
+.giftbox { display: grid; gap: 18px; }
+.buckets { display: flex; flex-wrap: wrap; gap: 14px; }
+.bucket {
+  --s: 74px; width: var(--s); height: calc(var(--s) * 1.05); border: 0; padding: 0; position: relative; background: none;
+}
+.bucket .body { position: absolute; inset: 18% 6% 0; background: var(--c); border-radius: 6px 6px 18px 18px; transition: transform .2s; }
+.bucket .lid { position: absolute; left: 0; right: 0; top: 10%; height: 14%; background: var(--c); filter: brightness(.88); border-radius: 6px; transition: transform .35s cubic-bezier(.3,1.6,.5,1); transform-origin: 10% 100%; }
+.bucket:hover .lid, .bucket.open .lid { transform: rotate(-28deg) translate(-6px, -10px); }
+.bucket:hover .body { transform: translateY(-2px); }
+.brush { display: flex; align-items: center; gap: 8px; }
+.brush i { width: 90px; height: 10px; background: #c8915a; border-radius: 4px; }
+.brush b { width: 26px; height: 18px; border-radius: 3px 10px 10px 3px; background: var(--brush, var(--ink)); transition: background .3s; }
+.splashzone { position: relative; border-radius: 22px; padding: 28px; min-height: 180px; overflow: hidden; border: 1.5px dashed var(--line); }
+.splashzone p { position: relative; z-index: 1; }
+.splat { position: absolute; border-radius: 50%; pointer-events: none; animation: splat .45s ease-out both; }
+@keyframes splat { from { transform: scale(.2); } to { transform: scale(1); } }
+
+/* grandfather poster */
+.poster {
+  background: var(--yellow); color: #1b1408; border-radius: 4px; padding: 30px 26px 26px;
+  transform: rotate(-2.5deg); display: grid; gap: 10px; max-width: 380px; justify-self: center; width: 100%;
+  box-shadow: 0 18px 40px -20px rgba(0,0,0,.35); position: relative;
+}
+.poster::before, .poster::after { content: ""; position: absolute; top: -10px; width: 70px; height: 22px; background: rgba(255,255,255,.55); }
+.poster::before { left: 20px; transform: rotate(-6deg); } .poster::after { right: 20px; transform: rotate(5deg); }
+.poster .big { font-family: var(--font-display); font-size: clamp(2.4rem, 7vw, 3.4rem); line-height: .9; color: var(--red); }
+.poster .hand { color: #2b2b8f; }
+.poster .stars { display: flex; gap: 8px; font-size: 1.6rem; color: var(--blue); }
+
+/* collage */
+.collage { position: relative; height: 460px; border-radius: 22px; background:
+  radial-gradient(circle, var(--line) 1.5px, transparent 1.6px) 0 0 / 22px 22px; border: 1.5px solid var(--line); overflow: hidden; touch-action: none; }
+.photo {
+  position: absolute; width: 150px; padding: 10px 10px 8px; background: #fff; color: #222;
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,.35); cursor: grab; user-select: none; touch-action: none;
+  border-radius: 2px; transition: box-shadow .2s;
+}
+.photo:active { cursor: grabbing; box-shadow: 0 22px 40px -14px rgba(0,0,0,.45); }
+.photo .img { aspect-ratio: 1 / 1; max-width: 100%; position: relative; overflow: hidden; filter: saturate(.75) sepia(.18); }
+.photo .cap { font-family: var(--font-hand); font-size: 1.15rem; line-height: 1.1; margin-top: 6px; text-align: center; }
+.collage .note { position: absolute; right: 18px; bottom: 14px; color: var(--muted); }
+.for-papa { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-3deg); font-family: var(--font-hand); font-size: clamp(2.4rem, 7vw, 3.6rem); color: var(--pink); pointer-events: none; white-space: nowrap; }
+
+/* engineering: colour drains */
+.gray { background: var(--gray-bg); color: var(--gray-ink); }
+.gray h2 { color: var(--gray-ink); }
+.gray .label { color: var(--gray-ink); }
+.gray strong { color: var(--ink); opacity: .7; }
+.formula { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .95rem; display: grid; gap: 6px; padding: 22px; border: 1.5px solid currentColor; border-radius: 12px; opacity: .8; overflow-x: auto; }
+.formula s { opacity: .6; }
+.wtf { font-family: var(--font-hand); font-size: 2rem; transform: rotate(-3deg); display: inline-block; }
+
+/* pen drive */
+.drive { display: flex; align-items: center; justify-self: center; filter: drop-shadow(0 14px 22px rgba(0,0,0,.18)); max-width: 100%; }
+.drive .cap-end { width: 54px; height: 64px; background: #bfc4cc; border-radius: 6px 0 0 6px; position: relative; }
+.drive .cap-end::before, .drive .cap-end::after { content: ""; position: absolute; left: 14px; width: 12px; height: 10px; background: #8e949e; }
+.drive .cap-end::before { top: 16px; } .drive .cap-end::after { bottom: 16px; }
+.drive .stick { width: 220px; max-width: 52vw; height: 84px; border-radius: 0 14px 14px 0; display: grid; place-items: center; color: #fff; font-weight: 700; text-align: center; font-size: .82rem; padding: 10px;
+  background: linear-gradient(110deg, var(--red), var(--pink) 30%, var(--purple) 55%, var(--blue) 80%, var(--green)); }
+.drive .stick code { background: rgba(0,0,0,.25); padding: 2px 6px; border-radius: 4px; font-size: .75rem; word-break: break-all; }
+.crowd { display: grid; gap: 18px; }
+.people { display: flex; flex-wrap: wrap; gap: 12px; }
+.person { width: 44px; height: 44px; border-radius: 50%; background: var(--c); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: .7rem; transition: background .8s, transform .8s, opacity .8s; }
+.crowd.later .person:not(.me) { background: var(--line); transform: scale(.82); opacity: .7; }
+.person.me { outline: 3px solid var(--paper); box-shadow: 0 0 0 6px var(--c); }
+.crowd.later .person.me { transform: scale(1.3); }
+.pill { justify-self: start; border: 0; background: var(--ink); color: var(--paper); border-radius: 99px; padding: 10px 20px; font-weight: 700; }
+
+/* path */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0; counter-reset: s; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
+.steps li { counter-increment: s; border-radius: 18px; padding: 22px 20px 24px; background: var(--c); color: var(--t, #fff); display: grid; gap: 8px; align-content: start; min-width: 0; transition: transform .2s; }
+.steps li:hover { transform: translateY(-6px) rotate(-1deg); }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-display); font-size: 2.2rem; line-height: 1; opacity: .9; }
+.steps h3 { margin: 0; font-size: 1.2rem; line-height: 1.2; }
+.steps p { font-size: .98rem; line-height: 1.45; }
+
+/* outro */
+.outro { padding-block: clamp(80px, 12vw, 140px) 100px; text-align: left; }
+.outro .wrap { display: grid; gap: 26px; }
+.age { font-family: var(--font-display); font-size: clamp(6rem, 30vw, 18rem); line-height: .8; }
+.age span { display: inline-block; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.facts span { border: 1.5px solid var(--line); border-radius: 99px; padding: 6px 16px; font-weight: 500; }
+.woo { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.4rem); border: 0; border-radius: 22px; padding: 14px 34px; color: #fff; justify-self: start;
+  background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; animation: slide 6s linear infinite; }
+.woo:active { transform: scale(.96); }
+@keyframes slide { to { background-position: 300% 0; } }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--muted); font-size: .9rem; }
+
+
+/* ---------- fun layer: cursor, marquee, motion ---------- */
+@media (pointer: fine) {
+  body.has-cursor, body.has-cursor * { cursor: none !important; }
+}
+#cursor, #cursor-ring { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 20; border-radius: 50%; display: none; }
+body.has-cursor #cursor, body.has-cursor #cursor-ring { display: block; }
+#cursor { width: 14px; height: 14px; margin: -7px 0 0 -7px; background: var(--cur, var(--red)); transition: background .25s; }
+#cursor-ring { width: 44px; height: 44px; margin: -22px 0 0 -22px; border: 2px solid var(--cur, var(--red)); transition: width .25s, height .25s, margin .25s, border-color .25s, background .25s; }
+body.hovering #cursor-ring { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: color-mix(in srgb, var(--cur, var(--red)) 18%, transparent); }
+#trail { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 19; }
+
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 14px; background: var(--paper); }
+.marquee .track { display: flex; gap: 40px; width: max-content; animation: marquee 28s linear infinite; font-family: var(--font-display); font-size: clamp(1.4rem, 3.6vw, 2.2rem); white-space: nowrap; }
+.marquee:hover .track { animation-play-state: paused; }
+.marquee .track span:nth-child(6n+1) { color: var(--red); } .marquee .track span:nth-child(6n+2) { color: var(--yellow); }
+.marquee .track span:nth-child(6n+3) { color: var(--blue); } .marquee .track span:nth-child(6n+4) { color: var(--green); }
+.marquee .track span:nth-child(6n+5) { color: var(--pink); } .marquee .track span:nth-child(6n) { color: var(--purple); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.hero h1 span { animation: drop .7s cubic-bezier(.3,1.7,.5,1) both; animation-delay: calc(var(--i, 0) * 45ms); }
+@keyframes drop { from { transform: translateY(-.35em) rotate(-8deg) scale(.9); } }
+.hero h1 span:hover { animation: jelly .6s; }
+@keyframes jelly { 30% { transform: scale(1.25, .8); } 50% { transform: scale(.85, 1.15); } 70% { transform: scale(1.08, .95); } }
+.pot::before { animation: bob 3s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -.4s); }
+@keyframes bob { 50% { transform: translateY(-4px); } }
+.age span { animation: hop 2.4s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .18s); }
+@keyframes hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10%) rotate(-4deg); } }
+.poster { animation: sway 5s ease-in-out infinite; }
+@keyframes sway { 50% { transform: rotate(1.5deg) translateY(-6px); } }
+.wtf { animation: shake 2.2s ease-in-out infinite; }
+@keyframes shake { 0%, 80%, 100% { transform: rotate(-3deg); } 84% { transform: rotate(3deg) translateX(4px); } 88% { transform: rotate(-6deg) translateX(-4px); } 92% { transform: rotate(2deg); } }
+.drive { animation: float 4s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-10px) rotate(-2deg); } }
+.drive .stick { background-size: 200% 100%; animation: shimmer 5s linear infinite; }
+@keyframes shimmer { to { background-position: 200% 0; } }
+
+/* scroll-driven entrances: everything is visible at rest, it just swings into place */
+@supports (animation-timeline: view()) {
+  .rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  @keyframes rise { from { transform: translateY(60px) rotate(-1.5deg) scale(.96); } }
+  .meter-row .fill { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; transform-origin: left; }
+  @keyframes grow { from { transform: scaleX(.08); } }
+  .steps li { animation: flip linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+  .steps li:nth-child(2) { animation-range: entry 5% cover 35%; } .steps li:nth-child(3) { animation-range: entry 10% cover 40%; } .steps li:nth-child(4) { animation-range: entry 15% cover 45%; }
+  @keyframes flip { from { transform: translateY(80px) rotate(6deg); } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head><body>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<canvas id="trail" aria-hidden="true"></canvas>
+<div id="cursor-ring" aria-hidden="true"></div><div id="cursor" aria-hidden="true"></div>
+
+<header class="hero">
+  <canvas id="paint" aria-label="A canvas you can paint on"></canvas>
+  <div class="wrap">
+    <span class="label">A story, not a portfolio</span>
+    <h1 aria-label="Hi, I'm Priyanshu.">
+      <span style="--i:1" class="c-red">H</span><span style="--i:2" class="c-yellow">i</span><span style="--i:3" class="c-blue">,</span>
+      <span style="--i:4" class="c-green">I</span><span style="--i:5" class="c-pink">'m</span><br>
+      <span style="--i:6" class="c-blue">P</span><span style="--i:7" class="c-red">r</span><span style="--i:8" class="c-yellow">i</span><span style="--i:9" class="c-green">y</span><span style="--i:10" class="c-purple">a</span><span style="--i:11" class="c-pink">n</span><span style="--i:12" class="c-blue">s</span><span style="--i:13" class="c-red">h</span><span style="--i:14" class="c-yellow">u</span><span style="--i:15" class="c-green">.</span>
+    </h1>
+    <p class="sub">Priyanshu Gupta. Designer for 7+ years. A kid who always felt too much, and found out colour is a good place to put it.</p>
+    <div class="pots" role="group" aria-label="Pick a paint colour">
+      <button class="pot" style="--c: var(--red); --i:0" data-c="--red" aria-label="Red" aria-pressed="true"></button>
+      <button class="pot" style="--c: var(--yellow); --i:1" data-c="--yellow" aria-label="Yellow" aria-pressed="false"></button>
+      <button class="pot" style="--c: var(--blue); --i:2" data-c="--blue" aria-label="Blue" aria-pressed="false"></button>
+      <button class="pot" style="--c: var(--green); --i:3" data-c="--green" aria-label="Green" aria-pressed="false"></button>
+      <button class="pot" style="--c: var(--pink); --i:4" data-c="--pink" aria-label="Pink" aria-pressed="false"></button>
+      <button class="pot" style="--c: var(--purple); --i:5" data-c="--purple" aria-label="Purple" aria-pressed="false"></button>
+      <span class="hand">← pick a bucket, then paint anywhere up here</span>
+      <button class="clear" id="clear">Clean the wall</button>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track"><span>feels too much ✦</span><span>colourful ✦</span><span>paint buckets ✦</span><span>Dada’s posters ✦</span><span>photo collages ✦</span><span>engineering?! ✦</span><span>one pen drive ✦</span><span>Photoshop ✦</span><span>posters ✦</span><span>UX designer ✦</span><span>27 ✦</span><span>woohoo ✦</span><span>feels too much ✦</span><span>colourful ✦</span><span>paint buckets ✦</span><span>Dada’s posters ✦</span><span>photo collages ✦</span><span>engineering?! ✦</span><span>one pen drive ✦</span><span>Photoshop ✦</span><span>posters ✦</span><span>UX designer ✦</span><span>27 ✦</span><span>woohoo ✦</span></div></div>
+
+<main>
+  <!-- 1. Feeling too much -->
+  <section class="chapter">
+    <div class="wrap two">
+      <div class="head rise">
+        <span class="label c-red">Chapter one · the kid</span>
+        <h2>I have always <span class="c-red">felt too much.</span></h2>
+        <div class="prose">
+          <p>Some kids feel things at a normal volume. I was not one of them. Everything came in louder, brighter and bigger than it was supposed to.</p>
+          <p>It took me years to understand that this is what makes a designer. You notice. You care about the tiny thing nobody else saw.</p>
+        </div>
+      </div>
+      <div class="meter rise" aria-label="How much young Priyanshu felt">
+        <div class="meter-row" style="--c: var(--green); --w: 54%"><span>Calm</span><div class="bar"><div class="fill"></div></div></div>
+        <div class="meter-row over" style="--c: var(--red); --w: 82%"><span>Excitement</span><div class="bar"><div class="fill"></div></div></div>
+        <div class="meter-row over" style="--c: var(--blue); --w: 82%"><span>Feelings</span><div class="bar"><div class="fill"></div></div></div>
+        <div class="meter-row over" style="--c: var(--pink); --w: 82%"><span>Curiosity</span><div class="bar"><div class="fill"></div></div></div>
+        <div class="meter-row" style="--c: var(--yellow); --w: 40%"><span>Patience</span><div class="bar"><div class="fill"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Birthday wish -->
+  <section class="chapter" style="border-top: 1px solid var(--line)">
+    <div class="wrap two">
+      <div class="head rise">
+        <span class="label c-yellow">Chapter two · the birthday wish</span>
+        <h2>Other kids wanted toys. I wanted <span class="c-yellow">paint buckets.</span></h2>
+        <div class="prose">
+          <p>For my birthday, the one thing I asked my grandfather for was a paint set. The kind where little buckets come stuck together in a row, with one brush.</p>
+          <p>That set was the whole world to me. Go on, open one.</p>
+        </div>
+      </div>
+      <div class="giftbox rise">
+        <div class="buckets" role="group" aria-label="Paint buckets">
+          <button class="bucket" style="--c: var(--red)" data-c="--red" aria-label="Open the red bucket"><span class="lid"></span><span class="body"></span></button>
+          <button class="bucket" style="--c: var(--yellow)" data-c="--yellow" aria-label="Open the yellow bucket"><span class="lid"></span><span class="body"></span></button>
+          <button class="bucket" style="--c: var(--blue)" data-c="--blue" aria-label="Open the blue bucket"><span class="lid"></span><span class="body"></span></button>
+          <button class="bucket" style="--c: var(--green)" data-c="--green" aria-label="Open the green bucket"><span class="lid"></span><span class="body"></span></button>
+          <button class="bucket" style="--c: var(--pink)" data-c="--pink" aria-label="Open the pink bucket"><span class="lid"></span><span class="body"></span></button>
+        </div>
+        <div class="brush" aria-hidden="true"><i></i><b id="brushTip"></b></div>
+        <div class="splashzone" id="splashzone">
+          <p class="hand">Tap a bucket, then tap here to splash it. No one will tell you off.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Grandfather -->
+  <section class="chapter" style="border-top: 1px solid var(--line)">
+    <div class="wrap two">
+      <div class="poster" aria-label="A birthday poster, the kind Dada used to make">
+        <span class="hand">made by hand, with love</span>
+        <span class="big">HAPPY<br>BIRTHDAY!</span>
+        <div class="stars" aria-hidden="true">✦ ✦ ✦</div>
+        <span class="hand">— the kind of poster Dada would make</span>
+      </div>
+      <div class="head rise">
+        <span class="label c-blue">Chapter three · the original designer</span>
+        <h2>The creative genes came from <span class="c-blue">my grandfather.</span></h2>
+        <div class="prose">
+          <p>My grandfather was always making something. If it was someone's birthday, he was the one making the poster for it. Lettering, colours, decorations, all by hand.</p>
+          <p>I was his biggest fan. I watched everything he did. I didn't know the word "designer" yet, but I knew I wanted to do what he did.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Collage -->
+  <section class="chapter" style="border-top: 1px solid var(--line)">
+    <div class="wrap">
+      <div class="head rise">
+        <span class="label c-pink">Chapter four · my first project</span>
+        <h2>I emptied the family albums to make <span class="c-pink">a collage.</span></h2>
+        <div class="prose">
+          <p>The memory is faded now, but I remember pulling photos out of the albums and arranging them into a collage. I made one for my father. Nobody briefed me. Nobody had to.</p>
+          <p>Here is a rebuilt version, with colour blocks standing in for the real photos. Drag them around and make your own.</p>
+        </div>
+      </div>
+      <div class="collage rise" id="collage">
+        <span class="for-papa">for Papa ♥</span>
+        <span class="hand note">drag the photos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Engineering -->
+  <section class="chapter gray" id="eng">
+    <div class="wrap two">
+      <div class="head rise">
+        <span class="label">Chapter five · the grey years</span>
+        <h2>Then, like every confused kid, I ended up in engineering.</h2>
+        <div class="prose">
+          <p>I never thought it through. Nobody told me you could build a career out of colour and feelings. So I did what everyone did.</p>
+          <p>And in college, I still didn't know <strong>what the hell was happening</strong>. Neither did anyone else, to be fair.</p>
+        </div>
+      </div>
+      <div class="formula rise" aria-label="Engineering notes">
+        <span>∫ f(x) dx = F(x) + C</span>
+        <span>V = I × R</span>
+        <span>σ = F / A</span>
+        <span><s>career plan</s> ¯\_(ツ)_/¯</span>
+        <span class="wtf">wait… what is happening?</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Pen drive -->
+  <section class="chapter">
+    <div class="wrap two">
+      <div class="head rise">
+        <span class="label c-purple">Chapter six · the pen drive</span>
+        <h2>Then a pen drive came around, and <span class="c-purple">colour came back.</span></h2>
+        <div class="prose">
+          <p>Back then, Photoshop travelled hostel to hostel on pen drives. I copied it and opened it, and something clicked.</p>
+          <p>A lot of people took it along with me. Almost nobody kept going. I did. The rest is history.</p>
+        </div>
+      </div>
+      <div class="crowd rise" id="crowd">
+        <div class="drive" aria-hidden="true">
+          <div class="stick"><span>PHOTOSHOP<br><code>setup_FINAL_final(2).exe</code></span></div>
+          <div class="cap-end"></div>
+        </div>
+        <span class="label">Everyone who copied it</span>
+        <div class="people" id="people"></div>
+        <button class="pill" id="ff" aria-pressed="false">Fast-forward 7 years →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Path -->
+  <section class="chapter" style="border-top: 1px solid var(--line)">
+    <div class="wrap">
+      <div class="head rise">
+        <span class="label c-green">Chapter seven · figuring it out</span>
+        <h2>From posters to <span class="c-green">people.</span></h2>
+        <p>One thing led to the next.</p>
+      </div>
+      <ol class="steps">
+        <li style="--c: var(--red)"><h3>Posters</h3><p>Lots and lots of them. Every event, every excuse.</p></li>
+        <li style="--c: var(--yellow); --t: #1b1408"><h3>Graphic design internships</h3><p>Real briefs, real clients, real feedback.</p></li>
+        <li style="--c: var(--blue)"><h3>Found UX</h3><p>Design that isn't only about how it looks, but how it feels to use.</p></li>
+        <li style="--c: var(--green)"><h3>UX designer</h3><p>Feeling too much turned out to be the job.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Outro -->
+  <section class="outro" style="border-top: 1px solid var(--line)">
+    <div class="wrap">
+      <span class="label">So, today</span>
+      <div class="age" aria-label="27"><span class="c-pink" style="--i:0">2</span><span class="c-blue" style="--i:1">7</span><span class="c-yellow" style="--i:2">.</span></div>
+      <p class="sub" style="font-size: clamp(1.2rem, 2.6vw, 1.6rem)">I'm Priyanshu Gupta. I'm 27, I'm a UX designer, and I still feel too much. Now it goes into the work.</p>
+      <div class="facts">
+        <span>7+ years designing</span><span>UX designer</span><span>Ex-engineering student</span><span>Grandpa's biggest fan</span>
+      </div>
+      <button class="woo" id="woo">Woohoo!</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Priyanshu Gupta · painted with feelings, buckets and one pen drive.</div>
+</footer>
+
+<script>
+(() => {
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PAINTS = ['--red', '--yellow', '--blue', '--green', '--pink', '--purple'];
+
+  /* ---------- hero paint wall ---------- */
+  const cv = document.getElementById('paint'), ctx = cv.getContext('2d');
+  let colorVar = '--red', strokes = [], cur = null;
+  function size() {
+    const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1;
+    cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); redraw();
+  }
+  function drawStroke(s) {
+    ctx.strokeStyle = css(s.c); ctx.lineCap = ctx.lineJoin = 'round'; ctx.globalAlpha = .85;
+    for (let i = 1; i < s.pts.length; i++) {
+      const a = s.pts[i - 1], b = s.pts[i];
+      ctx.lineWidth = b.w; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function redraw() { ctx.clearRect(0, 0, cv.width, cv.height); strokes.forEach(drawStroke); }
+  function pos(e) { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  cv.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch') return; // keep touch scrolling; tap paints a dot below
+    cur = { c: colorVar, pts: [{ ...pos(e), w: 14 }] }; strokes.push(cur); cv.setPointerCapture(e.pointerId);
+  });
+  cv.addEventListener('pointermove', e => {
+    if (!cur) return;
+    const p = pos(e), last = cur.pts[cur.pts.length - 1];
+    const speed = Math.hypot(p.x - last.x, p.y - last.y);
+    p.w = Math.max(5, Math.min(26, 28 - speed * .6)); cur.pts.push(p); drawStroke({ c: cur.c, pts: [last, p] });
+  });
+  const end = () => { cur = null; };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  cv.addEventListener('click', e => { // taps on touch screens drop a blob
+    const p = pos(e); const s = { c: colorVar, pts: [{ ...p, w: 22 }, { x: p.x + .5, y: p.y + .5, w: 22 }] };
+    strokes.push(s); drawStroke(s);
+  });
+  document.querySelectorAll('.pot').forEach(b => b.addEventListener('click', () => {
+    colorVar = b.dataset.c;
+    document.querySelectorAll('.pot').forEach(o => o.setAttribute('aria-pressed', o === b));
+  }));
+  document.getElementById('clear').addEventListener('click', () => { strokes = []; redraw(); });
+  // a few starting strokes so the wall is already colourful at rest
+  function seed() {
+    const r = cv.getBoundingClientRect(), W = r.width, H = r.height;
+    const make = (c, x0, y0, len, amp, w) => {
+      const pts = []; for (let i = 0; i <= 40; i++) { const t = i / 40; pts.push({ x: x0 + t * len, y: y0 + Math.sin(t * 5) * amp, w: w * (1 - Math.abs(t - .5)) + 3 }); }
+      strokes.push({ c, pts });
+    };
+    make('--yellow', W * .62, H * .18, Math.min(320, W * .35), 18, 22);
+    make('--pink', W * .70, H * .70, Math.min(260, W * .28), 24, 18);
+    make('--blue', W * .78, H * .42, Math.min(180, W * .2), 30, 14);
+  }
+  addEventListener('resize', size); seed(); size();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', redraw);
+
+  /* ---------- buckets & splashes ---------- */
+  let splashColor = null; const tip = document.getElementById('brushTip');
+  document.querySelectorAll('.bucket').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.bucket').forEach(o => o.classList.toggle('open', o === b));
+    splashColor = b.dataset.c; tip.style.setProperty('--brush', `var(${splashColor})`);
+  }));
+  const zone = document.getElementById('splashzone');
+  function splat(x, y, c) {
+    for (let i = 0; i < 7; i++) {
+      const s = document.createElement('span'), r = i ? 8 + Math.random() * 22 : 50 + Math.random() * 30;
+      const ox = i ? (Math.random() - .5) * 140 : 0, oy = i ? (Math.random() - .5) * 110 : 0;
+      Object.assign(s.style, { width: r + 'px', height: r + 'px', left: x + ox - r / 2 + 'px', top: y + oy - r / 2 + 'px', background: `var(${c})`, animationDelay: i * 25 + 'ms' });
+      s.className = 'splat'; zone.appendChild(s);
+    }
+  }
+  zone.addEventListener('click', e => {
+    const r = zone.getBoundingClientRect();
+    splat(e.clientX - r.left, e.clientY - r.top, splashColor || PAINTS[Math.floor(Math.random() * PAINTS.length)]);
+  });
+  // two splashes at rest
+  requestAnimationFrame(() => { const w = zone.clientWidth, h = zone.clientHeight; splat(w * .78, h * .7, '--blue'); splat(w * .55, h * .85, '--yellow'); });
+
+  /* ---------- collage ---------- */
+  const collage = document.getElementById('collage');
+  const photos = [
+    { cap: 'Papa', bg: ['--blue', '--yellow'] },
+    { cap: 'a birthday', bg: ['--pink', '--yellow'] },
+    { cap: 'the whole family', bg: ['--green', '--red'] },
+    { cap: 'Dada', bg: ['--purple', '--yellow'] },
+    { cap: 'baby me', bg: ['--red', '--blue'] },
+    { cap: 'too much glue', bg: ['--yellow', '--green'] },
+  ];
+  const spots = [[.04, .06, -6], [.30, .02, 4], [.62, .08, -3], [.08, .50, 5], [.40, .55, -5], [.70, .52, 7]];
+  photos.forEach((p, i) => {
+    const el = document.createElement('div'); el.className = 'photo';
+    const [a, b] = p.bg;
+    el.innerHTML = `<div class="img" style="background:
+      radial-gradient(circle at 50% 42%, var(${b}) 0 22%, transparent 23%),
+      radial-gradient(ellipse at 50% 100%, var(${b}) 0 38%, transparent 39%), var(${a})"></div><div class="cap">${p.cap}</div>`;
+    el.dataset.i = i; el.style.setProperty('--r', spots[i][2] + 'deg'); collage.appendChild(el);
+  });
+  function place() {
+    const W = collage.clientWidth, H = collage.clientHeight;
+    collage.querySelectorAll('.photo').forEach(el => {
+      const [x, y, r] = spots[el.dataset.i];
+      const pw = el.offsetWidth, ph = el.offsetHeight;
+      el.style.left = Math.min(x * W, W - pw - 8) + 'px'; el.style.top = Math.min(y * H, H - ph - 8) + 'px';
+      el.style.transform = `rotate(${r}deg)`;
+    });
+  }
+  place(); addEventListener('resize', place);
+  let z = 10;
+  collage.addEventListener('pointerdown', e => {
+    const el = e.target.closest('.photo'); if (!el) return;
+    e.preventDefault(); el.setPointerCapture(e.pointerId); el.style.zIndex = ++z;
+    const sx = e.clientX - el.offsetLeft, sy = e.clientY - el.offsetTop;
+    const move = m => {
+      const W = collage.clientWidth - el.offsetWidth, H = collage.clientHeight - el.offsetHeight;
+      el.style.left = Math.max(0, Math.min(W, m.clientX - sx)) + 'px';
+      el.style.top = Math.max(0, Math.min(H, m.clientY - sy)) + 'px';
+    };
+    const up = () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerup', up); el.removeEventListener('pointercancel', up); };
+    el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+  });
+
+  /* ---------- pen drive crowd ---------- */
+  const people = document.getElementById('people');
+  for (let i = 0; i < 14; i++) {
+    const d = document.createElement('span'); d.className = 'person';
+    d.style.setProperty('--c', `var(${PAINTS[i % PAINTS.length]})`);
+    if (i === 9) { d.classList.add('me'); d.textContent = 'me'; d.style.setProperty('--c', 'var(--pink)'); }
+    people.appendChild(d);
+  }
+  const crowd = document.getElementById('crowd'), ff = document.getElementById('ff');
+  ff.addEventListener('click', () => {
+    const later = crowd.classList.toggle('later');
+    ff.setAttribute('aria-pressed', later);
+    ff.textContent = later ? '← Back to day one' : 'Fast-forward 7 years →';
+  });
+
+  /* ---------- woohoo confetti ---------- */
+  const cc = document.getElementById('confetti'), cx = cc.getContext('2d');
+  let bits = [], running = false;
+  function burst() {
+    const d = devicePixelRatio || 1; cc.width = innerWidth * d; cc.height = innerHeight * d; cx.setTransform(d, 0, 0, d, 0, 0);
+    const b = document.getElementById('woo').getBoundingClientRect();
+    for (let i = 0; i < (reduce ? 40 : 160); i++) {
+      const a = -Math.PI / 2 + (Math.random() - .5) * 2.2, v = 6 + Math.random() * 10;
+      bits.push({ x: b.left + b.width / 2, y: b.top, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: 4 + Math.random() * 9, c: css(PAINTS[i % 6]), life: 1 });
+    }
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }
+  function tick() {
+    cx.clearRect(0, 0, innerWidth, innerHeight);
+    bits.forEach(p => { p.vy += .32; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.life -= .008; cx.globalAlpha = Math.max(0, p.life); cx.fillStyle = p.c; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill(); });
+    bits = bits.filter(p => p.life > 0 && p.y < innerHeight + 40);
+    if (bits.length) requestAnimationFrame(tick); else { running = false; cx.clearRect(0, 0, innerWidth, innerHeight); }
+  }
+  document.getElementById('woo').addEventListener('click', burst);
+  /* ---------- the arrow: a paint-blob cursor with a colour trail ---------- */
+  if (matchMedia('(pointer: fine)').matches && !reduce) {
+    document.body.classList.add('has-cursor');
+    const dot = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+    const tc = document.getElementById('trail'), tx = tc.getContext('2d');
+    let mx = -100, my = -100, rx = -100, ry = -100, hue = 0, trail = [];
+    const fit = () => { const d = devicePixelRatio || 1; tc.width = innerWidth * d; tc.height = innerHeight * d; tx.setTransform(d, 0, 0, d, 0, 0); };
+    fit(); addEventListener('resize', fit);
+    addEventListener('pointermove', e => {
+      mx = e.clientX; my = e.clientY;
+      trail.push({ x: mx, y: my, c: css(PAINTS[Math.floor(hue) % 6]), life: 1 }); hue += .08;
+      document.body.classList.toggle('hovering', !!e.target.closest('button, a, .photo, .bucket, #splashzone'));
+    });
+    document.addEventListener('pointerleave', () => { mx = my = -100; });
+    (function loop() {
+      rx += (mx - rx) * .18; ry += (my - ry) * .18;
+      dot.style.transform = `translate(${mx}px, ${my}px)`; ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      tx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 1; i < trail.length; i++) {
+        const a = trail[i - 1], b = trail[i];
+        tx.strokeStyle = b.c; tx.globalAlpha = b.life * .7; tx.lineWidth = 10 * b.life; tx.lineCap = 'round';
+        tx.beginPath(); tx.moveTo(a.x, a.y); tx.lineTo(b.x, b.y); tx.stroke();
+      }
+      tx.globalAlpha = 1;
+      trail.forEach(p => p.life -= .035); trail = trail.filter(p => p.life > 0);
+      requestAnimationFrame(loop);
+    })();
+    const setCur = v => document.documentElement.style.setProperty('--cur', `var(${v})`);
+    document.querySelectorAll('.pot, .bucket').forEach(b => b.addEventListener('click', () => setCur(b.dataset.c)));
+  }
+})();
+</script>
+</body></html>
