@@ -1,7 +1,7 @@
 <title>Priyanshu Feels Too Much</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&family=Hanken+Grotesk:wght@400;600;800&family=Kalam:wght@400;700&family=Mukta:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@400;500;700&family=Hanken+Grotesk:wght@400;600;800&family=Kalam:wght@400;700&family=Mukta:wght@500;700;800&display=swap">
 <style>
 /* Layout: no scrolling page. A stage of full-screen scenes, one at a time, like a picture book.
    Each scene floods in as a paint circle from wherever you clicked. Single deliberate visual world (every colour explicit). */
@@ -15,7 +15,7 @@
   --pink: #ff5fae;
   --purple: #8b5cf6;
   --grey: #c9c7cc;
-  --font-display: "Modak", "Arial Black", Impact, sans-serif;
+  --font-display: "Vesper Libre", Georgia, "Times New Roman", serif;
   --font-body: "Hanken Grotesk", "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: "Kalam", "Comic Sans MS", cursive;
   color-scheme: light;
@@ -25,7 +25,7 @@ html, body { height: 100%; }
 body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--font-body); overflow: hidden; -webkit-user-select: none; user-select: none; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; border-radius: 8px; }
-.disp { font-family: var(--font-display); font-weight: 400; line-height: .92; letter-spacing: 0; margin: 0; text-wrap: balance; }
+.disp { font-family: var(--font-display); font-weight: 500; line-height: 1; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
 .hand { font-family: var(--font-hand); font-weight: 700; line-height: 1.1; }
 p { margin: 0; }
 .hi { font-family: var(--font-hand); font-weight: 700; color: var(--hi, var(--yellow)); display: inline-block; line-height: 1.2; }
@@ -85,12 +85,12 @@ p { margin: 0; }
 /* ---------- 0 intro ---------- */
 .s-intro { --bg: var(--ink); }
 .s-intro .psst { font-family: var(--font-hand); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--yellow); transform: rotate(-6deg); }
-.s-intro .name { font-size: clamp(3.4rem, 13vw, 10.5rem); line-height: .85; }
+.s-intro .name { font-size: clamp(3.4rem, 12vw, 9.5rem); line-height: .95; font-weight: 400; letter-spacing: -.02em; }
 .s-intro .name span { display: inline-block; }
 .s-intro .name span:first-child { color: var(--pink); } .s-intro .name span:last-child { color: var(--yellow); }
 .s-intro .name span:hover { animation: jelly .6s; }
 @keyframes jelly { 30% { transform: scale(1.15, .85); } 50% { transform: scale(.9, 1.1); } 70% { transform: scale(1.04, .97); } }
-.hindi-name { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 3.6rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
+.hindi-name { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.8rem, 5vw, 3.4rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
 .intro-line { font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 600; max-width: 34ch; line-height: 1.4; }
 .intro-line .hi { font-size: 1.2em; }
 .s-intro em { font-style: normal; display: inline-block; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 5s linear infinite; }
@@ -103,7 +103,7 @@ p { margin: 0; }
 .s-feel .blob.go { transform: scale(1); }
 .s-feel .feel { font-size: clamp(3rem, 12vw, 10rem); transform: scale(var(--k, 1)); transition: transform .12s linear; will-change: transform; }
 .s-feel .feel span { display: block; }
-.s-feel .feel span:nth-child(2) { color: var(--yellow); text-shadow: 4px 4px 0 var(--ink); }
+.s-feel .feel span:nth-child(2) { color: var(--yellow); text-shadow: 3px 3px 0 rgba(23,20,31,.85); }
 .s-feel .feel .feel-hi { --hi: var(--paper); font-size: .32em; transform: rotate(-4deg); display: block; }
 .s-feel.shake .feel { animation: tremble .08s infinite; }
 @keyframes tremble { 50% { translate: 2px -2px; } }
@@ -216,14 +216,14 @@ p { margin: 0; }
 /* ---------- 8 montage ---------- */
 .s-montage { --bg: var(--green); }
 .stamps { position: relative; width: min(900px, 94vw); height: min(62vh, 520px); }
-.stamp { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, 0) rotate(var(--r)); padding: .2em .5em; border-radius: 14px; background: var(--c); color: var(--t, #fff); font-family: var(--font-display); font-size: clamp(1.6rem, 5.4vw, 3.8rem); line-height: 1; white-space: nowrap; box-shadow: 6px 6px 0 var(--ink); opacity: 0; }
+.stamp { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, 0) rotate(var(--r)); padding: .2em .5em; border-radius: 14px; background: var(--c); color: var(--t, #fff); font-family: var(--font-display); font-weight: 500; font-size: clamp(1.5rem, 5vw, 3.4rem); line-height: 1; white-space: nowrap; box-shadow: 6px 6px 0 var(--ink); opacity: 0; }
 .stamp.in { animation: slam .45s cubic-bezier(.3,1.7,.5,1) forwards; }
 @keyframes slam { from { opacity: 0; transform: translate(-50%, 0) rotate(var(--r)) scale(3); } to { opacity: 1; transform: translate(-50%, 0) rotate(var(--r)) scale(1); } }
 .stamp small { font-family: var(--font-hand); font-size: .55em; display: block; margin-top: .1em; }
 
 /* ---------- 9 finale ---------- */
 .s-end { --bg: var(--paper); --fg: var(--ink); }
-.age { font-family: var(--font-display); font-size: clamp(7rem, 34vmin, 22rem); line-height: .8; display: flex; }
+.age { font-family: var(--font-display); font-weight: 500; font-size: clamp(7rem, 34vmin, 22rem); line-height: .8; display: flex; }
 .age span { display: inline-block; animation: hop 2.2s ease-in-out infinite; animation-delay: calc(var(--i) * .16s); }
 @keyframes hop { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-12%) rotate(-5deg); } }
 .hindi-age { font-family: var(--font-hand); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--blue); margin-top: -8px; transform: rotate(-3deg); }
@@ -243,7 +243,7 @@ p { margin: 0; }
 .now svg { position: absolute; left: 50%; top: 34px; width: 80px; height: 62px; overflow: visible; }
 .now path { fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .end-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
-.woo { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.8rem); padding: 12px 36px; border-radius: 24px; color: #fff; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; animation: slide 5s linear infinite; box-shadow: 6px 6px 0 var(--ink); transition: transform .15s; }
+.woo { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.8rem, 5vw, 2.8rem); padding: 12px 36px; border-radius: 24px; color: #fff; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; animation: slide 5s linear infinite; box-shadow: 6px 6px 0 var(--ink); transition: transform .15s; }
 .woo:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
 .replay { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 
@@ -285,7 +285,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-end .deck-wrap { order: -1; }
   .s-end .deck { width: min(130px, 34vw); }
   .s-end .deck-hint, .s-end .chips { display: none; }
-  .now .en, .c-banner .en { display: none; }
+  .c-banner .en { display: none; }
   .c-banner { left: 10%; top: -12%; }
   .s-end .deck-wrap { margin-bottom: 18px; }
   .now { left: auto; right: 64%; top: 30%; font-size: 1.15rem; transform: rotate(-6deg); }
@@ -311,20 +311,20 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-intro" data-teaser>
     <div class="inner">
-      <span class="psst pop" style="--d:.1">नमस्ते! hi, I'm</span>
+      <span class="psst pop" style="--d:.1">hi, I'm</span>
       <h1 class="disp name pop" style="--d:.25"><span>Priyanshu</span> <span>Gupta</span></h1>
       <span class="hindi-name pop" style="--d:.45" lang="hi">प्रियांशु गुप्ता</span>
-      <p class="intro-line pop" style="--d:.65">Designer for 7+ years. This is why I became one. It starts with a kid who felt <em>too much.</em> <span class="hi" lang="hi">बहुत ज़्यादा।</span></p>
+      <p class="intro-line pop" style="--d:.65">Designer for 7+ years. This is why I became one. It starts with a kid who felt <em>too much.</em></p>
       <span class="hint pop" style="--d:1">Click the arrow · or use → · or swipe</span>
     </div>
-    <button class="next">Meet the kid. <span lang="hi">चलो!</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">Meet the kid. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-feel" data-gated>
     <div class="blobs"></div>
     <div class="inner">
-      <span class="hint">Press and hold anywhere · <span lang="hi">दबाए रखो</span></span>
-      <h2 class="disp feel"><span>I feel</span><span>too much.</span><span class="hi feel-hi" lang="hi">बहुत ज़्यादा!</span></h2>
+      <span class="hint">Press and hold anywhere</span>
+      <h2 class="disp feel"><span>I feel</span><span>too much.</span></h2>
       <div class="meter" aria-hidden="true"><i></i></div>
       <p class="after">Always have. Louder, brighter and bigger than I was supposed to. That's me, Priyanshu.</p>
     </div>
@@ -334,7 +334,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-gift" data-gated>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">For my birthday <span class="hi" lang="hi" style="--hi: var(--red)">(जन्मदिन!)</span> I asked my grandfather for one thing.</h2>
+      <h2 class="disp pop" style="--d:.1">For my birthday, I asked my grandfather for one thing.</h2>
       <button class="gift pop" style="--d:.4" aria-label="Unwrap the present"><span class="lid"></span><span class="bow"></span><span class="box"></span></button>
       <span class="hint gift-hint pop" style="--d:.6">Tap to unwrap</span>
       <div class="set" role="group" aria-label="Paint pots, tap to splash">
@@ -342,7 +342,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="strip"><button class="tpot" style="--c:#e0661a; --i:6" data-c="#e0661a" aria-label="Orange"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#e0661a"/><rect x="10" y="64" width="34" height="9" fill="#e0661a"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#e0661a"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#e0661a"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#e0661a"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#f6c3a8; --i:7" data-c="#f6c3a8" aria-label="Peach"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#f6c3a8"/><rect x="10" y="64" width="34" height="9" fill="#f6c3a8"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#f6c3a8"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#f6c3a8"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#f6c3a8"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#2fd12f; --i:8" data-c="#2fd12f" aria-label="Bright green"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#2fd12f"/><rect x="10" y="64" width="34" height="9" fill="#2fd12f"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#2fd12f"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#2fd12f"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#2fd12f"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#ff1f7a; --i:9" data-c="#ff1f7a" aria-label="Pink"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#ff1f7a"/><rect x="10" y="64" width="34" height="9" fill="#ff1f7a"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#ff1f7a"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#ff1f7a"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#ff1f7a"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot glitter" style="--c:#c9c9d6; --i:10" data-c="#c9c9d6" aria-label="Silver glitter"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#c9c9d6"/><rect x="10" y="64" width="34" height="9" fill="#c9c9d6"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#c9c9d6"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="44" r="1.2" fill="#fff"/><circle cx="30" cy="56" r="1.4" fill="#fff"/><circle cx="40" cy="40" r="1" fill="#fff"/><circle cx="24" cy="62" r="1" fill="#fff"/><circle cx="36" cy="48" r="1.2" fill="#fff" opacity=".8"/><circle cx="14" cy="56" r="1" fill="#fff"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#c9c9d6"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#c9c9d6"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot glitter" style="--c:#c8902a; --i:11" data-c="#c8902a" aria-label="Gold glitter"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#c8902a"/><rect x="10" y="64" width="34" height="9" fill="#c8902a"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#c8902a"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="44" r="1.2" fill="#fff"/><circle cx="30" cy="56" r="1.4" fill="#fff"/><circle cx="40" cy="40" r="1" fill="#fff"/><circle cx="24" cy="62" r="1" fill="#fff"/><circle cx="36" cy="48" r="1.2" fill="#fff" opacity=".8"/><circle cx="14" cy="56" r="1" fill="#fff"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#c8902a"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#c8902a"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button></div>
         <span class="brushy" aria-hidden="true"></span>
       </div>
-      <p class="say" hidden><span class="hi" lang="hi" style="--hi: var(--red); font-size: 1.3em">रंग!</span> A paint set! Twelve tiny paint pots stuck together, and one brush. Tap a pot. Go on, make a mess.</p>
+      <p class="say" hidden>A paint set! Twelve tiny paint pots stuck together, and one brush. Tap a pot. Go on, make a mess.</p>
     </div>
     <button class="next">Why paint? Because of him. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -350,7 +350,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   <section class="scene s-dada" data-teaser>
     <div class="inner">
       <div class="copy">
-        <h2 class="disp pop" style="--d:.1">Meet the original designer: <span class="hand" lang="hi">दादा.</span></h2>
+        <h2 class="disp pop" style="--d:.1">Meet the original designer: <span class="hand">Dada.</span></h2>
         <p class="pop" style="--d:.35">My grandfather was always making something. Someone's birthday? He made the poster.</p>
         <p class="pop" style="--d:.55">See that banner? “Happy Birthday to Priyanshu.” He made it, by hand. That's me in his arms. I was his biggest fan, and I'm pretty sure that's where my creative genes came from.</p>
       </div>
@@ -358,8 +358,8 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="pic"><img src="img/birthday.jpg" alt="Priyanshu's grandfather holding baby Priyanshu at a birthday party, under a Happy Birthday to Priyanshu banner"></div>
         <figcaption>my birthday · Dada, me &amp; his banner</figcaption>
         <span class="callout c-banner" style="--t:1.4s"><span lang="hi">दादा ने बनाया!</span><span class="en"> he made this banner</span><svg viewBox="0 0 90 70"><path d="M2 10 C 40 0, 70 10, 80 50 M70 40 L80 52 L88 38"/></svg></span>
-        <span class="callout c-dada" style="--t:2s"><span lang="hi">दादा</span><svg viewBox="0 0 90 70"><path d="M2 4 C 30 0, 60 20, 78 56 M64 50 L78 58 L80 42"/></svg></span>
-        <span class="callout c-me" style="--t:2.6s"><span lang="hi">मैं!</span><svg viewBox="0 0 90 70"><path d="M88 66 C 60 70, 30 50, 12 14 M4 28 L12 12 L26 22"/></svg></span>
+        <span class="callout c-dada" style="--t:2s">Dada<svg viewBox="0 0 90 70"><path d="M2 4 C 30 0, 60 20, 78 56 M64 50 L78 58 L80 42"/></svg></span>
+        <span class="callout c-me" style="--t:2.6s">me!<svg viewBox="0 0 90 70"><path d="M88 66 C 60 70, 30 50, 12 14 M4 28 L12 12 L26 22"/></svg></span>
       </figure>
         </div>
     <button class="next">So I started my first project… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -410,10 +410,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-montage" data-gated>
     <div class="stamps">
-      <span class="stamp" style="--c: var(--yellow); --t: var(--ink); --y: 0%; --r: -4deg">Posters. <span lang="hi">पोस्टर!</span></span>
-      <span class="stamp" style="--c: var(--red); --y: 18%; --r: 3deg">So many posters. <span lang="hi">और पोस्टर!</span></span>
+      <span class="stamp" style="--c: var(--yellow); --t: var(--ink); --y: 0%; --r: -4deg">Posters.</span>
+      <span class="stamp" style="--c: var(--red); --y: 18%; --r: 3deg">So many posters.</span>
       <span class="stamp" style="--c: var(--blue); --y: 38%; --r: -2deg">Graphic design internships.</span>
-      <span class="stamp" style="--c: var(--ink); --y: 60%; --r: 4deg">Then I found UX.<small lang="hi">फिर मिला UX ·</small><small>design for how it feels, not just how it looks</small></span>
+      <span class="stamp" style="--c: var(--ink); --y: 60%; --r: 4deg">Then I found UX.<small>design for how it feels, not just how it looks</small></span>
     </div>
     <button class="next">So where is that kid now? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -422,13 +422,12 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <div class="copy">
       <div class="age disp pop" aria-label="27"><span style="--i:0;color:var(--pink)">2</span><span style="--i:1;color:var(--blue)">7</span><span style="--i:2;color:var(--yellow)">.</span></div>
-      <span class="hindi-age pop" style="--d:.2" lang="hi">सत्ताईस साल</span>
-      <p class="who-big pop" style="--d:.3">So that's why I design. I'm Priyanshu Gupta, a UX designer for 7+ years, and I <span class="hand">still feel too much.</span> Now it goes into the work. <span class="hi" lang="hi" style="--hi: var(--purple)">बहुत ज़्यादा।</span></p>
+      <p class="who-big pop" style="--d:.3">So that's why I design. I'm Priyanshu Gupta, a UX designer for 7+ years, and I <span class="hand">still feel too much.</span> Now it goes into the work.</p>
       <div class="chips pop" style="--d:.5"><span style="--c: var(--red)">7+ years designing</span><span style="--c: var(--blue)">UX designer</span><span style="--c: var(--green)">ex-engineer, sort of</span><span style="--c: var(--purple)">Dada's biggest fan</span></div>
-      <div class="end-actions pop" style="--d:.7"><button class="woo">Woohoo! <span lang="hi">वाह!</span></button><button class="replay">Replay the story ↺</button></div>
+      <div class="end-actions pop" style="--d:.7"><button class="woo">Woohoo!</button><button class="replay">Replay the story ↺</button></div>
       </div>
       <div class="deck-wrap pop" style="--d:.2">
-        <span class="now hand"><span lang="hi">ये मैं हूँ!</span><span class="en"> (me, now)</span><svg viewBox="0 0 90 70" aria-hidden="true"><path d="M4 8 C 30 0, 64 14, 74 54 M60 46 L74 58 L82 42"/></svg></span>
+        <span class="now hand"><span>this is me now!</span><svg viewBox="0 0 90 70" aria-hidden="true"><path d="M4 8 C 30 0, 64 14, 74 54 M60 46 L74 58 L82 42"/></svg></span>
         <div class="deck" role="button" tabindex="0" aria-label="Photos of Priyanshu today. Tap to flip to the next one."></div>
         <span class="deck-hint">tap to flip through</span>
       </div>
@@ -633,7 +632,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     pen.style.transformOrigin = '0 50%';
     later(() => { drv.classList.add('copying'); $('.say', drv).textContent = 'Copying…'; }, 550);
     later(() => {
-      drv.classList.remove('copying'); drv.classList.add('lit'); $('.say', drv).textContent = 'I opened it. Something clicked. जादू! The colour came back.';
+      drv.classList.remove('copying'); drv.classList.add('lit'); $('.say', drv).textContent = 'I opened it. Something clicked. The colour came back.';
       const r = drv.getBoundingClientRect(); PAINTS.forEach((c, i) => later(() => splash(drv, rand(.05, .95) * r.width, rand(.05, .95) * r.height, c, 1.3), i * 120));
       later(() => open(drv), 900);
     }, 2300);
@@ -667,7 +666,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     all.sort(() => Math.random() - .5);
     later(() => { line.textContent = 'Almost everyone stopped.'; }, 2200);
     all.forEach((d, i) => later(() => d.classList.add('gone'), 2300 + i * 55));
-    later(() => { $('.me', dots).classList.add('solo'); line.innerHTML = 'I didn’t. The rest is history. <span class="hi" lang="hi">बस, फिर क्या!</span>'; open(crowd); }, 2300 + all.length * 55 + 300);
+    later(() => { $('.me', dots).classList.add('solo'); line.innerHTML = 'I didn’t. The rest is history.'; open(crowd); }, 2300 + all.length * 55 + 300);
   }
 
   /* ---------- 8: montage stamps ---------- */
