@@ -215,6 +215,8 @@ p { margin: 0; }
 /* ---------- 7 crowd ---------- */
 .s-crowd { --bg: var(--purple); }
 .s-crowd h2 { font-size: clamp(2rem, 5.6vw, 4.4rem); max-width: 18ch; min-height: 2em; }
+.s-crowd .batch { width: min(300px, 60vw); margin: 0; rotate: -2deg; }
+.s-crowd .batch figcaption { font-size: 1.15rem; }
 .dots { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(6px, 1.4vw, 14px); width: min(620px, 92vw); }
 .dot { aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--c); transition: transform .5s, opacity .5s, background .5s; display: grid; place-items: center; font-weight: 800; font-size: .7rem; color: var(--ink); }
 .dot.gone { opacity: .12; transform: scale(.5); background: #fff; }
@@ -276,18 +278,22 @@ body.hover #arrow svg { transform: scale(1.5); }
 .s-dada.play .memory .pic img { animation-play-state: running; }
 @keyframes develop { from { filter: sepia(1) brightness(1.9) contrast(.4) blur(3px); } }
 .memory::before { content: ""; position: absolute; z-index: 2; top: -10px; left: 50%; margin-left: -44px; width: 88px; height: 26px; background: rgba(255,194,26,.8); transform: rotate(-4deg); }
-.callout { position: absolute; z-index: 3; color: var(--yellow); font-family: var(--font-hand); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; white-space: nowrap; pointer-events: none; opacity: 0; }
+.memory { width: min(500px, 86vw); }
+.marks { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
+.marks path { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 400; stroke-dashoffset: 400; }
+.s-dada.play .marks path { animation: drawArrow .8s forwards; animation-delay: var(--t); }
+.callout { position: absolute; z-index: 3; color: var(--yellow); font-family: var(--font-hand); font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1; white-space: nowrap; pointer-events: none; opacity: 0; }
 .s-dada.play .callout { animation: fadeIn .4s forwards; animation-delay: var(--t); }
-.callout svg { position: absolute; width: 90px; height: 70px; overflow: visible; }
-.callout path { fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 160; stroke-dashoffset: 160; }
-.s-dada.play .callout path { animation: drawArrow .7s forwards; animation-delay: calc(var(--t) + .2s); }
-.c-dada { left: -18%; top: 4%; } .c-dada svg { left: 40px; top: 26px; }
-.c-me { right: -14%; top: 58%; } .c-me svg { right: 40px; bottom: 26px; }
-.c-banner { left: -6%; top: -13%; color: var(--paper); } .c-banner svg { left: 46%; top: 24px; width: 60px; height: 48px; }
-
+.c-banner { left: 2%; top: -17%; color: var(--paper); }
+.c-dada { left: -19%; top: 47%; }
+.c-me { left: 103%; top: 47%; }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .frame { height: 22vh; }
+  .photo { width: 84px; }
+  .s-crowd .batch { width: min(200px, 54vw); }
+  .s-crowd h2 { font-size: 1.7rem; }
   .s-eng .inner { grid-template-columns: 1fr; gap: 14px; }
   .s-eng .grad { order: -1; width: min(180px, 48vw); }
   .s-eng h2 { font-size: 1.9rem; }
@@ -296,17 +302,16 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-end .deck-wrap { order: -1; }
   .s-end .deck { width: min(130px, 34vw); }
   .s-end .deck-hint, .s-end .chips { display: none; }
-  .c-banner .en { display: none; }
-  .c-banner { left: 10%; top: -12%; }
   .s-end .deck-wrap { margin-bottom: 18px; }
   .now { left: auto; right: 64%; top: 30%; font-size: 1.15rem; transform: rotate(-6deg); }
   .now svg { left: 100%; top: -4px; width: 46px; height: 36px; transform: scaleY(-1) rotate(-20deg); }
   .age { font-size: clamp(4.6rem, 20vmin, 8rem); }
   .s-end .who-big { font-size: 1.05rem; }
 
-  .s-dada .memory { width: min(250px, 64vw); order: -1; }
-  .callout { font-size: 1.35rem; }
-  .c-dada { left: -12%; } .c-me { right: -10%; }
+  .s-dada .memory { width: min(250px, 60vw); order: -1; margin-top: 26px; }
+  .c-banner .en { display: none; }
+  .callout { font-size: 1.15rem; }
+  .c-dada { left: -22%; } .c-me { left: 102%; }
   .s-feel .kid { width: 92px; bottom: auto; top: calc(70px + env(safe-area-inset-top, 0px)); left: 12px; }
 
   .s-dada .inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
@@ -339,7 +344,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="meter" aria-hidden="true"><i></i></div>
       <p class="after">Always have. Louder, brighter and bigger than I was supposed to. That's me, Priyanshu.</p>
     </div>
-    <figure class="snap kid"><img src="img/kid.jpg" alt="Young Priyanshu, dressed up in red and grinning"><figcaption>me, feeling everything</figcaption></figure>
+    <figure class="snap kid"><img src="img/smile.jpg" alt="Toddler Priyanshu in a red dress with a huge grin"><figcaption>me, feeling everything</figcaption></figure>
     <button class="next">So what did that kid want for a birthday? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
@@ -366,11 +371,16 @@ body.hover #arrow svg { transform: scale(1.5); }
         <p class="pop" style="--d:.55">See that banner? “Happy Birthday to Priyanshu.” He made it, by hand. That's me in his arms. I was his biggest fan, and I'm pretty sure that's where my creative genes came from.</p>
       </div>
       <figure class="snap memory pop" style="--d:.2" aria-label="Dada holding baby Priyanshu under a Happy Birthday to Priyanshu banner. Click to add stickers.">
-        <div class="pic"><img src="img/birthday.jpg" alt="Priyanshu's grandfather holding baby Priyanshu at a birthday party, under a Happy Birthday to Priyanshu banner"></div>
-        <figcaption>my birthday · Dada, me &amp; his banner</figcaption>
-        <span class="callout c-banner" style="--t:1.4s"><span lang="hi">दादा ने बनाया!</span><span class="en"> he made this banner</span><svg viewBox="0 0 90 70"><path d="M2 10 C 40 0, 70 10, 80 50 M70 40 L80 52 L88 38"/></svg></span>
-        <span class="callout c-dada" style="--t:2s">Dada<svg viewBox="0 0 90 70"><path d="M2 4 C 30 0, 60 20, 78 56 M64 50 L78 58 L80 42"/></svg></span>
-        <span class="callout c-me" style="--t:2.6s">me!<svg viewBox="0 0 90 70"><path d="M88 66 C 60 70, 30 50, 12 14 M4 28 L12 12 L26 22"/></svg></span>
+        <div class="pic"><img src="img/birthday.jpg" alt="Priyanshu's grandfather holding baby Priyanshu at a birthday party with the family, under the Happy Birthday to Priyanshu banner he made"></div>
+        <figcaption>my birthday · Dada, me, the whole family &amp; his banner</figcaption>
+        <svg class="marks" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path style="--t:1.6s; stroke: var(--paper)" d="M22 -9 C 26 -6, 28 0, 27 8 M23.5 4 L27 9 L30 3.5"/>
+          <path style="--t:2.2s; stroke: var(--yellow)" d="M-6 50 C 10 50, 30 46, 42.5 35 M37 35 L43 34.5 L42 40.5"/>
+          <path style="--t:2.8s; stroke: var(--yellow)" d="M104 50 C 90 50, 72 46, 63 37 M68.5 36.5 L62.5 36.5 L64 42"/>
+        </svg>
+        <span class="callout c-banner" style="--t:1.4s"><span lang="hi">दादा ने बनाया!</span><span class="en"> he made this banner</span></span>
+        <span class="callout c-dada" style="--t:2s">Dada</span>
+        <span class="callout c-me" style="--t:2.6s">me!</span>
       </figure>
         </div>
     <button class="next">So I started my first project… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -420,6 +430,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-crowd" data-gated>
     <div class="inner">
+      <figure class="snap batch"><img src="img/batch.jpg" alt="Priyanshu's graduating batch throwing their caps in the air"><figcaption>my batch · class of 2021</figcaption></figure>
       <h2 class="disp line">Lots of people took that pen drive with me.</h2>
       <div class="dots"></div>
     </div>
@@ -601,10 +612,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- 4: collage ---------- */
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
-  const PHOTOS = [['me, all dressed up', 'img/kid.jpg'], ['Dada & me', 'img/birthday.jpg'], ['Papa', '--blue', '--yellow'], ['a birthday', '--yellow', '--red'], ['the whole family', '--red', '--blue'], ['too much glue', '--ink', '--yellow']];
+  const PHOTOS = [['me, all dressed up', 'img/kid.jpg'], ['Dada & me', 'img/birthday.jpg'], ['head tilt, always', 'img/tilt.jpg'], ['tiny & very serious', 'img/temple.jpg'], ['that grin', 'img/smile.jpg'], ['too much glue', '--ink', '--yellow']];
   function collageEnter(el) {
     board.innerHTML = ''; frame.classList.remove('full'); $('.n', el).textContent = 0;
-    const W = el.clientWidth, H = el.clientHeight, spots = [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
+    const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
     PHOTOS.slice(0, 6).forEach(([cap, a, b], i) => {
       const p = document.createElement('div'); p.className = 'photo';
       p.innerHTML = b === undefined ? `<div class="img real" style="background: url('${a}')"></div><div class="cap">${cap}</div>` : `<div class="img" style="background: radial-gradient(circle at 50% 40%, var(${b}) 0 20%, transparent 21%), radial-gradient(ellipse at 50% 100%, var(${b}) 0 36%, transparent 37%), var(${a})"></div><div class="cap">${cap}</div>`;
