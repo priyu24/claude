@@ -322,7 +322,6 @@ p { margin: 0; }
 .stamp small { font-family: var(--font-hand); font-size: .55em; display: block; margin-top: .1em; }
 
 /* ---------- 9 finale ---------- */
-.s-end { --bg: var(--paper); --fg: var(--ink); }
 .age { font-family: var(--font-display); font-weight: 400; font-size: clamp(7rem, 34vmin, 22rem); line-height: .8; display: flex; }
 .age span { display: inline-block; animation: hop 2.2s ease-in-out infinite; animation-delay: calc(var(--i) * .16s); }
 @keyframes hop { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-12%) rotate(-5deg); } }
@@ -331,22 +330,28 @@ p { margin: 0; }
 .s-end .who-big .hand { color: var(--pink); font-size: 1.3em; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .chips span { padding: 6px 16px; border-radius: 99px; color: #fff; font-weight: 700; font-size: .95rem; background: var(--c); }
-.s-end { --bg: var(--paper); --fg: var(--ink); }
-.wall-photos { position: absolute; inset: 0; z-index: 1; }
-.wp { position: absolute; width: clamp(110px, 15vw, 200px); background: #fff; padding: 7px 7px 0; box-shadow: 0 16px 30px -14px rgba(23,20,31,.5); cursor: grab; touch-action: none; transform: rotate(var(--r)); }
-.wp img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; max-width: 100%; }
-.wp span { display: block; font: 400 clamp(.85rem, 1.4vw, 1.1rem)/1.6 var(--font-hand); text-align: center; color: var(--ink); }
-.me-card { position: relative; z-index: 3; background: var(--ink); color: var(--paper); border-radius: 24px; padding: clamp(20px, 3vw, 34px) clamp(20px, 3.4vw, 40px); display: grid; gap: 12px; justify-items: center; width: min(440px, 100%); box-shadow: 0 30px 60px -24px rgba(23,20,31,.6); }
-.me-collage { width: min(260px, 60vw); max-width: 100%; height: auto; border-radius: 12px; margin-top: -70px; transform: rotate(-3deg); box-shadow: 0 16px 30px -14px rgba(0,0,0,.6); background: #fff; }
-.me-card .eyebrow { font-family: var(--font-tease); font-style: italic; font-size: 1.4rem; color: var(--yellow); }
-.name-rev { margin: 0; font-weight: 400; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; white-space: nowrap; }
+.s-end { --bg: var(--ink); --fg: var(--paper); }
+.end-grid { grid-template-columns: 1.15fr 1fr; align-items: center; gap: clamp(24px, 4vw, 64px); width: min(100%, 1180px); text-align: left; justify-items: start; }
+.hero-collage { position: relative; margin: 0; width: 100%; max-width: 620px; justify-self: center; background: #fff; padding: 12px; border-radius: 6px; transform: rotate(-3deg); box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); }
+.hero-collage img { display: block; width: 100%; height: auto; max-width: 100%; }
+.hero-collage .tag { position: absolute; right: -10px; bottom: -22px; background: var(--yellow); color: var(--ink); padding: 4px 14px; border-radius: 99px; font-size: 1.25rem; transform: rotate(4deg); }
+.end-copy { display: grid; gap: clamp(10px, 1.8vh, 18px); min-width: 0; justify-items: start; }
+.end-copy .eyebrow { font-family: var(--font-tease); font-style: italic; font-size: clamp(1.3rem, 2.4vw, 1.7rem); color: var(--yellow); }
+.name-rev { margin: 0; font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1.02; white-space: nowrap; }
 .name-rev [lang="hi"] { font-family: "Yatra One", serif; color: var(--pink); }
 .name-rev .en { font-family: "Yeseva One", serif; color: var(--yellow); }
-.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-.facts li { padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.1); font-weight: 600; font-size: .9rem; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.facts li { font-size: clamp(.95rem, 1.5vw, 1.1rem); line-height: 1.35; color: rgba(255,255,255,.82); padding-left: 22px; position: relative; }
+.facts li::before { content: "✦"; position: absolute; left: 0; color: var(--pink); }
+.facts b { color: #fff; }
+.ministrip { display: flex; padding: 6px 0 4px 10px; }
+.mini { width: clamp(64px, 7.4vw, 96px); margin-left: -12px; background: #fff; padding: 4px 4px 14px; border-radius: 2px; box-shadow: 0 10px 18px -8px rgba(0,0,0,.7); transform: rotate(var(--r)); transition: transform .25s cubic-bezier(.3,1.6,.5,1); position: relative; }
+.mini:hover, .mini:focus-visible { transform: rotate(0) translateY(-14px) scale(1.5); z-index: 5; }
+.mini img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; max-width: 100%; }
+.name-rev [lang="hi"] { font-family: "Yatra One", serif; color: var(--pink); }
+.name-rev .en { font-family: "Yeseva One", serif; color: var(--yellow); }
 .rewind { font-family: var(--font-tease); font-style: italic; font-size: 1.5rem; color: var(--ink) !important; background: var(--yellow); padding: 8px 24px; border-radius: 99px; text-decoration: none !important; box-shadow: 4px 4px 0 var(--pink); }
 .rewind:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pink); }
-.s-end .inner { justify-items: center; }
 .s-end .copy { display: grid; gap: clamp(12px, 2.2vh, 22px); justify-items: center; min-width: 0; }
 .now { position: absolute; z-index: 5; left: -58%; top: -8%; font-size: clamp(1.3rem, 2.4vw, 1.8rem); color: var(--pink); white-space: nowrap; transform: rotate(-8deg); }
 .now svg { position: absolute; left: 50%; top: 34px; width: 80px; height: 62px; overflow: visible; }
@@ -388,10 +393,14 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
-  .wp { width: 92px; }
-  .me-card { margin-top: 130px; padding: 18px; gap: 10px; }
-  .facts li { font-size: .78rem; padding: 4px 10px; }
-  .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
+  .end-grid { grid-template-columns: 1fr; gap: 14px; justify-items: center; text-align: center; }
+  .hero-collage { max-width: 340px; padding: 7px; }
+  .hero-collage .tag { font-size: 1rem; bottom: -16px; }
+  .end-copy { justify-items: center; }
+  .facts li { font-size: .85rem; text-align: left; }
+  .facts li:nth-child(n+3) { display: none; }
+  .mini { width: 58px; }
+        .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
   .bad { width: 76px; }
   .jobs { grid-template-columns: 1fr !important; }
   .job .when { font-size: .74rem !important; }
@@ -408,8 +417,6 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-eng .grad { width: min(170px, 44vw); }
   .s-eng h2 { font-size: 1.9rem; }
 
-  .s-end .inner { grid-template-columns: 1fr; gap: 8px; }
-  .s-end   .s-end   .s-end   .now { left: auto; right: 64%; top: 30%; font-size: 1.15rem; transform: rotate(-6deg); }
   .now svg { left: 100%; top: -4px; width: 46px; height: 36px; transform: scaleY(-1) rotate(-20deg); }
   .age { font-size: clamp(4.6rem, 20vmin, 8rem); }
   .s-end .who-big { font-size: 1.05rem; }
@@ -608,21 +615,22 @@ body.hover #arrow svg { transform: scale(1.5); }
   </section>
 
   <section class="scene s-end">
-    <div class="wall-photos" aria-hidden="true"></div>
-    <div class="inner">
-      <div class="me-card pop" style="--d:.9">
-        <img class="me-collage" src="img/collage.jpg" alt="A collage of photos with Priyanshu written across it">
-        <span class="eyebrow">so, this is me</span>
-        <h2 class="name-rev"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
-        <ul class="facts">
-          <li>UX designer at Esko, Bengaluru</li>
-          <li>7+ years of designing</li>
-          <li>obsessed with colour</li>
-          <li>still asks “why?” about everything</li>
-          <li>happiest in the hills or by the sea</li>
-          <li>Granddad's biggest fan</li>
+    <div class="inner end-grid">
+      <figure class="hero-collage pop" style="--d:.15">
+        <img src="img/collage.jpg" alt="A collage of photos of Priyanshu with her name written across it">
+        <span class="tag hand">all of these are me ✦</span>
+      </figure>
+      <div class="end-copy">
+        <span class="eyebrow pop" style="--d:.4">so, this is me</span>
+        <h2 class="name-rev pop" style="--d:.5"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
+        <ul class="facts pop" style="--d:.65">
+          <li><b>Designing</b> WebCenter Go at Esko, Bengaluru</li>
+          <li><b>7+ years</b> of turning curiosity into design</li>
+          <li><b>Obsessed</b> with colour, still asks “why?”</li>
+          <li><b>Happiest</b> in the hills, by a river, behind a camera</li>
         </ul>
-        <button class="replay rewind">↺ Rewind the story</button>
+        <div class="ministrip pop" style="--d:.8" aria-label="More photos of Priyanshu"></div>
+        <button class="replay rewind pop" style="--d:1">↺ Rewind the story</button>
       </div>
     </div>
   </section>
@@ -669,7 +677,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     drive: { enter: el => { $$('.stroke, .splat', el).forEach(x => x.remove()); el.classList.remove('copying', 'lit'); $('.say', el).textContent = 'Drag the pen drive into the laptop.'; placeDrive(el); } },
     crowd: { enter: crowdEnter },
     montage: { enter: montageEnter },
-    end: { enter: el => { dealWall(el); later(() => burst(innerWidth / 2, innerHeight * .6), 1300); } },
+    end: { enter: () => later(() => burst(innerWidth / 2, innerHeight * .6), 1300) },
   };
   const key = el => [...el.classList].find(c => c.startsWith('s-')).slice(2);
 
@@ -922,33 +930,12 @@ body.hover #arrow svg { transform: scale(1.5); }
   }
 
 
-  /* ---------- finale: a wall of photos, draggable ---------- */
-  const wall = $('.wall-photos');
-  const WALL = [['img/flowers.jpg', 'hydrangeas + a camera'], ['img/ropeway.jpg', 'cable car views'], ['img/hills-selfie.jpg', 'hill-town happy'], ['img/river.jpg', 'river days'], ['img/sunset.jpg', 'sea + sunset'], ['img/h3.jpg', 'sunglasses + sunshine'], ['img/pout.jpg', 'official mood'], ['img/kid.jpg', 'curious since day one'], ['img/birthday.jpg', 'Granddad & me']];
-  function dealWall(el) {
-    wall.innerHTML = '';
-    const W = el.clientWidth, H = el.clientHeight, small = W < 600;
-    const spots = small
-      ? [[.02, .09], [.26, .08], [.5, .09], [.74, .08], [.12, .17], [.38, .16], [.62, .17], [.86, .16], [.0, .2]]
-      : [[.03, .12], [.2, .06], [.04, .5], [.17, .64], [.68, .07], [.84, .14], [.7, .56], [.85, .62], [.36, .74]];
-    WALL.forEach(([src, cap], i) => {
-      const f = document.createElement('figure'); f.className = 'wp'; f.style.margin = '0';
-      f.style.setProperty('--r', [-8, 6, -4, 7, -6, 5, -7, 4, 3][i] + 'deg');
-      f.innerHTML = `<img src="${src}" alt="${cap}"><span>${cap}</span>`;
-      const pw = small ? 92 : Math.min(200, Math.max(110, W * .15));
-      f.style.left = Math.min(spots[i][0] * W, W - pw - 6) + 'px'; f.style.top = Math.min(spots[i][1] * H, H - pw * 1.45) + 'px';
-      if (!reduce) f.animate([{ transform: `translate(${W / 2 - spots[i][0] * W}px, ${H}px) rotate(40deg) scale(.4)` }, { transform: `rotate(${[-8, 6, -4, 7, -6, 5, -7, 4, 3][i]}deg)` }], { duration: 800, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
-      wall.appendChild(f);
-    });
-  }
-  let wz = 5;
-  wall.addEventListener('pointerdown', e => {
-    const f = e.target.closest('.wp'); if (!f) return;
-    e.preventDefault(); f.setPointerCapture(e.pointerId); f.style.zIndex = ++wz;
-    const sx = e.clientX - f.offsetLeft, sy = e.clientY - f.offsetTop;
-    const mv = m => { f.style.left = m.clientX - sx + 'px'; f.style.top = m.clientY - sy + 'px'; };
-    const up = () => { f.removeEventListener('pointermove', mv); f.removeEventListener('pointerup', up); };
-    f.addEventListener('pointermove', mv); f.addEventListener('pointerup', up);
+  /* ---------- finale: a fanned strip of photos (none repeated from the story) ---------- */
+  const strip = $('.ministrip');
+  [['img/flowers.jpg', 'hydrangeas'], ['img/hills-selfie.jpg', 'hill-town selfie'], ['img/river.jpg', 'in the river'], ['img/ropeway.jpg', 'in a cable car'], ['img/sunset.jpg', 'sea at sunset'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
+    const f = document.createElement('figure'); f.className = 'mini'; f.tabIndex = 0; f.style.margin = '0 0 0 -12px';
+    f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
+    f.innerHTML = `<img src="${src}" alt="Priyanshu: ${alt}">`; strip.appendChild(f);
   });
   /* ---------- fx canvas: confetti + cursor trail ---------- */
   const fx = $('#fx'), g = fx.getContext('2d'); let bits = [], trail = [];
@@ -970,7 +957,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       if (Math.hypot(dx, dy) > 2) ang = Math.atan2(dy, dx);
       mx = e.clientX; my = e.clientY; hue += .06;
       trail.push({ x: mx, y: my, c: css(PAINTS[Math.floor(hue) % 6]), life: 1 });
-      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .wp, .grad, .s-feel'));
+      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .mini, .grad, .s-feel'));
     });
   }
   let curAng = ang;
