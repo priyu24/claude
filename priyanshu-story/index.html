@@ -2,7 +2,7 @@
 <title>Priyanshu's Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..900,0..100&family=Gochi+Hand&family=Pacifico&family=Khand:wght@700&family=Eczar:wght@700&family=Hanken+Grotesk:wght@400;600;800&family=Kalam:wght@400;700&family=Mukta:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Yatra+One&family=Instrument+Serif:ital@0;1&family=Caveat+Brush&family=Pacifico&family=Hanken+Grotesk:wght@400;600;800&family=Mukta:wght@500;700&display=swap">
 <style>
 /* Layout: no scrolling page. A stage of full-screen scenes, one at a time, like a picture book.
    Each scene floods in as a paint circle from wherever you clicked. Single deliberate visual world (every colour explicit). */
@@ -16,17 +16,19 @@
   --pink: #ff5fae;
   --purple: #8b5cf6;
   --grey: #c9c7cc;
-  --font-display: "Fraunces", "Eczar", Georgia, serif;
+  --font-display: "Yeseva One", "Yatra One", Georgia, serif;
   --font-body: "Hanken Grotesk", "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-hand: "Gochi Hand", "Kalam", "Comic Sans MS", cursive;
+  --font-hand: "Caveat Brush", "Yatra One", "Comic Sans MS", cursive;
+  --font-tease: "Instrument Serif", "Yatra One", Georgia, serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+html { font-synthesis: none; }
 body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--font-body); overflow: hidden; -webkit-user-select: none; user-select: none; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; border-radius: 8px; }
-.disp { font-family: var(--font-display); font-weight: 800; font-variation-settings: "SOFT" 100, "opsz" 144; line-height: 1; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+.disp { font-family: var(--font-display); font-weight: 400; line-height: 1.04; letter-spacing: 0; margin: 0; text-wrap: balance; }
 .hand { font-family: var(--font-hand); font-weight: 400; line-height: 1.1; }
 p { margin: 0; }
 .nowrap { white-space: nowrap; }
@@ -54,7 +56,7 @@ p { margin: 0; }
 /* ---------- top bar ---------- */
 /* story bar: a solid pill so it reads on every scene colour */
 .bar { position: fixed; z-index: 10; left: max(12px, 2vw); right: max(12px, 2vw); top: calc(10px + env(safe-area-inset-top, 0px)); padding: 7px 10px 7px 18px; display: flex; align-items: center; gap: 14px; color: #fff; background: rgba(23,20,31,.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-radius: 99px; box-shadow: 0 8px 24px -12px rgba(0,0,0,.5); }
-.who { font-family: "Khand", var(--font-body); font-weight: 700; font-size: 1.2rem; line-height: 1; text-transform: lowercase; color: var(--yellow); white-space: nowrap; }
+.who { font-family: "Yeseva One", Georgia, serif; font-weight: 400; font-size: 1.05rem; line-height: 1; color: var(--yellow); white-space: nowrap; }
 .who span { font-family: var(--font-body); font-weight: 600; font-size: .78rem; text-transform: none; color: rgba(255,255,255,.72); margin-left: 4px; }
 .prog { flex: 1; display: flex; gap: 4px; min-width: 0; }
 .prog i { flex: 1; height: 5px; border-radius: 4px; background: rgba(255,255,255,.2); overflow: hidden; position: relative; }
@@ -68,7 +70,7 @@ p { margin: 0; }
 .next {
   position: absolute; z-index: 4; right: max(16px, 4vw); bottom: calc(26px + env(safe-area-inset-bottom, 0px));
   display: flex; align-items: center; gap: 12px; max-width: min(80vw, 520px); text-align: right;
-  font-family: var(--font-hand); font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.05; color: var(--fg, var(--paper));
+  font-family: var(--font-tease); font-style: italic; font-size: clamp(1.45rem, 3.2vw, 2.25rem); line-height: 1.05; color: var(--fg, var(--paper));
   transition: transform .3s, opacity .4s;
 }
 .next svg { width: clamp(64px, 9vw, 104px); flex: none; overflow: visible; }
@@ -87,15 +89,13 @@ p { margin: 0; }
 .hint { font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
 
 /* ---------- 0 intro ---------- */
-.s-intro .psst { font-family: var(--font-hand); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--yellow); transform: rotate(-6deg); }
+.s-intro .psst { font-family: var(--font-tease); font-style: italic; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--yellow); transform: rotate(-6deg); }
 .s-intro { --bg: #b8124f; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"), radial-gradient(circle at 20% 30%, rgba(255,255,255,.06), transparent 40%), radial-gradient(circle at 80% 70%, rgba(0,0,0,.12), transparent 45%), var(--bg); }
-.s-intro .name { font-family: "Khand", "Eczar", sans-serif; font-weight: 700; font-size: clamp(3rem, 15vw, 9.5rem); line-height: 1; white-space: nowrap; text-transform: lowercase; letter-spacing: -.01em; }
-.s-intro .name > span { position: relative; display: inline-block; color: var(--yellow) !important; margin: 0 .08em; }
-.s-intro .name > span::before { content: ""; position: absolute; left: -.05em; right: -.05em; top: .25em; height: .12em; background: currentColor; transform: rotate(-.8deg); }
-.s-intro .name > span:last-child::before { transform: rotate(.6deg); }
-.s-intro .name .ch { display: inline-block; transform: translateY(var(--y)) rotate(var(--r)); transition: transform .25s cubic-bezier(.3,1.8,.5,1); }
-.s-intro .name .ch:hover { transform: translateY(calc(var(--y) - .1em)) rotate(calc(var(--r) * -3)); }
-.s-intro .name, .s-intro .name > span { filter: drop-shadow(.04em .05em 0 rgba(60,0,20,.45)); }
+.s-intro .name { margin: 0; font-weight: 400; font-size: clamp(3rem, 11vw, 8.4rem); line-height: 1.05; white-space: nowrap; display: flex; align-items: baseline; gap: .22em; justify-content: center; }
+.s-intro .name .en { font-family: "Yeseva One", Georgia, serif; color: var(--yellow); }
+.s-intro .name .hi-w { font-family: "Yatra One", serif; color: var(--paper); font-size: .92em; transform: rotate(-3deg); display: inline-block; }
+.role-hi { font-family: "Yatra One", serif; font-size: clamp(1.6rem, 3.6vw, 2.6rem); color: var(--yellow); line-height: 1.1; }
+.role-hi i { font-family: var(--font-tease); font-size: .6em; color: rgba(255,255,255,.75); }
 .s-intro .name span { display: inline-block; }
 @keyframes jelly { 30% { transform: scale(1.15, .85); } 50% { transform: scale(.9, 1.1); } 70% { transform: scale(1.04, .97); } }
 .hindi-name { font-family: "Khand", "Eczar", sans-serif; font-weight: 700; color: var(--paper) !important; opacity: .92; font-size: clamp(1.8rem, 5vw, 3.4rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
@@ -192,7 +192,8 @@ p { margin: 0; }
 .s-collage .tally { font-weight: 800; letter-spacing: .14em; font-size: .8rem; text-transform: uppercase; }
 
 /* ---------- 5 engineering ---------- */
-.s-eng { --bg: #efe9df; --fg: var(--ink); }
+.s-eng { --bg: #12b5a6; --fg: var(--ink); }
+.s-eng .eq { color: #fff; }
 .s-eng .eq { position: absolute; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: clamp(.9rem, 1.8vw, 1.3rem); opacity: .35; animation: drift linear infinite; white-space: nowrap; z-index: 1; }
 @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-120vh); } }
 .s-eng h2 { font-size: clamp(2rem, 6vw, 5rem); max-width: 16ch; }
@@ -330,20 +331,26 @@ p { margin: 0; }
 .s-end .who-big .hand { color: var(--pink); font-size: 1.3em; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .chips span { padding: 6px 16px; border-radius: 99px; color: #fff; font-weight: 700; font-size: .95rem; background: var(--c); }
-.s-end .inner { grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(20px, 5vw, 72px); width: min(100%, 1120px); }
+.s-end { --bg: var(--paper); --fg: var(--ink); }
+.wall-photos { position: absolute; inset: 0; z-index: 1; }
+.wp { position: absolute; width: clamp(110px, 15vw, 200px); background: #fff; padding: 7px 7px 0; box-shadow: 0 16px 30px -14px rgba(23,20,31,.5); cursor: grab; touch-action: none; transform: rotate(var(--r)); }
+.wp img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; max-width: 100%; }
+.wp span { display: block; font: 400 clamp(.85rem, 1.4vw, 1.1rem)/1.6 var(--font-hand); text-align: center; color: var(--ink); }
+.me-card { position: relative; z-index: 3; background: var(--ink); color: var(--paper); border-radius: 24px; padding: clamp(20px, 3vw, 34px) clamp(20px, 3.4vw, 40px); display: grid; gap: 12px; justify-items: center; width: min(440px, 100%); box-shadow: 0 30px 60px -24px rgba(23,20,31,.6); }
+.me-card .eyebrow { font-family: var(--font-tease); font-style: italic; font-size: 1.4rem; color: var(--yellow); }
+.name-rev { margin: 0; font-weight: 400; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; white-space: nowrap; }
+.name-rev [lang="hi"] { font-family: "Yatra One", serif; color: var(--pink); }
+.name-rev .en { font-family: "Yeseva One", serif; color: var(--yellow); }
+.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.facts li { padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.1); font-weight: 600; font-size: .9rem; }
+.rewind { font-family: var(--font-tease); font-style: italic; font-size: 1.5rem; color: var(--ink) !important; background: var(--yellow); padding: 8px 24px; border-radius: 99px; text-decoration: none !important; box-shadow: 4px 4px 0 var(--pink); }
+.rewind:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pink); }
+.s-end .inner { justify-items: center; }
 .s-end .copy { display: grid; gap: clamp(12px, 2.2vh, 22px); justify-items: center; min-width: 0; }
-.deck-wrap { position: relative; display: grid; justify-items: center; gap: 14px; }
-.deck { position: relative; width: clamp(150px, 24vw, 300px); aspect-ratio: 3 / 4.45; max-width: 100%; cursor: pointer; }
-.card { position: absolute; inset: 0; margin: 0; background: var(--paper); padding: 9px 9px 0; border-radius: 3px; box-shadow: 0 22px 40px -18px rgba(23,20,31,.55), 0 0 0 1px rgba(23,20,31,.06); display: grid; grid-template-rows: auto 1fr; }
-.card img { display: block; width: 100%; aspect-ratio: 3 / 4; height: auto; max-width: 100%; object-fit: cover; }
-.card span { font-family: var(--font-hand); font-weight: 700; font-size: clamp(1rem, 1.8vw, 1.3rem); color: var(--ink); display: grid; place-items: center; text-align: center; line-height: 1.1; padding: 4px; }
-.deck-hint { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
 .now { position: absolute; z-index: 5; left: -58%; top: -8%; font-size: clamp(1.3rem, 2.4vw, 1.8rem); color: var(--pink); white-space: nowrap; transform: rotate(-8deg); }
 .now svg { position: absolute; left: 50%; top: 34px; width: 80px; height: 62px; overflow: visible; }
 .now path { fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .end-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
-.woo { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.8rem); padding: 12px 36px; border-radius: 24px; color: #fff; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; animation: slide 5s linear infinite; box-shadow: 6px 6px 0 var(--ink); transition: transform .15s; }
-.woo:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
 .replay { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 
 /* ---------- arrow cursor ---------- */
@@ -380,6 +387,9 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .wp { width: 92px; }
+  .me-card { margin-top: 130px; padding: 18px; gap: 10px; }
+  .facts li { font-size: .78rem; padding: 4px 10px; }
   .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
   .bad { width: 76px; }
   .jobs { grid-template-columns: 1fr !important; }
@@ -398,11 +408,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-eng h2 { font-size: 1.9rem; }
 
   .s-end .inner { grid-template-columns: 1fr; gap: 8px; }
-  .s-end .deck-wrap { order: -1; }
-  .s-end .deck { width: min(130px, 34vw); }
-  .s-end .deck-hint, .s-end .chips { display: none; }
-  .s-end .deck-wrap { margin-bottom: 18px; }
-  .now { left: auto; right: 64%; top: 30%; font-size: 1.15rem; transform: rotate(-6deg); }
+  .s-end   .s-end   .s-end   .now { left: auto; right: 64%; top: 30%; font-size: 1.15rem; transform: rotate(-6deg); }
   .now svg { left: 100%; top: -4px; width: 46px; height: 36px; transform: scaleY(-1) rotate(-20deg); }
   .age { font-size: clamp(4.6rem, 20vmin, 8rem); }
   .s-end .who-big { font-size: 1.05rem; }
@@ -428,8 +434,8 @@ body.hover #arrow svg { transform: scale(1.5); }
   <section class="scene s-intro" data-teaser>
     <div class="inner">
       <span class="psst pop" style="--d:.1">hi, I'm</span>
-      <h1 class="disp name pop" style="--d:.25"><span>Priyanshu</span> <span>Gupta</span></h1>
-      <span class="hindi-name pop" style="--d:.45" lang="hi">प्रियांशु गुप्ता</span>
+      <h1 class="name pop" style="--d:.25" aria-label="Priyanshu Gupta"><span class="en">Priyanshu</span> <span class="hi-w" lang="hi">गुप्ता</span></h1>
+      <span class="role-hi pop" style="--d:.45"><span lang="hi">डिज़ाइनर</span> <i>(that's “designer”)</i></span>
       <p class="intro-line pop" style="--d:.65">I'm 27, I've been designing for 7+ years, and it took me all this time to notice one thing: I've always been a lot more curious than everyone around me. Here's how that made me a designer.</p>
       <span class="hint pop" style="--d:1">Click the arrow · or use → · or swipe</span>
     </div>
@@ -597,21 +603,24 @@ body.hover #arrow svg { transform: scale(1.5); }
         <li class="job" style="--c:var(--paper); --t:var(--ink); --r:-1deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · Esko makes the software brands use to get packaging from idea to shelf. I design WebCenter Go, a cloud tool where growing brands review and approve packaging artwork, and I own its Workflow module.</span></li>
       </ol>
     </div>
-    <button class="next">So where is that curious kid now? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">So, who is that curious kid today? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-end">
+    <div class="wall-photos" aria-hidden="true"></div>
     <div class="inner">
-      <div class="copy">
-      <div class="age disp pop" aria-label="27"><span style="--i:0;color:var(--pink)">2</span><span style="--i:1;color:var(--blue)">7</span><span style="--i:2;color:var(--yellow)">.</span></div>
-      <p class="who-big pop" style="--d:.3">I'm Priyanshu Gupta, a UX designer for 7+ years. Still that curious kid who <span class="hand">thinks a lot.</span> Now it goes into the work.</p>
-      <div class="chips pop" style="--d:.5"><span style="--c: var(--red)">7+ years designing</span><span style="--c: var(--blue)">UX designer at Esko</span><span style="--c: var(--green)">ex-engineer, sort of</span><span style="--c: var(--purple)">Dada's biggest fan</span></div>
-      <div class="end-actions pop" style="--d:.7"><button class="woo">Woohoo!</button><button class="replay">Replay the story ↺</button></div>
-      </div>
-      <div class="deck-wrap pop" style="--d:.2">
-        <span class="now hand"><span>this is me now!</span><svg viewBox="0 0 90 70" aria-hidden="true"><path d="M4 8 C 30 0, 64 14, 74 54 M60 46 L74 58 L82 42"/></svg></span>
-        <div class="deck" role="button" tabindex="0" aria-label="Photos of Priyanshu today. Tap to flip to the next one."></div>
-        <span class="deck-hint">tap to flip through</span>
+      <div class="me-card pop" style="--d:.9">
+        <span class="eyebrow">so, this is me</span>
+        <h2 class="name-rev"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
+        <ul class="facts">
+          <li>UX designer at Esko, Bengaluru</li>
+          <li>7+ years of designing</li>
+          <li>obsessed with colour</li>
+          <li>still asks “why?” about everything</li>
+          <li>happiest in the hills, by the sea, or behind a camera</li>
+          <li>Granddad's biggest fan</li>
+        </ul>
+        <button class="replay rewind">↺ Rewind the story</button>
       </div>
     </div>
   </section>
@@ -658,7 +667,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     drive: { enter: el => { $$('.stroke, .splat', el).forEach(x => x.remove()); el.classList.remove('copying', 'lit'); $('.say', el).textContent = 'Drag the pen drive into the laptop.'; placeDrive(el); } },
     crowd: { enter: crowdEnter },
     montage: { enter: montageEnter },
-    end: { enter: () => { layDeck(true); later(burst, 1500); } },
+    end: { enter: el => { dealWall(el); later(() => burst(innerWidth / 2, innerHeight * .6), 1300); } },
   };
   const key = el => [...el.classList].find(c => c.startsWith('s-')).slice(2);
 
@@ -911,32 +920,34 @@ body.hover #arrow svg { transform: scale(1.5); }
   }
 
 
-  /* ---------- finale: deck of present-day photos ---------- */
-  const deck = $('.deck'), NOW = [['img/road.jpg', 'camera always on'], ['img/net.jpg', 'hanging out above the hills'], ['img/sunset.jpg', 'sunset, sea, wind in my hair'], ['img/forest.jpg', 'chasing tall trees'], ['img/peak.jpg', 'on top of things']];
-  NOW.slice().reverse().forEach(([src, cap]) => {
-    const c = document.createElement('figure'); c.className = 'card';
-    c.innerHTML = `<img src="${src}" alt="Priyanshu today: ${cap}"><span>${cap}</span>`;
-    deck.appendChild(c);
-  });
-  function layDeck(deal) {
-    $$('.card', deck).forEach((c, i, all) => {
-      const depth = all.length - 1 - i, rot = [-3, 5, -7, 3, -1][depth % 5];
-      c.style.zIndex = i; c.style.transform = `translate(${depth * 6}px, ${depth * -4}px) rotate(${rot}deg)`;
-      if (deal && !reduce) c.animate([{ transform: `translate(0, 120vh) rotate(${rot * 6}deg)` }, { transform: c.style.transform }], { duration: 800, delay: 300 + i * 140, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+  /* ---------- finale: a wall of photos, draggable ---------- */
+  const wall = $('.wall-photos');
+  const WALL = [['img/road.jpg', 'camera always on'], ['img/sunset.jpg', 'sea + sunset'], ['img/forest.jpg', 'tall trees'], ['img/peak.jpg', 'on top of things'], ['img/net.jpg', 'up in the hills'], ['img/grad.jpg', 'class of 2021'], ['img/kid.jpg', 'curious since day one'], ['img/birthday.jpg', 'Granddad & me']];
+  function dealWall(el) {
+    wall.innerHTML = '';
+    const W = el.clientWidth, H = el.clientHeight, small = W < 600;
+    const spots = small
+      ? [[.02, .09], [.26, .08], [.5, .09], [.74, .08], [.12, .17], [.38, .16], [.62, .17], [.86, .16]]
+      : [[.03, .12], [.2, .06], [.04, .5], [.17, .64], [.68, .07], [.84, .14], [.7, .56], [.85, .62]];
+    WALL.forEach(([src, cap], i) => {
+      const f = document.createElement('figure'); f.className = 'wp'; f.style.margin = '0';
+      f.style.setProperty('--r', [-8, 6, -4, 7, -6, 5, -7, 4][i] + 'deg');
+      f.innerHTML = `<img src="${src}" alt="${cap}"><span>${cap}</span>`;
+      const pw = small ? 92 : Math.min(200, Math.max(110, W * .15));
+      f.style.left = Math.min(spots[i][0] * W, W - pw - 6) + 'px'; f.style.top = Math.min(spots[i][1] * H, H - pw * 1.45) + 'px';
+      if (!reduce) f.animate([{ transform: `translate(${W / 2 - spots[i][0] * W}px, ${H}px) rotate(40deg) scale(.4)` }, { transform: `rotate(${[-8, 6, -4, 7, -6, 5, -7, 4][i]}deg)` }], { duration: 800, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+      wall.appendChild(f);
     });
   }
-  let flipping = false;
-  function flip() {
-    if (flipping) return; flipping = true;
-    const top = deck.lastElementChild;
-    const out = top.animate([{ transform: top.style.transform }, { transform: 'translate(75%, -16%) rotate(24deg)' }, { transform: 'translate(0, 0) rotate(-3deg)' }], { duration: reduce ? 1 : 650, easing: 'cubic-bezier(.4,0,.2,1)' });
-    setTimeout(() => { deck.prepend(top); layDeck(false); }, reduce ? 0 : 330);
-    out.onfinish = () => { flipping = false; };
-  }
-  deck.addEventListener('click', flip);
-  deck.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
-  layDeck(false);
-
+  let wz = 5;
+  wall.addEventListener('pointerdown', e => {
+    const f = e.target.closest('.wp'); if (!f) return;
+    e.preventDefault(); f.setPointerCapture(e.pointerId); f.style.zIndex = ++wz;
+    const sx = e.clientX - f.offsetLeft, sy = e.clientY - f.offsetTop;
+    const mv = m => { f.style.left = m.clientX - sx + 'px'; f.style.top = m.clientY - sy + 'px'; };
+    const up = () => { f.removeEventListener('pointermove', mv); f.removeEventListener('pointerup', up); };
+    f.addEventListener('pointermove', mv); f.addEventListener('pointerup', up);
+  });
   /* ---------- fx canvas: confetti + cursor trail ---------- */
   const fx = $('#fx'), g = fx.getContext('2d'); let bits = [], trail = [];
   const fit = () => { const d = devicePixelRatio || 1; fx.width = innerWidth * d; fx.height = innerHeight * d; g.setTransform(d, 0, 0, d, 0, 0); };
@@ -947,8 +958,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       bits.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: rand(4, 12), c: css(PAINTS[i % 6]), life: 1, sq: Math.random() < .5, rot: rand(0, 6) });
     }
   }
-  $('.woo').addEventListener('click', e => burst(e.clientX, e.clientY));
-
+  
   const arrow = $('#arrow'), fine = matchMedia('(pointer: fine)').matches && !reduce;
   let mx = -99, my = -99, ax = -99, ay = -99, ang = -2.4, hue = 0;
   if (fine) {
@@ -958,7 +968,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       if (Math.hypot(dx, dy) > 2) ang = Math.atan2(dy, dx);
       mx = e.clientX; my = e.clientY; hue += .06;
       trail.push({ x: mx, y: my, c: css(PAINTS[Math.floor(hue) % 6]), life: 1 });
-      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .deck, .grad, .s-feel'));
+      document.body.classList.toggle('hover', !!e.target.closest('button, .photo, .pendrive, .memory, .wp, .grad, .s-feel'));
     });
   }
   let curAng = ang;
@@ -985,7 +995,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     requestAnimationFrame(tick);
   })();
 
-  $$('.s-intro .name > span').forEach(w => {
+  $$('.s-intro .name > .none').forEach(w => {
     w.innerHTML = [...w.textContent].map((c, i) => `<span class="ch" style="--r:${[-2, 1.5, -1, 2, -1.5, 1][i % 6]}deg; --y:${[0, -.02, .015, -.01, .02, -.015][i % 6]}em">${c}</span>`).join('');
   });
   /* ---------- start (a bare #token can deep-link a scene) ---------- */
