@@ -51,17 +51,17 @@ p { margin: 0; }
 @keyframes pop { from { transform: translateY(40px) scale(.7) rotate(-6deg); opacity: 0; } }
 
 /* ---------- top bar ---------- */
-.bar { position: fixed; z-index: 10; left: 0; right: 0; top: 0; padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, 3vw) 0; display: flex; align-items: center; gap: 16px; pointer-events: none; mix-blend-mode: difference; color: #fff; }
-.bar > * { pointer-events: auto; }
-.who { font-weight: 800; font-size: .9rem; letter-spacing: .02em; white-space: nowrap; }
-.who span { font-weight: 400; opacity: .7; }
-.prog { flex: 1; display: flex; gap: 5px; min-width: 0; }
-.prog i { flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,.3); overflow: hidden; position: relative; }
-.prog i::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform .6s; }
+/* story bar: a solid pill so it reads on every scene colour */
+.bar { position: fixed; z-index: 10; left: max(12px, 2vw); right: max(12px, 2vw); top: calc(10px + env(safe-area-inset-top, 0px)); padding: 7px 10px 7px 18px; display: flex; align-items: center; gap: 14px; color: #fff; background: rgba(23,20,31,.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-radius: 99px; box-shadow: 0 8px 24px -12px rgba(0,0,0,.5); }
+.who { font-family: "Khand", var(--font-body); font-weight: 700; font-size: 1.2rem; line-height: 1; text-transform: lowercase; color: var(--yellow); white-space: nowrap; }
+.who span { font-family: var(--font-body); font-weight: 600; font-size: .78rem; text-transform: none; color: rgba(255,255,255,.72); margin-left: 4px; }
+.prog { flex: 1; display: flex; gap: 4px; min-width: 0; }
+.prog i { flex: 1; height: 5px; border-radius: 4px; background: rgba(255,255,255,.2); overflow: hidden; position: relative; }
+.prog i::after { content: ""; position: absolute; inset: 0; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .6s; }
 .prog i.done::after { transform: scaleX(1); }
-.count { font-variant-numeric: tabular-nums; font-size: .85rem; font-weight: 600; }
-.back { font-size: .85rem; font-weight: 600; opacity: .8; }
-.back[disabled] { opacity: .25; cursor: default; }
+.count { font-variant-numeric: tabular-nums; font-size: .82rem; font-weight: 700; color: #fff; }
+.back { font-size: .82rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.12); padding: 5px 12px; border-radius: 99px; }
+.back[disabled] { opacity: .3; cursor: default; }
 
 /* ---------- the next arrow (the cliffhanger) ---------- */
 .next {
@@ -260,15 +260,59 @@ p { margin: 0; }
 .seal span { font-weight: 800; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
 .s-icare.play .seal { animation: slamS .5s .2s cubic-bezier(.3,1.7,.5,1) both; }
 @keyframes slamS { from { transform: rotate(-30deg) scale(2.6); opacity: 0; } to { transform: rotate(-10deg) scale(1); opacity: 1; } }
+.s-posters { --bg: var(--yellow); --fg: var(--ink); }
+.s-posters h2, .s-hustle h2, .s-break h2, .s-code h2 { font-size: clamp(1.9rem, 4.6vw, 3.6rem); max-width: 20ch; }
+.s-posters p, .s-break p, .s-code p { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; max-width: 46ch; }
+.s-posters p .hand { font-size: 1.25em; color: var(--red); }
+.wall { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(8px, 1.4vw, 16px); max-width: 760px; }
+.bad { position: relative; width: clamp(84px, 11vw, 120px); aspect-ratio: 3 / 4; max-width: 100%; background: linear-gradient(160deg, var(--c1), var(--c2)); color: #fff; border: 3px solid #fff; box-shadow: 0 10px 20px -10px rgba(0,0,0,.5); transform: rotate(var(--r)); display: grid; place-content: center; text-align: center; gap: 4px; padding: 6px; overflow: hidden; }
+.bad b { font-size: clamp(.62rem, 1.15vw, .88rem); white-space: nowrap; text-shadow: 2px 2px 0 #000, -1px -1px 0 #f0f; letter-spacing: .02em; }
+.bad i { font-size: .62rem; font-style: normal; color: #ff0; text-shadow: 1px 1px 0 #000; }
+.bad em { position: absolute; right: -6px; bottom: 10px; transform: rotate(-14deg); font: 400 1.05rem var(--font-hand); color: var(--red); background: var(--paper); padding: 0 6px; border: 2px solid var(--red); }
+.s-posters.play .bad { animation: slapP .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(.4s + var(--i) * .12s); }
+@keyframes slapP { from { transform: rotate(calc(var(--r) * 4)) scale(1.8); opacity: 0; } }
+
+.s-hustle { --bg: var(--ink); --fg: var(--paper); }
+.meterbox { margin-top: 16px; position: relative; display: flex; align-items: baseline; gap: 10px; padding: 18px 30px; border-radius: 20px; background: #26222f; border: 2px solid #3a3446; }
+.meterbox .amt { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 800; font-size: clamp(3rem, 9vw, 6rem); color: var(--green); font-variant-numeric: tabular-nums; line-height: 1; }
+.meterbox .per { font-weight: 600; opacity: .7; }
+.pstamp { position: absolute; right: -24px; top: -16px; transform: rotate(12deg); border: 3px solid var(--red); color: var(--red); font-weight: 800; letter-spacing: .12em; padding: 2px 10px; border-radius: 6px; background: var(--ink); font-size: .85rem; }
+.pstamp.hit { animation: slamS .45s cubic-bezier(.3,1.7,.5,1); }
+.s-hustle .lesson { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; max-width: 44ch; opacity: 0; transition: opacity .6s; }
+.s-hustle.open .lesson { opacity: 1; }
+.s-hustle .lesson .hand { color: var(--yellow); font-size: 1.2em; }
+
+.s-break { --bg: var(--blue); }
+.interns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.icard { background: var(--c); color: #fff; border-radius: 16px; padding: 14px 18px; display: grid; gap: 2px; text-align: left; min-width: 0; width: min(280px, 80vw); box-shadow: 5px 5px 0 rgba(23,20,31,.85); }
+.icard:first-child { transform: rotate(-2deg); } .icard:last-child { transform: rotate(2deg); }
+.icard b { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 800; font-size: 1.7rem; }
+.icard span { font-weight: 800; } .icard small { opacity: .85; line-height: 1.35; }
+
+.s-code { --bg: #efe9df; --fg: var(--ink); }
+.ide { display: grid; grid-template-columns: 1.1fr 1fr; width: min(720px, 100%); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 50px -24px rgba(0,0,0,.45); text-align: left; }
+.ide > * { min-width: 0; }
+.src { margin: 0; padding: 16px; background: #1e1b26; color: #c9c3d6; font: 500 clamp(.68rem, 1.3vw, .85rem)/1.55 ui-monospace, Menlo, monospace; min-height: 190px; white-space: pre-wrap; overflow: hidden; }
+.src code::after { content: "▍"; color: var(--yellow); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.out { background: #fff; padding: 12px; display: grid; }
+.out-in { border: 1px dashed #ddd; border-radius: 10px; display: grid; place-content: center; gap: 8px; text-align: center; padding: 10px; }
+.out-in h1 { margin: 0; font: 800 1.6rem var(--font-display); color: var(--pink); }
+.out-in p { margin: 0; font-size: .85rem; color: #555; }
+.out-in button { justify-self: center; background: var(--blue); color: #fff; border-radius: 99px; padding: 6px 16px; font-weight: 700; font-size: .85rem; }
+.s-code .reveal { opacity: 0; transition: opacity .6s; font-size: clamp(1.05rem, 2.1vw, 1.35rem); }
+.s-code.open .reveal { opacity: 1; }
+.s-code .reveal .hand { color: var(--red); font-size: 1.2em; }
 .s-montage .inner { width: min(100%, 1100px); }
 .s-montage h2 { font-size: clamp(2rem, 5vw, 3.8rem); }
-.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; text-align: left; }
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px !important; gap: 14px; width: 100%; text-align: left; }
 .job { background: var(--c); color: var(--t); border-radius: 16px; padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; box-shadow: 5px 5px 0 rgba(23,20,31,.85); transform: rotate(var(--r)); opacity: 0; min-width: 0; }
 .job.in { animation: slamJ .45s cubic-bezier(.3,1.7,.5,1) forwards; }
 @keyframes slamJ { from { opacity: 0; transform: rotate(var(--r)) scale(2.2); } to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
 .job b { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.1; }
 .job .role { font-weight: 800; font-size: .98rem; line-height: 1.25; }
-.job .when { font-size: .85rem; line-height: 1.35; opacity: .85; }
+.job .when { font-size: .92rem; line-height: 1.4; opacity: .9; }
+.job b { font-variation-settings: "SOFT" 100; font-weight: 800; }
 .job:last-child { box-shadow: 5px 5px 0 rgba(23,20,31,.85), 0 0 0 3px var(--yellow); }
 .stamp { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, 0) rotate(var(--r)); padding: .2em .5em; border-radius: 14px; background: var(--c); color: var(--t, #fff); font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 5vw, 3.4rem); line-height: 1; white-space: nowrap; box-shadow: 6px 6px 0 var(--ink); opacity: 0; }
 .stamp.in { animation: slam .45s cubic-bezier(.3,1.7,.5,1) forwards; }
@@ -335,6 +379,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
+  .bad { width: 76px; }
+  .jobs { grid-template-columns: 1fr !important; }
+  .job .when { font-size: .74rem !important; }
   .jobs { grid-template-columns: 1fr 1fr; gap: 8px; }
   .job { padding: 8px 10px 10px; box-shadow: 3px 3px 0 rgba(23,20,31,.85); }
   .job b { font-size: 1.15rem; } .job .role { font-size: .8rem; } .job .when { font-size: .7rem; }
@@ -497,12 +545,55 @@ body.hover #arrow svg { transform: scale(1.5); }
       <h2 class="disp pop" style="--d:.45">I was made Design Head at <span class="loop">iCare.</span></h2>
       <p class="pop" style="--d:.7">My first real design role. That's when it clicked: <span class="hand">okay, I can actually do this.</span></p>
     </div>
-    <button class="next">So I did. Here's where it went. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">So what does a new design head do? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-posters" data-teaser>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">I made posters. <span class="loop">So many</span> posters.</h2>
+      <div class="wall pop" style="--d:.3" aria-label="A wall of college posters"><div class="bad" style="--c1:#ff00cc;--c2:#00ffea;--r:-6deg;--i:0"><b style="font-family:Impact, sans-serif">FEST</b><i>ALL ARE WELCOME!!!</i></div><div class="bad" style="--c1:#ffe600;--c2:#ff2a00;--r:4deg;--i:1"><b style="font-family:"Comic Sans MS", cursive">WORKSHOP</b><i>register NOW</i><em>cringe</em></div><div class="bad" style="--c1:#00c853;--c2:#2962ff;--r:-3deg;--i:2"><b style="font-family:Georgia, serif">EVENT</b><i>★ ★ ★ ★ ★</i></div><div class="bad" style="--c1:#7c4dff;--c2:#ff4081;--r:5deg;--i:3"><b style="font-family:Impact, sans-serif">CLUB</b><i>join us!!</i><em>why?!</em></div><div class="bad" style="--c1:#ff6d00;--c2:#ffd600;--r:-5deg;--i:4"><b style="font-family:"Comic Sans MS", cursive">CONTEST</b><i>prizes worth ₹₹₹</i></div><div class="bad" style="--c1:#00b8d4;--c2:#76ff03;--r:3deg;--i:5"><b style="font-family:Georgia, serif">MAGAZINE</b><i>issue no. 1</i><em>oof</em></div></div>
+      <p class="pop" style="--d:.6">Every fest, every club, every event. Looking back? They're really bad. <span class="hand">I love them anyway.</span></p>
+    </div>
+    <button class="next">Then came the internships. Tiny ones. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-hustle" data-gated>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">The pay? Let's just say I wasn't in it for the <span class="loop">money.</span></h2>
+      <div class="meterbox pop" style="--d:.3"><span class="amt" aria-live="polite">₹0</span><span class="per">/ month</span><span class="pstamp">UNPAID</span></div>
+      <p class="lesson">Unpaid. Then ₹1,000 a month. Then ₹2,000. I did them anyway, and learned the real lesson: <span class="hand">money didn't matter yet. Putting myself out there did.</span></p>
+    </div>
+    <button class="next">Then came the big one. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-break" data-teaser>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">Then I landed <span class="loop">Cuemath.</span></h2>
+      <p class="pop" style="--d:.3">A proper internship, and a big deal for me. I stayed for about a year, all through third year. Then came Headout.</p>
+      <div class="interns">
+        <div class="icard pop" style="--d:.5; --c:var(--red)"><b>Cuemath</b><span>Graphic Designer · intern</span><small>Aug 2020 – Jun 2021 · illustrations that explain maths</small></div>
+        <div class="icard pop" style="--d:.7; --c:var(--purple)"><b>Headout</b><span>Visual Designer · intern</span><small>May – Nov 2021 · visual design for the website</small></div>
+      </div>
+    </div>
+    <button class="next">Meanwhile, in fourth year, I found something else… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-code" data-gated>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">My design brain went: <span class="loop">wow.</span></h2>
+      <p class="pop" style="--d:.3">Between the college magazine and front-end projects, I was writing HTML and CSS. And seeing my designs come alive on screen?</p>
+      <div class="ide pop" style="--d:.45">
+        <pre class="src" aria-label="Code being typed"><code></code></pre>
+        <div class="out" aria-label="Live preview"><div class="out-in"></div></div>
+      </div>
+      <p class="reveal">Then a senior told me about UI/UX: designing what lives on a screen, <span class="hand">without the coding.</span> That was it. That was my thing.</p>
+    </div>
+    <button class="next">So I went all in. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-montage" data-gated>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">From posters to <span class="loop">products.</span></h2>
-      <ol class="jobs"><li class="job" style="--c:var(--red); --t:#fff; --r:-2deg"><b>Cuemath</b><span class="role">Graphic Designer · intern</span><span class="when">Aug 2020 – Jun 2021 · illustrations that explain things</span></li><li class="job" style="--c:var(--purple); --t:#fff; --r:3deg"><b>Headout</b><span class="role">Visual Designer · intern</span><span class="when">May – Nov 2021 · visual design for the website</span></li><li class="job" style="--c:var(--blue); --t:#fff; --r:-1deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · Champion's Award</span></li><li class="job" style="--c:var(--ink); --t:#fff; --r:2deg"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · +7.8% registrations · Trailblazer Annual Award</span></li><li class="job" style="--c:var(--paper); --t:var(--ink); --r:-2deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · owns the Workflow module of WebCenter Go</span></li></ol>
+      <ol class="jobs">
+        <li class="job" style="--c:var(--blue); --t:#fff; --r:-2deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · my first job, at a startup · Champion's Award</span></li>
+        <li class="job" style="--c:var(--ink); --t:#fff; --r:1.5deg"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · formerly Monster India, born from Monster.com, one of the first job portals on the internet · Trailblazer Annual Award</span></li>
+        <li class="job" style="--c:var(--paper); --t:var(--ink); --r:-1deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · Esko makes the software brands use to get packaging from idea to shelf. I design WebCenter Go, a cloud tool where growing brands review and approve packaging artwork, and I own its Workflow module.</span></li>
+      </ol>
     </div>
     <button class="next">So where is that curious kid now? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -554,6 +645,10 @@ body.hover #arrow svg { transform: scale(1.5); }
     'intro': { enter: el => later(() => open(el), 1100) },
     'dada': { enter: el => later(() => open(el), 1800) },
     icare: { enter: el => later(() => open(el), 1800) },
+    posters: { enter: el => later(() => open(el), 1800) },
+    break: { enter: el => later(() => open(el), 1800) },
+    hustle: { enter: hustleEnter },
+    code: { enter: codeEnter },
     'eng': { enter: el => { later(() => open(el), 2200); } },
     feel: { enter: feelEnter, leave: feelLeave },
     gift: { enter: el => { el.classList.remove('unwrapped'); $$('.splat, .stroke', el).forEach(s => s.remove()); $('.say', el).hidden = true; } },
@@ -786,6 +881,27 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- 8: montage stamps ---------- */
   const mont = $('.s-montage');
+  function hustleEnter(el) {
+    const amt = $('.amt', el), st = $('.pstamp', el); amt.textContent = '₹0'; st.textContent = 'UNPAID';
+    const steps = [[1000, '₹1K!'], [2000, '₹2K!!']];
+    steps.forEach(([to, label], k) => later(() => {
+      const from = k ? steps[k - 1][0] : 0, t0 = performance.now();
+      (function tick(t) { const f = Math.min(1, (t - t0) / 700); amt.textContent = '₹' + Math.round(from + (to - from) * f).toLocaleString('en-IN'); if (f < 1) requestAnimationFrame(tick); })(t0);
+      st.textContent = label; st.classList.remove('hit'); void st.offsetWidth; st.classList.add('hit');
+    }, 1400 + k * 1500));
+    later(() => open(el), 1400 + steps.length * 1500 + 300);
+  }
+  function codeEnter(el) {
+    const code = $('code', el), out = $('.out-in', el); code.textContent = ''; out.innerHTML = '';
+    const lines = ['<h1>hello!</h1>', '<p>I made this.</p>', '<button>click me</button>', '', 'h1 { color: hotpink; }'];
+    let all = lines.join('\n'), i = 0;
+    const render = () => {
+      const typed = all.slice(0, i);
+      out.innerHTML = (typed.includes('</h1>') ? '<h1>hello!</h1>' : '') + (typed.includes('</p>') ? '<p>I made this.</p>' : '') + (typed.includes('</button>') ? '<button tabindex="-1">click me</button>' : '');
+      if (!typed.includes('hotpink')) $$('h1', out).forEach(h => h.style.color = '#222');
+    };
+    later(function type() { i++; code.textContent = all.slice(0, i); render(); if (i < all.length) later(type, reduce ? 0 : 38); else later(() => open(el), 600); }, 900);
+  }
   function montageEnter(el) {
     const js = $$('.job', el); js.forEach(s => s.classList.remove('in'));
     js.forEach((s, i) => later(() => s.classList.add('in'), 500 + i * 420));
@@ -794,7 +910,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
 
   /* ---------- finale: deck of present-day photos ---------- */
-  const deck = $('.deck'), NOW = [['img/net.jpg', 'hanging out above the hills'], ['img/road.jpg', 'camera always on'], ['img/sunset.jpg', 'sunset, sea, wind in my hair'], ['img/forest.jpg', 'chasing tall trees'], ['img/peak.jpg', 'on top of things']];
+  const deck = $('.deck'), NOW = [['img/road.jpg', 'camera always on'], ['img/net.jpg', 'hanging out above the hills'], ['img/sunset.jpg', 'sunset, sea, wind in my hair'], ['img/forest.jpg', 'chasing tall trees'], ['img/peak.jpg', 'on top of things']];
   NOW.slice().reverse().forEach(([src, cap]) => {
     const c = document.createElement('figure'); c.className = 'card';
     c.innerHTML = `<img src="${src}" alt="Priyanshu today: ${cap}"><span>${cap}</span>`;
