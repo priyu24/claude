@@ -2,7 +2,7 @@
 <title>Priyanshu's Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@800;900&family=Pacifico&family=Khand:wght@700&family=Eczar:wght@700&family=Hanken+Grotesk:wght@400;600;800&family=Kalam:wght@400;700&family=Mukta:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..900,0..100&family=Gochi+Hand&family=Pacifico&family=Khand:wght@700&family=Eczar:wght@700&family=Hanken+Grotesk:wght@400;600;800&family=Kalam:wght@400;700&family=Mukta:wght@500;700;800&display=swap">
 <style>
 /* Layout: no scrolling page. A stage of full-screen scenes, one at a time, like a picture book.
    Each scene floods in as a paint circle from wherever you clicked. Single deliberate visual world (every colour explicit). */
@@ -16,9 +16,9 @@
   --pink: #ff5fae;
   --purple: #8b5cf6;
   --grey: #c9c7cc;
-  --font-display: "Rubik", "Eczar", "Arial Black", sans-serif;
+  --font-display: "Fraunces", "Eczar", Georgia, serif;
   --font-body: "Hanken Grotesk", "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-hand: "Kalam", "Comic Sans MS", cursive;
+  --font-hand: "Gochi Hand", "Kalam", "Comic Sans MS", cursive;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -26,9 +26,10 @@ html, body { height: 100%; }
 body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--font-body); overflow: hidden; -webkit-user-select: none; user-select: none; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; border-radius: 8px; }
-.disp { font-family: var(--font-display); font-weight: 900; line-height: .98; letter-spacing: -.025em; margin: 0; text-wrap: balance; }
-.hand { font-family: var(--font-hand); font-weight: 700; line-height: 1.1; }
+.disp { font-family: var(--font-display); font-weight: 800; font-variation-settings: "SOFT" 100, "opsz" 144; line-height: 1; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+.hand { font-family: var(--font-hand); font-weight: 400; line-height: 1.1; }
 p { margin: 0; }
+.nowrap { white-space: nowrap; }
 /* one word per heading swaps into an outlined loopy script */
 .loop { font-family: "Pacifico", cursive; font-weight: 400; letter-spacing: 0; -webkit-text-fill-color: transparent; -webkit-text-stroke: .045em currentColor; paint-order: stroke; text-shadow: none; font-size: 1.05em; line-height: .8; display: inline-block; padding: 0 .06em; }
 .hi { font-family: var(--font-hand); font-weight: 700; color: var(--hi, var(--yellow)); display: inline-block; line-height: 1.2; }
@@ -98,7 +99,7 @@ p { margin: 0; }
 .s-intro .name span { display: inline-block; }
 @keyframes jelly { 30% { transform: scale(1.15, .85); } 50% { transform: scale(.9, 1.1); } 70% { transform: scale(1.04, .97); } }
 .hindi-name { font-family: "Khand", "Eczar", sans-serif; font-weight: 700; color: var(--paper) !important; opacity: .92; font-size: clamp(1.8rem, 5vw, 3.4rem); color: var(--blue); line-height: 1.1; transform: rotate(-3deg); }
-.intro-line { font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 600; max-width: 34ch; line-height: 1.4; }
+.intro-line { font-size: clamp(1.02rem, 2.1vw, 1.35rem); font-weight: 600; max-width: 44ch; line-height: 1.4; }
 .intro-line .hi { font-size: 1.2em; }
 .s-intro em { font-style: normal; display: inline-block; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 5s linear infinite; }
 @keyframes slide { to { background-position: 300% 0; } }
@@ -117,7 +118,10 @@ p { margin: 0; }
 @keyframes tremble { 50% { translate: 2px -2px; } }
 .meter { width: min(320px, 70vw); height: 12px; border-radius: 99px; background: rgba(0,0,0,.2); overflow: hidden; }
 .meter i { display: block; height: 100%; width: calc(var(--lv, 0) * 100%); background: var(--yellow); }
-.s-feel .after { font-size: clamp(1.05rem, 2.2vw, 1.35rem); max-width: 32ch; font-weight: 600; opacity: 0; transition: opacity .6s; background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 14px; }
+.s-feel .after { font-family: var(--font-display); font-weight: 700; font-variation-settings: "SOFT" 100; font-size: clamp(1.3rem, 2.8vw, 2rem); line-height: 1.2; max-width: 26ch; opacity: 0; transition: opacity .6s; text-shadow: 0 2px 14px rgba(23,20,31,.35); }
+.s-feel .after .hand { color: var(--yellow); font-size: 1.1em; }
+.s-feel .blob { transition: transform 2.5s cubic-bezier(.2,.8,.2,1), opacity .8s; }
+.s-feel.open .blob { opacity: .28; }
 .s-feel.open .after { opacity: 1; }
 .s-feel.open .meter, .s-feel.open .hint { opacity: 0; }
 
@@ -159,7 +163,7 @@ p { margin: 0; }
 .s-dada { --bg: var(--blue); }
 .s-dada .inner { grid-template-columns: 1fr 1fr; align-items: center; text-align: left; justify-items: start; gap: clamp(24px, 5vw, 64px); }
 .s-dada .copy { display: grid; gap: 18px; min-width: 0; }
-.s-dada h2 { font-size: clamp(2.2rem, 6vw, 4.8rem); }
+.s-dada h2 { font-size: clamp(2rem, 4.4vw, 3.6rem); }
 .s-dada h2 .hand { font-size: 1.15em; color: var(--yellow); display: inline-block; transform: rotate(-4deg); }
 .s-dada p { font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 36ch; line-height: 1.5; }
 @keyframes drop { from { transform: translateY(-260px) rotate(40deg); } }
@@ -183,10 +187,12 @@ p { margin: 0; }
 .photo.drag { cursor: grabbing; scale: 1.08; box-shadow: 0 30px 50px -18px rgba(0,0,0,.5); }
 .photo .img { aspect-ratio: 1; max-width: 100%; filter: saturate(.8) sepia(.2); }
 .photo .cap { font-family: var(--font-hand); font-size: 1.05rem; text-align: center; margin-top: 4px; line-height: 1; }
+.s-collage .story { font-weight: 600; font-size: clamp(1rem, 2vw, 1.25rem); max-width: 44ch; }
+.s-collage .done { font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.05; color: var(--paper); transform: rotate(-3deg); animation: pop .6s cubic-bezier(.3,1.6,.5,1) both; text-shadow: 2px 2px 0 rgba(23,20,31,.25); }
 .s-collage .tally { font-weight: 800; letter-spacing: .14em; font-size: .8rem; text-transform: uppercase; }
 
 /* ---------- 5 engineering ---------- */
-.s-eng { --bg: #8d8b90; --fg: #2b2a2e; }
+.s-eng { --bg: #efe9df; --fg: var(--ink); }
 .s-eng .eq { position: absolute; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: clamp(.9rem, 1.8vw, 1.3rem); opacity: .35; animation: drift linear infinite; white-space: nowrap; z-index: 1; }
 @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-120vh); } }
 .s-eng h2 { font-size: clamp(2rem, 6vw, 5rem); max-width: 16ch; }
@@ -198,9 +204,10 @@ p { margin: 0; }
 .grads { position: relative; display: grid; justify-items: center; }
 .grads .grad { grid-area: 1 / 1; }
 .grad { position: relative; width: min(320px, 32vw); max-width: 100%; margin: 0; rotate: -3deg; cursor: pointer; z-index: 2; }
-.grad.batch-g { rotate: 7deg; translate: 18% -14%; z-index: 1; }
+.grad.batch-g { rotate: 7deg; translate: 20% -12%; z-index: 1; width: min(260px, 26vw); padding: 7px 7px 5px; }
+.grad.batch-g figcaption { font-size: 1rem; margin-top: 3px; }
 .grad.batch-g:hover { z-index: 3; }
-.grad img { filter: grayscale(1) contrast(.9) brightness(1.05); transition: filter .7s ease; }
+.grad img { display: block; }
 .grad:hover img, .grad:focus-visible img, .grad.color img { filter: none; }
 .grad .peek { position: absolute; right: -18px; top: -22px; font-size: 1.3rem; color: var(--paper); transform: rotate(8deg); transition: opacity .4s; }
 .grad:hover .peek, .grad.color .peek { opacity: 0; }
@@ -245,9 +252,18 @@ p { margin: 0; }
 /* ---------- 8 montage ---------- */
 .s-montage { --bg: var(--green); }
 .stamps { position: relative; width: min(900px, 94vw); height: min(62vh, 520px); }
+.s-icare { --bg: #ff7a1a; --fg: var(--ink); }
+.s-icare h2 { font-size: clamp(2rem, 5.4vw, 4.2rem); max-width: 16ch; }
+.s-icare p { font-size: clamp(1.05rem, 2.2vw, 1.4rem); font-weight: 600; max-width: 34ch; }
+.s-icare p .hand { font-size: 1.25em; color: var(--paper); }
+.seal { width: clamp(150px, 20vw, 210px); aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 5px solid var(--ink); outline: 3px dashed var(--ink); outline-offset: -16px; display: grid; place-content: center; text-align: center; gap: 2px; transform: rotate(-10deg); color: var(--ink); background: var(--yellow); }
+.seal b { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; }
+.seal span { font-weight: 800; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.s-icare.play .seal { animation: slamS .5s .2s cubic-bezier(.3,1.7,.5,1) both; }
+@keyframes slamS { from { transform: rotate(-30deg) scale(2.6); opacity: 0; } to { transform: rotate(-10deg) scale(1); opacity: 1; } }
 .s-montage .inner { width: min(100%, 1100px); }
 .s-montage h2 { font-size: clamp(2rem, 5vw, 3.8rem); }
-.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; text-align: left; }
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; text-align: left; }
 .job { background: var(--c); color: var(--t); border-radius: 16px; padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; box-shadow: 5px 5px 0 rgba(23,20,31,.85); transform: rotate(var(--r)); opacity: 0; min-width: 0; }
 .job.in { animation: slamJ .45s cubic-bezier(.3,1.7,.5,1) forwards; }
 @keyframes slamJ { from { opacity: 0; transform: rotate(var(--r)) scale(2.2); } to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
@@ -315,7 +331,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 .callout { position: absolute; z-index: 3; color: var(--yellow); font-family: var(--font-hand); font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1; white-space: nowrap; pointer-events: none; opacity: 0; }
 .s-dada.play .callout { animation: fadeIn .4s forwards; animation-delay: var(--t); }
 .c-banner { left: 2%; top: -17%; color: var(--paper); }
-.c-dada { left: -20%; top: 67%; }
+.c-dada { left: -30%; top: 67%; }
 .c-me { left: 103%; top: 67%; }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
@@ -366,10 +382,10 @@ body.hover #arrow svg { transform: scale(1.5); }
       <span class="psst pop" style="--d:.1">hi, I'm</span>
       <h1 class="disp name pop" style="--d:.25"><span>Priyanshu</span> <span>Gupta</span></h1>
       <span class="hindi-name pop" style="--d:.45" lang="hi">प्रियांशु गुप्ता</span>
-      <p class="intro-line pop" style="--d:.65">Designer for 7+ years. Want to actually know me? Let me tell you my story.</p>
+      <p class="intro-line pop" style="--d:.65">I'm 27, I've been designing for 7+ years, and it took me all this time to notice one thing: I've always been a lot more curious than everyone around me. Here's how that made me a designer.</p>
       <span class="hint pop" style="--d:1">Click the arrow · or use → · or swipe</span>
     </div>
-    <button class="next">Let's start at the beginning. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">Let me rewind. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-feel" data-gated>
@@ -378,22 +394,22 @@ body.hover #arrow svg { transform: scale(1.5); }
       <span class="hint">Press and hold to think</span>
       <h2 class="disp feel"><span>Curious kid.</span><span>Thinks a <span class="loop">lot.</span></span></h2>
       <div class="meter" aria-hidden="true"><i></i></div>
-      <p class="after">Always asking why. Always thinking. My head was never quiet, and it still isn't.</p>
+      <p class="after">Always asking why. My head was never quiet. <span class="hand">(It still isn't.)</span></p>
     </div>
-    <figure class="snap kid"><img src="img/smile.jpg" alt="Toddler Priyanshu in a red dress with a huge grin"><figcaption>me, thinking about everything</figcaption></figure>
-    <button class="next">As a kid, what did I want for my birthday? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <figure class="snap kid"><img src="img/kid.jpg" alt="Young Priyanshu in a red lehenga, grinning"><figcaption>me, thinking about everything</figcaption></figure>
+    <button class="next">So what did a curious kid like me want for a birthday? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-gift" data-gated>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">For my birthday, I wanted just <span class="loop">one</span> thing from my grandfather.</h2>
+      <h2 class="disp pop" style="--d:.1">Let's unbox the <span class="loop">one</span> thing I wanted.</h2>
       <button class="gift pop" style="--d:.4" aria-label="Unwrap the present"><span class="lid"></span><span class="bow"></span><span class="box"></span></button>
       <span class="hint gift-hint pop" style="--d:.6">Tap to unwrap</span>
       <div class="set" role="group" aria-label="Paint pots, tap to splash">
         <div class="strip"><button class="tpot" style="--c:#f6f6f2; --i:0" data-c="#f6f6f2" aria-label="White"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#f6f6f2"/><rect x="10" y="64" width="34" height="9" fill="#f6f6f2"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#f6f6f2"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#f6f6f2"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#f6f6f2"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#1f4fe0; --i:1" data-c="#1f4fe0" aria-label="Blue"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#1f4fe0"/><rect x="10" y="64" width="34" height="9" fill="#1f4fe0"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#1f4fe0"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#1f4fe0"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#1f4fe0"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#ffd400; --i:2" data-c="#ffd400" aria-label="Yellow"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#ffd400"/><rect x="10" y="64" width="34" height="9" fill="#ffd400"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#ffd400"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#ffd400"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#ffd400"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#f21d1d; --i:3" data-c="#f21d1d" aria-label="Red"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#f21d1d"/><rect x="10" y="64" width="34" height="9" fill="#f21d1d"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#f21d1d"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#f21d1d"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#f21d1d"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#0d8a6a; --i:4" data-c="#0d8a6a" aria-label="Green"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#0d8a6a"/><rect x="10" y="64" width="34" height="9" fill="#0d8a6a"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#0d8a6a"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#0d8a6a"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#0d8a6a"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#14203f; --i:5" data-c="#14203f" aria-label="Navy"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#14203f"/><rect x="10" y="64" width="34" height="9" fill="#14203f"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#14203f"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#14203f"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#14203f"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button></div>
         <span class="brushy" aria-hidden="true"></span>
       </div>
-      <p class="say" hidden>A paint set! Little pots stuck together in a row, and one brush. Tap a pot to paint.</p>
+      <p class="say" hidden>A ₹15 paint set, from my granddad. Little pots stuck in a row, and one brush. <span class="hand">Tap a pot to paint!</span></p>
     </div>
     <button class="next">Why paint? Because of him. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -401,61 +417,62 @@ body.hover #arrow svg { transform: scale(1.5); }
   <section class="scene s-dada" data-teaser>
     <div class="inner">
       <div class="copy">
-        <h2 class="disp pop" style="--d:.1">Creative genes? Blame <span class="loop">Dada.</span></h2>
-        <p class="pop" style="--d:.35">My grandfather was always making something. Every birthday in the family got a hand-made poster from him. Mine too.</p>
-        <p class="pop" style="--d:.55">I was his biggest fan. I watched everything he made, and wanted to make things just like him.</p>
+        <h2 class="disp pop" style="--d:.1">Creative genes? <span class="nowrap">Blame my <span class="loop">granddad.</span></span></h2>
+        <p class="pop" style="--d:.35">He spent his whole career at Tata Motors, right up to retirement. But at heart, he was an artist.</p>
+        <p class="pop" style="--d:.55">Every cousin's wedding, every birthday, he hand-made the banners and decorations himself. Like this one, for mine.</p>
       </div>
       <figure class="snap memory pop" style="--d:.2" aria-label="Dada holding baby Priyanshu under a Happy Birthday to Priyanshu banner. Click to add stickers.">
         <div class="pic"><img src="img/birthday.jpg" alt="Priyanshu's grandfather holding baby Priyanshu at a birthday party with the family, under the Happy Birthday to Priyanshu banner he made"></div>
-        <figcaption>a Dada original</figcaption>
+        <figcaption>a granddad original</figcaption>
         <svg class="marks" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path style="--t:1.6s; stroke: var(--paper)" d="M20 -10 C 24 -7, 27 -3, 28 5 M24.5 1 L28 6 L31.5 1"/>
           <path style="--t:2.2s; stroke: var(--yellow)" d="M-6 74 C 10 76, 30 74, 45 67 M39.5 66 L45.5 66.5 L43 72"/>
           <path style="--t:2.8s; stroke: var(--yellow)" d="M106 72 C 98 72, 88 66, 81 58 M80 64 L80.5 57.5 L86.5 59"/>
         </svg>
         <span class="callout c-banner" style="--t:1.4s"><span lang="hi">दादा ने बनाया!</span><span class="en"> he made this banner</span></span>
-        <span class="callout c-dada" style="--t:2s">Dada</span>
+        <span class="callout c-dada" style="--t:2s">granddad</span>
         <span class="callout c-me" style="--t:2.6s">me!</span>
       </figure>
         </div>
-    <button class="next">So, my first ever project… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">Me? I mostly got scolded. Usually for art and craft. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-collage" data-gated>
     <div class="board"></div>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">It was Papa's birthday. I wanted to make him something <span class="loop">special.</span></h2>
+      <h2 class="disp pop" style="--d:.1">Exhibit A: Papa's <span class="loop">birthday.</span></h2>
       <div class="frame pop" style="--d:.3"><span class="hand" lang="hi">पापा के लिए ♥</span></div>
-      <span class="tally pop" style="--d:.5">So I raided the family albums. Stick 3 photos on the thermocol · <b class="n">0</b>/3</span>
+      <p class="story pop" style="--d:.4">I pulled photos out of the family albums, stuck them on thermocol and added glitter. Lots of glitter.</p>
+      <span class="tally pop" style="--d:.6">Stick 3 photos on the thermocol · <b class="n">0</b>/3</span>
+      <p class="done hand" hidden>The albums? Ruined. Me? Scolded. <br>Totally worth it.</p>
     </div>
-    <button class="next">That was design. I just didn't know it yet… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">That was the creative gene. I just didn't know it yet… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-eng" data-teaser>
     <div class="inner">
       <div class="copy">
-        <h2 class="disp pop" style="--d:.1">Like every confused kid, I ended up in <span class="loop">engineering.</span></h2>
-        <p class="pop" style="--d:.5">No one told me colour could be a career. So the colour drained out. I still got the engineering degree.</p>
+        <h2 class="disp pop" style="--d:.1">Then, like every other Indian kid, I ended up in <span class="loop">engineering.</span></h2>
+        <p class="pop" style="--d:.5">Engineering college. Not what I would have picked. But it turned out to be for the best.</p>
         <span class="wtf pop" style="--d:.9" lang="hi">भाई, ये क्या हो रहा था?</span>
         <span class="hint pop" style="--d:1.1">(bro, what the f*** was happening?)</span>
       </div>
 <div class="grads pop" style="--d:.3">
-        <figure class="snap grad batch-g" tabindex="0" aria-label="Priyanshu's graduating batch throwing caps. Hover or tap to bring the colour back.">
+        <figure class="snap grad batch-g" tabindex="0" aria-label="Priyanshu's graduating batch throwing caps">
           <img src="img/batch.jpg" alt="Priyanshu's graduating batch throwing their caps in the air"><figcaption>the whole batch</figcaption>
         </figure>
-        <figure class="snap grad" tabindex="0" aria-label="Priyanshu receiving an engineering degree, class of 2021. Hover or tap to bring the colour back.">
+        <figure class="snap grad" tabindex="0" aria-label="Priyanshu receiving an engineering degree, class of 2021">
           <img src="img/grad.jpg" alt="Priyanshu receiving the engineering degree certificate at the Class of 2021 graduation">
           <figcaption>engineering degree ✓ · class of 2021</figcaption>
-          <span class="peek hand">hover me</span>
-        </figure>
+                  </figure>
       </div>
     </div>
-    <button class="next">Then someone passed around a pen drive… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">In college I joined a bunch of clubs. Then a senior said: learn Photoshop. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-drive" data-gated>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">Photoshop. Cracked. On a <span class="loop">pen drive.</span></h2>
+      <h2 class="disp pop" style="--d:.1">“What's Photoshop?” Found out on a <span class="loop">pen drive.</span></h2>
       <div class="rig pop" style="--d:.3">
         <div class="laptop">
           <div class="scr"><span class="ps">Ps</span><div class="load"><span>copying Photoshop_FINAL_final(2).exe</span><i><b></b></i></div></div>
@@ -465,7 +482,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       </div>
       <p class="say">Drag the pen drive into the laptop.</p>
     </div>
-    <button class="next">A few of us copied it. Here's what happened. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">A few friends copied it too… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-crowd" data-gated>
@@ -473,13 +490,21 @@ body.hover #arrow svg { transform: scale(1.5); }
       <h2 class="disp line">A few friends copied it with me.</h2>
       <div class="dots"></div>
     </div>
-    <button class="next">And then it snowballed. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">And then something big happened. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
+  <section class="scene s-icare" data-teaser>
+    <div class="inner">
+      <div class="seal pop" style="--d:.2" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>student-run · college</span></div>
+      <h2 class="disp pop" style="--d:.45">I was made Design Head at <span class="loop">iCare.</span></h2>
+      <p class="pop" style="--d:.7">My first real design role. That's when it clicked: <span class="hand">okay, I can actually do this.</span></p>
+    </div>
+    <button class="next">So I did. Here's where it went. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
   <section class="scene s-montage" data-gated>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">From posters to <span class="loop">products.</span></h2>
-      <ol class="jobs"><li class="job" style="--c:var(--yellow); --t:var(--ink); --r:-3deg"><b>College</b><span class="role">Posters for everything</span><span class="when">Self-taught on that pen-drive Photoshop</span></li><li class="job" style="--c:var(--pink); --t:#fff; --r:2deg"><b>iCare</b><span class="role">Design Head</span><span class="when">A student-driven organisation, in college</span></li><li class="job" style="--c:var(--red); --t:#fff; --r:-2deg"><b>Cuemath</b><span class="role">Graphic Designer · intern</span><span class="when">Aug 2020 – Jun 2021 · illustrations that explain things</span></li><li class="job" style="--c:var(--purple); --t:#fff; --r:3deg"><b>Headout</b><span class="role">Visual Designer · intern</span><span class="when">May – Nov 2021 · visual design for the website</span></li><li class="job" style="--c:var(--blue); --t:#fff; --r:-1deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · Champion's Award</span></li><li class="job" style="--c:var(--ink); --t:#fff; --r:2deg"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · +7.8% registrations · Trailblazer Annual Award</span></li><li class="job" style="--c:var(--paper); --t:var(--ink); --r:-2deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · owns the Workflow module of WebCenter Go</span></li></ol>
+      <ol class="jobs"><li class="job" style="--c:var(--red); --t:#fff; --r:-2deg"><b>Cuemath</b><span class="role">Graphic Designer · intern</span><span class="when">Aug 2020 – Jun 2021 · illustrations that explain things</span></li><li class="job" style="--c:var(--purple); --t:#fff; --r:3deg"><b>Headout</b><span class="role">Visual Designer · intern</span><span class="when">May – Nov 2021 · visual design for the website</span></li><li class="job" style="--c:var(--blue); --t:#fff; --r:-1deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · Champion's Award</span></li><li class="job" style="--c:var(--ink); --t:#fff; --r:2deg"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · +7.8% registrations · Trailblazer Annual Award</span></li><li class="job" style="--c:var(--paper); --t:var(--ink); --r:-2deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · owns the Workflow module of WebCenter Go</span></li></ol>
     </div>
     <button class="next">So where is that curious kid now? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -530,6 +555,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   const hooks = {
     'intro': { enter: el => later(() => open(el), 1100) },
     'dada': { enter: el => later(() => open(el), 1800) },
+    icare: { enter: el => later(() => open(el), 1800) },
     'eng': { enter: el => { later(() => open(el), 2200); } },
     feel: { enter: feelEnter, leave: feelLeave },
     gift: { enter: el => { el.classList.remove('unwrapped'); $$('.splat, .stroke', el).forEach(s => s.remove()); $('.say', el).hidden = true; } },
@@ -664,7 +690,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
   const PHOTOS = [['me, all dressed up', 'img/kid.jpg'], ['Dada & me', 'img/birthday.jpg'], ['head tilt, always', 'img/tilt.jpg'], ['tiny & very serious', 'img/temple.jpg'], ['that grin', 'img/smile.jpg'], ['too much glue', '--ink', '--yellow']];
   function collageEnter(el) {
-    board.innerHTML = ''; frame.classList.remove('full'); $('.n', el).textContent = 0;
+    board.innerHTML = ''; frame.classList.remove('full'); $('.tally', el).hidden = false; $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
     const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
     PHOTOS.slice(0, 6).forEach(([cap, a, b], i) => {
       const p = document.createElement('div'); p.className = 'photo';
@@ -698,7 +724,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       if (inside && !p.classList.contains('in')) glitter(cx, cy);
       p.classList.toggle('in', inside);
       const n = $$('.photo.in', board).length; $('.n', col).textContent = Math.min(n, 3);
-      if (n >= 3 && !col.classList.contains('open')) { frame.classList.add('full'); $('.tally', col).textContent = 'Photos stuck on thermocol. Glitter everywhere. Then everyone saw the empty albums, and I got into SO much trouble.'; open(col); }
+      if (n >= 3 && !col.classList.contains('open')) { frame.classList.add('full'); $('.tally', col).hidden = true; $('.story', col).hidden = true; $('.done', col).hidden = false; open(col); }
     };
     p.addEventListener('pointermove', mv); p.addEventListener('pointerup', up); p.addEventListener('pointercancel', up);
   });
@@ -723,7 +749,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     pen.style.transformOrigin = '0 50%';
     later(() => { drv.classList.add('copying'); $('.say', drv).textContent = 'Copying…'; }, 550);
     later(() => {
-      drv.classList.remove('copying'); drv.classList.add('lit'); $('.say', drv).textContent = 'I opened it. Something clicked. The colour came back.';
+      drv.classList.remove('copying'); drv.classList.add('lit'); $('.say', drv).textContent = 'A cracked copy and zero tutorials. I figured it out anyway.';
       const r = drv.getBoundingClientRect(); PAINTS.forEach((c, i) => later(() => paint(drv, c), i * 140));
       later(() => open(drv), 900);
     }, 2300);
@@ -757,7 +783,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     all.sort(() => Math.random() - .5);
     later(() => { line.textContent = 'One by one, they stopped.'; }, 2200);
     all.forEach((d, i) => later(() => d.classList.add('gone'), 2300 + i * 260));
-    later(() => { $('.me', dots).classList.add('solo'); line.innerHTML = 'I didn’t. The rest is <span class="loop">history.</span>'; open(crowd); }, 2300 + all.length * 260 + 300);
+    later(() => { $('.me', dots).classList.add('solo'); line.innerHTML = 'I was the only one who kept <span class="loop">going.</span>'; open(crowd); }, 2300 + all.length * 260 + 300);
   }
 
   /* ---------- 8: montage stamps ---------- */
