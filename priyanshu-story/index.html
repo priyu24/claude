@@ -104,6 +104,11 @@ p { margin: 0; }
 .count { font-variant-numeric: tabular-nums; font-size: .82rem; font-weight: 700; color: #fff; }
 .back { font-size: .82rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.12); padding: 5px 12px; border-radius: 99px; }
 .back[disabled] { opacity: .3; cursor: default; }
+.snd { font-size: .82rem; font-weight: 700; color: var(--ink); background: var(--yellow); padding: 5px 12px; border-radius: 99px; white-space: nowrap; }
+.snd[aria-pressed="true"] { background: var(--pink); color: #fff; animation: pulseS 1.6s ease-in-out infinite; }
+@keyframes pulseS { 50% { box-shadow: 0 0 0 6px rgba(255,95,174,.25); } }
+.voice-cap { position: fixed; z-index: 11; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); max-width: min(560px, calc(100vw - 32px)); background: rgba(23,20,31,.88); color: #fff; padding: 8px 16px; border-radius: 14px; font-size: .92rem; line-height: 1.4; text-align: center; pointer-events: none; transition: opacity .3s; }
+.voice-cap[hidden] { display: none; }
 
 /* ---------- the next arrow (the cliffhanger) ---------- */
 .next {
@@ -470,6 +475,9 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .snd { font-size: .72rem; padding: 4px 9px; }
+  .count { display: none; } .back { white-space: nowrap; padding: 4px 9px; font-size: .72rem; }
+  .voice-cap { bottom: auto; top: calc(64px + env(safe-area-inset-top, 0px)); font-size: .8rem; }
   .intro-grid, .feel-grid { grid-template-columns: 1fr; gap: 12px; }
   .now-pic { order: -1; width: 150px; padding: 8px 8px 4px; } .now-pic figcaption, .kid-pic figcaption { font-size: 1.1rem; }
   .kid-pic { width: 150px; padding: 8px 8px 4px; }
@@ -774,6 +782,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   <span class="who">Priyanshu Gupta <span>· designer</span></span>
   <div class="prog" aria-hidden="true"></div>
   <span class="count" aria-live="polite">01/10</span>
+  <button class="snd" aria-pressed="false" aria-label="Turn narration on">🔈 sound off</button>
   <button class="back" aria-label="Previous scene">← back</button>
 </nav>
 
@@ -841,6 +850,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         { duration: 900, easing: 'cubic-bezier(.7,0,.2,1)' }).onfinish = done;
     } else done();
     cur = n;
+    narrate(key(next));
     $$('i', prog).forEach((b, i) => b.classList.toggle('done', i <= n));
     $('.count').textContent = String(n + 1).padStart(2, '0') + '/' + N;
     $('.back').disabled = n === 0;
@@ -1077,6 +1087,64 @@ body.hover #arrow svg { transform: scale(1.5); }
     f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
     f.innerHTML = `<img src="${src}" alt="Priyanshu: ${alt}">`; strip.appendChild(f);
   });
+  /* ---------- voice: first-person narration per slide (browser text-to-speech, off until tapped) ---------- */
+  const NARR = {
+    intro: "Hi, I'm Priyanshu. I've been designing for seven years. Want to know how I got here? Let me tell you my story.",
+    feel: "This was me as a kid. Always curious. Always asking why. Press and hold to see what my head was like.",
+    gift: "For my birthday, I wanted just one thing from my granddad. Go on, open it.",
+    dada: "My granddad spent his whole career at Tata Motors. But at heart, he was an artist. He hand-made the banners for every birthday. Like this one, for mine.",
+    collage: "For Papa's birthday, I emptied the family albums onto thermocol. With glitter. I got scolded. Totally worth it.",
+    eng: "Then, like every other Indian kid, I ended up in engineering. Designer wasn't even on the list.",
+    drive: "In college, a senior told me to learn Photoshop. What's Photoshop? I found out, on a pen drive.",
+    crowd: "A few friends copied it with me. One by one, they stopped. I didn't.",
+    icare: "Then I was made Design Head at iCare. That's when it clicked. Okay. I can actually do this.",
+    posters: "I made posters. So many posters. Looking back, they're really bad. I love them anyway.",
+    hustle: "The internships paid nothing. Then a thousand rupees. Then two thousand. I did them anyway.",
+    break: "Then came the big one. Cuemath, for a whole year. Then Headout.",
+    code: "In fourth year, I was writing HTML and CSS, and watching my designs come alive. Then I found UI UX. Design, without the coding. That was it.",
+    grad: "Four years later, I graduated. An engineering degree in one hand, and a design job in the other.",
+    montage: "From posters to products. FastJobs, foundit, and now Esko, where I design WebCenter Go.",
+    end: "So, this is me. Priyanshu Gupta. Still that curious kid. Thanks for listening."
+  };
+  const synth = window.speechSynthesis, snd = $('.snd');
+  const cap = document.createElement('div'); cap.className = 'voice-cap'; cap.hidden = true; cap.setAttribute('aria-live', 'polite'); document.body.appendChild(cap);
+  let soundOn = false, voice = null, actx = null, narrT = 0;
+  function pickVoice() {
+    const vs = synth ? synth.getVoices() : [];
+    voice = vs.find(v => /en-IN/i.test(v.lang) && /female|veena|heera|neerja|isha|raveena/i.test(v.name))
+      || vs.find(v => /en-IN/i.test(v.lang)) || vs.find(v => /en-GB|en-US/i.test(v.lang) && /female|samantha|karen|moira|serena/i.test(v.name)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  }
+  if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+  function blip(f1, f2, dur = .18, type = 'sine', vol = .08) {
+    if (!actx) return;
+    const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
+    o.type = type; o.frequency.setValueAtTime(f1, t); o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(actx.destination); o.start(t); o.stop(t + dur);
+  }
+  function narrate(k) {
+    clearTimeout(narrT);
+    if (!soundOn) return;
+    blip(220, 660, .35, 'triangle', .05);
+    later(() => blip(900, 1400, .12, 'sine', .06), 1100);
+    if (!synth || !NARR[k]) return;
+    synth.cancel();
+    narrT = setTimeout(() => {
+      const u = new SpeechSynthesisUtterance(NARR[k]);
+      if (voice) u.voice = voice; u.lang = voice ? voice.lang : 'en-IN'; u.rate = 1; u.pitch = 1.08;
+      u.onstart = () => { cap.textContent = NARR[k]; cap.hidden = false; };
+      u.onend = () => { cap.hidden = true; };
+      synth.speak(u);
+    }, 700);
+  }
+  snd.addEventListener('click', () => {
+    soundOn = !soundOn;
+    snd.setAttribute('aria-pressed', soundOn); snd.textContent = soundOn ? '🔊 sound on' : '🔈 sound off';
+    snd.setAttribute('aria-label', soundOn ? 'Turn narration off' : 'Turn narration on');
+    try { if (soundOn && !actx) actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+    if (soundOn) narrate(key(scenes[cur])); else { synth && synth.cancel(); cap.hidden = true; }
+  });
+
   /* ---------- cut-paper stars around framed photos ---------- */
   const STARC = ['#ff4b3e', '#2f6bff', '#ff5fae', '#ff7a1a', '#3fc1e8', '#ffc21a', '#1f3bb3'];
   const starSVG = c => `<svg viewBox="0 0 100 100"><path d="M50 2 L61 36 L98 38 L68 60 L80 96 L50 74 L20 96 L32 60 L2 38 L39 36 Z" fill="${c}"/></svg>`;
