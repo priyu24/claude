@@ -83,6 +83,14 @@ p { margin: 0; }
 .scene .pop { animation: pop .8s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(var(--d, 0) * 1s); animation-play-state: paused; }
 .scene.play .pop { animation-play-state: running; }
 @keyframes pop { from { transform: translateY(40px) scale(.7) rotate(-6deg); opacity: 0; } }
+/* slide-deck builds: headings from the left, pictures from the right, text from below */
+.scene .b-l { animation: inL .8s cubic-bezier(.2,.9,.25,1.1) both; animation-delay: calc(var(--d, 0) * 1s); animation-play-state: paused; }
+.scene .b-r { animation: inR .9s cubic-bezier(.2,.9,.25,1.1) both; animation-delay: calc(var(--d, 0) * 1s); animation-play-state: paused; }
+.scene .b-u { animation: inU .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--d, 0) * 1s); animation-play-state: paused; }
+.scene.play .b-l, .scene.play .b-r, .scene.play .b-u { animation-play-state: running; }
+@keyframes inL { from { transform: translateX(-70vw) rotate(-4deg); opacity: 0; } }
+@keyframes inR { from { transform: translateX(70vw) rotate(8deg); opacity: 0; } }
+@keyframes inU { from { transform: translateY(50px); opacity: 0; } }
 
 /* ---------- top bar ---------- */
 /* story bar: a solid pill so it reads on every scene colour */
@@ -138,6 +146,19 @@ p { margin: 0; }
 @keyframes beat { 50% { transform: scale(1.15) rotate(-8deg); } }
 .role-hi { font-family: "Mukta", sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.4rem); color: var(--ink); line-height: 1.1; margin-top: 6px; }
 .role-hi i { font-family: var(--font-tease); font-weight: 400; font-size: .6em; color: rgba(23,20,31,.65); }
+.intro-grid { grid-template-columns: 1.25fr .75fr; align-items: center; gap: clamp(20px, 4vw, 56px); width: min(100%, 1120px); }
+.intro-copy { display: grid; gap: clamp(10px, 2vh, 20px); justify-items: center; min-width: 0; }
+.starframe { position: relative; margin: 0; justify-self: center; width: min(320px, 100%); padding: 14px 14px 10px; background: #fffaf0; border-radius: 4px; box-shadow: 0 26px 50px -22px rgba(0,0,0,.5); transform: rotate(3deg);
+  background-image: radial-gradient(circle, transparent 0, transparent 100%); outline: 2px dashed rgba(23,20,31,.25); outline-offset: -7px; }
+.starframe img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; max-width: 100%; }
+.starframe figcaption { text-align: center; font-size: 1.5rem; color: var(--ink); margin-top: 6px; line-height: 1; }
+.cutstar { position: absolute; z-index: 3; width: var(--s); height: var(--s); pointer-events: none; transform: rotate(var(--r)) scale(0); filter: drop-shadow(1px 2px 0 rgba(0,0,0,.18)); }
+.scene.play .cutstar { animation: starIn .5s cubic-bezier(.3,1.8,.5,1) forwards; animation-delay: var(--dl); }
+@keyframes starIn { to { transform: rotate(var(--r)) scale(1); } }
+.feel-grid { grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(20px, 4vw, 60px); width: min(100%, 1120px); }
+.feel-copy { display: grid; gap: 14px; justify-items: center; min-width: 0; }
+.s-feel .lead { font-size: clamp(1.4rem, 2.6vw, 2rem); color: var(--yellow); }
+.kid-pic { transform: rotate(-4deg); width: min(330px, 100%); }
 .intro-line { font-size: clamp(1.02rem, 2.1vw, 1.35rem); font-weight: 600; max-width: 44ch; line-height: 1.4; }
 .intro-line .hi { font-size: 1.2em; }
 .s-intro em { font-style: normal; display: inline-block; background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue), var(--pink), var(--red)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 5s linear infinite; }
@@ -449,6 +470,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .intro-grid, .feel-grid { grid-template-columns: 1fr; gap: 12px; }
+  .now-pic { order: -1; width: 150px; padding: 8px 8px 4px; } .now-pic figcaption, .kid-pic figcaption { font-size: 1.1rem; }
+  .kid-pic { width: 150px; padding: 8px 8px 4px; }
+  .s-intro .intro-line { font-size: .95rem; }
   .sticker-hi b { font-size: 1.5rem; } .sticker-hi b + b { font-size: 1.2rem; }
   .sticker-hi { top: auto !important; bottom: 92px !important; left: 14px !important; right: auto !important; }
   .end-grid { grid-template-columns: 1fr; gap: 14px; justify-items: center; text-align: center; }
@@ -500,7 +525,8 @@ body.hover #arrow svg { transform: scale(1.5); }
 <div id="stage">
 
   <section class="scene s-intro" data-teaser>
-    <div class="inner">
+    <div class="inner intro-grid">
+      <div class="intro-copy">
       <span class="psst pop" style="--d:.1">hi, I'm</span>
       <h1 class="name" aria-label="Priyanshu Gupta">
         <span class="blk b1 pop" style="--d:.25"><span class="en">Priyanshu</span></span>
@@ -508,22 +534,33 @@ body.hover #arrow svg { transform: scale(1.5); }
         <span class="spk" style="left:-6%;top:6%" aria-hidden="true">✦</span><span class="spk s2" style="right:-5%;top:-4%" aria-hidden="true">✧</span><span class="spk" style="right:-8%;bottom:10%" aria-hidden="true">✦</span><span class="heart" style="left:-9%;bottom:4%" aria-hidden="true">♡</span>
       </h1>
       <span class="role-hi pop" style="--d:.45"><span lang="hi">डिज़ाइनर</span> <i>(that's “designer”)</i></span>
-      <p class="intro-line pop" style="--d:.65">I'm 27, I've been designing for 7+ years, and it took me all this time to notice one thing: I've always been a lot more curious than everyone around me. Here's how that made me a designer.</p>
+      <p class="intro-line pop" style="--d:.65">Designer for 7+ years. Want to know how I got here? Let me tell you my story.</p>
       <span class="hint pop" style="--d:1">Click the arrow · or use → · or swipe</span>
+      </div>
+      <figure class="starframe now-pic pop" data-stars="6">
+        <img src="img/flowers.jpg" alt="Priyanshu today, smiling in front of hydrangeas with a camera">
+        <figcaption class="hand">this is me ✦</figcaption>
+      </figure>
     </div>
     <button class="next">Let me rewind. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-feel" data-gated>
-    <span class="sticker-hi" style="left:5%;top:16%;--r:-10deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">सो</b><b style="color:#fff;font-family:"Pacifico",cursive">curious</b></span>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:-10deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">सो</b><b style="color:#fff;font-family:"Pacifico",cursive">curious</b></span>
     <div class="blobs"></div>
-    <div class="inner">
+    <div class="inner feel-grid">
+      <figure class="starframe kid-pic" data-stars="8">
+        <img src="img/kid.jpg" alt="Young Priyanshu in a red lehenga, grinning">
+        <figcaption class="hand">this is me, as a kid</figcaption>
+      </figure>
+      <div class="feel-copy">
+      <span class="lead hand">and this was me as a kid…</span>
       <span class="hint">Press and hold to think</span>
       <h2 class="disp feel"><span>Curious kid.</span><span>Thinks a <span class="loop">lot.</span></span></h2>
       <div class="meter" aria-hidden="true"><i></i></div>
-      <p class="after">Always asking why. My head was never quiet. <span class="hand">(It still isn't.)</span></p>
+      <p class="after">It took me 27 years to notice: I was always more curious than everyone around me. <span class="hand">(Still am.)</span></p>
+      </div>
     </div>
-    <figure class="snap kid"><img src="img/kid.jpg" alt="Young Priyanshu in a red lehenga, grinning"><figcaption>me, thinking about everything</figcaption></figure>
     <button class="next">So what did a curious kid like me want for a birthday? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
@@ -1035,11 +1072,37 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- finale: a fanned strip of photos (none repeated from the story) ---------- */
   const strip = $('.ministrip');
-  [['img/flowers.jpg', 'hydrangeas'], ['img/hills-selfie.jpg', 'hill-town selfie'], ['img/river.jpg', 'in the river'], ['img/ropeway.jpg', 'in a cable car'], ['img/sunset.jpg', 'sea at sunset'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
+  [['img/hills-selfie.jpg', 'hill-town selfie'], ['img/river.jpg', 'in the river'], ['img/ropeway.jpg', 'in a cable car'], ['img/sunset.jpg', 'sea at sunset'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
     const f = document.createElement('figure'); f.className = 'mini'; f.tabIndex = 0; f.style.margin = '0 0 0 -12px';
     f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
     f.innerHTML = `<img src="${src}" alt="Priyanshu: ${alt}">`; strip.appendChild(f);
   });
+  /* ---------- cut-paper stars around framed photos ---------- */
+  const STARC = ['#ff4b3e', '#2f6bff', '#ff5fae', '#ff7a1a', '#3fc1e8', '#ffc21a', '#1f3bb3'];
+  const starSVG = c => `<svg viewBox="0 0 100 100"><path d="M50 2 L61 36 L98 38 L68 60 L80 96 L50 74 L20 96 L32 60 L2 38 L39 36 Z" fill="${c}"/></svg>`;
+  $$('[data-stars]').forEach(f => {
+    const n = +f.dataset.stars, spots = [[-12, -8], [88, -10], [-14, 70], [92, 62], [40, -14], [-10, 35], [95, 30], [45, 96]];
+    for (let i = 0; i < n; i++) {
+      const st = document.createElement('span'); st.className = 'cutstar'; st.setAttribute('aria-hidden', 'true');
+      st.innerHTML = starSVG(STARC[i % STARC.length]);
+      st.style.left = spots[i][0] + '%'; st.style.top = spots[i][1] + '%';
+      st.style.setProperty('--s', rand(30, 64) + 'px'); st.style.setProperty('--r', rand(-40, 40) + 'deg'); st.style.setProperty('--dl', (1.2 + i * .12) + 's');
+      f.appendChild(st);
+    }
+  });
+
+  /* ---------- slide-deck build order: each scene's pieces come in one after another ---------- */
+  scenes.forEach(sc => {
+    const pieces = $$('.pop', sc).filter(el => !el.closest('.board'));
+    pieces.forEach((el, i) => {
+      el.classList.remove('pop');
+      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age');
+      const head = el.matches('h1, h2, .name, .psst, .eyebrow, .name-rev');
+      el.classList.add(pic ? 'b-r' : head ? 'b-l' : 'b-u');
+      el.style.setProperty('--d', (.15 + i * .32).toFixed(2));
+    });
+  });
+
   /* ---------- ambient bits per scene ---------- */
   const AMB = { grad: ['🎓', '✦', '•'], gift: ['✦', '•'], end: ['✦'], collage: ['✧'] };
   Object.entries(AMB).forEach(([k, set]) => {
