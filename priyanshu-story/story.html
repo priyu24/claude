@@ -120,12 +120,12 @@ p { margin: 0; }
 .next svg { width: clamp(46px, 5vw, 64px); flex: none; overflow: visible; }
 .next svg path { fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
 .next .shaft { stroke-dasharray: 140; stroke-dashoffset: 140; }
-.scene.open .next .shaft { animation: drawArrow .7s .2s ease-out forwards; }
+.scene.play .next .shaft { animation: drawArrow .7s .6s ease-out forwards; }
 .next .head { opacity: 0; }
-.scene.open .next .head { animation: fadeIn .2s .85s forwards; }
+.scene.play .next .head { animation: fadeIn .2s 1.25s forwards; }
 @keyframes drawArrow { to { stroke-dashoffset: 0; } }
 @keyframes fadeIn { to { opacity: 1; } }
-.scene:not(.open) .next { opacity: 0; transform: translateY(16px); pointer-events: none; }
+.scene:not(.open) .next { opacity: .6; }
 .scene.open .next svg { animation: nudge 1.4s 1.2s ease-in-out infinite; }
 .next:hover svg { animation-duration: .5s !important; }
 @keyframes nudge { 50% { transform: translateX(10px) rotate(-4deg); } }
@@ -134,11 +134,10 @@ p { margin: 0; }
 .tip { position: absolute; z-index: 5; left: max(16px, 4vw); bottom: calc(30px + env(safe-area-inset-bottom, 0px)); margin: 0; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 10px; border-radius: 99px; background: rgba(23,20,31,.78); color: #fff; font: 700 .78rem/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
 .tip i { font-style: normal; font-size: 1.05rem; letter-spacing: 0; }
 .tip b { color: var(--yellow); }
-.tip.must { background: var(--yellow); color: var(--ink); font-size: .9rem; padding: 10px 18px 10px 12px; box-shadow: 4px 4px 0 var(--ink); animation: tipPulse 1.6s ease-in-out infinite; }
-.tip.must b { color: #c3123f; }
-.tip.must i { font-size: 1.3rem; }
+.tip.must { animation: tipPulse 2s ease-in-out infinite; }
+.tip.must::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); margin-left: 2px; }
 .tip.ok { background: var(--green); color: #fff; animation: none; }
-@keyframes tipPulse { 50% { transform: translateY(-3px); box-shadow: 4px 7px 0 var(--ink); } }
+@keyframes tipPulse { 50% { transform: translateY(-3px); } }
 .tr { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
 .hint { font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
 
@@ -299,6 +298,13 @@ p { margin: 0; }
 .frame { border: 0 !important; color: var(--pink); box-shadow: 0 20px 40px -20px rgba(0,0,0,.4); transform: rotate(-1.5deg);
   background: radial-gradient(circle at 30% 30%, rgba(0,0,0,.05) 1.6px, transparent 2px) 0 0 / 7px 7px, radial-gradient(circle at 60% 60%, rgba(0,0,0,.04) 1.6px, transparent 2px) 3px 4px / 9px 9px, #f6f4ef; }
 .frame .hand { color: var(--pink); }
+.frame { background-color: #fbfbf8 !important; border-radius: 6px !important; transform: rotate(-1.5deg); box-shadow: 0 7px 0 #dcdcd4, 0 9px 0 #c9c9c0, 0 26px 40px -18px rgba(0,0,0,.45) !important;
+  background-image:
+    radial-gradient(circle at 30% 30%, #fff 0 1.6px, rgba(0,0,0,.07) 2.2px, transparent 3px),
+    radial-gradient(circle at 60% 60%, #fff 0 1.4px, rgba(0,0,0,.06) 2px, transparent 2.8px),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,.035) 0 2.5px, transparent 3.2px) !important;
+  background-size: 7px 7px, 9px 9px, 11px 11px !important; background-position: 0 0, 3px 4px, 5px 2px !important; }
+.frame::before { content: ""; position: absolute; top: -9px; left: 50%; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a80, #c3123f); box-shadow: 0 3px 4px rgba(0,0,0,.35); }
 .frame.full { box-shadow: 0 20px 40px -20px rgba(0,0,0,.4), 0 0 0 4px var(--yellow); }
 .glit { position: absolute; width: 6px; height: 6px; border-radius: 1px; pointer-events: none; z-index: 6; animation: glit 1s ease-out forwards; }
 @keyframes glit { from { transform: translate(0, 0) rotate(0); opacity: 1; } to { transform: translate(var(--gx), var(--gy)) rotate(260deg); opacity: 0; } }
@@ -355,7 +361,19 @@ p { margin: 0; }
 .s-school h2 { font-size: clamp(2rem, 5vw, 4rem); max-width: 14ch; }
 .s-school p { font-size: clamp(1.02rem, 2vw, 1.3rem); font-weight: 600; max-width: 38ch; }
 .s-school p .hand { color: #8a0f2c; }
-.ppt { width: min(520px, 100%); background: #ece9e2; border: 2px solid #1d1424; border-radius: 6px; box-shadow: 8px 8px 0 #1d1424; overflow: hidden; display: grid; text-align: left; transform: rotate(-1.5deg); }
+.apps { position: relative; justify-self: end; width: min(560px, 100%); display: grid; }
+.mspaint { position: relative; z-index: 1; justify-self: end; width: 62%; background: #f0f0f0; border: 2px solid #1d1424; border-radius: 6px; box-shadow: 6px 6px 0 #1d1424; overflow: hidden; transform: rotate(4deg); text-align: left; }
+.mp-bar { display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: linear-gradient(#dbe8f7, #c4d7ee); font: 600 .7rem Tahoma, Verdana, sans-serif; color: #1d1424; }
+.mp-bar i { width: 12px; height: 12px; border-radius: 3px; background: conic-gradient(#e8322b 0 25%, #ffd400 0 50%, #16a34a 0 75%, #1f5fe0 0); }
+.mp-tabs { display: flex; gap: 2px; padding: 2px 6px 0; background: #f3f3f3; font: 600 .6rem Tahoma, sans-serif; border-bottom: 1px solid #c8c8c8; }
+.mp-tabs span { padding: 2px 7px; } .mp-tabs .file { background: #1f5fe0; color: #fff; border-radius: 2px 2px 0 0; } .mp-tabs .on { background: #fff; border: 1px solid #c8c8c8; border-bottom-color: #fff; margin-bottom: -1px; }
+.mp-ribbon { display: flex; align-items: center; gap: 6px; padding: 5px 6px; background: #fff; border-bottom: 1px solid #c8c8c8; }
+.mp-tool { font-size: .8rem; }
+.mp-pal { display: grid; grid-template-columns: repeat(5, 12px); gap: 2px; margin-left: auto; }
+.mp-c { width: 12px; height: 12px; padding: 0; border: 1px solid #888; background: var(--c); cursor: pointer; }
+.mp-c.sel { outline: 2px solid #1f5fe0; outline-offset: 1px; }
+.mp-canvas { display: block; width: 100%; height: auto; background: #fff; cursor: crosshair; touch-action: none; }
+.ppt { position: relative; z-index: 2; margin-top: -16%; margin-left: 0; width: 86%; background: #ece9e2; border: 2px solid #1d1424; border-radius: 6px; box-shadow: 8px 8px 0 #1d1424; overflow: hidden; display: grid; text-align: left; transform: rotate(-1.5deg); }
 .ppt-bar { display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: linear-gradient(90deg, #c43e1c, #e8703a); color: #fff; font: 700 .78rem/1 Tahoma, Verdana, sans-serif; }
 .ppt-bar i { width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,.7); }
 .ppt-bar span { margin-left: 6px; }
@@ -644,10 +662,10 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .mspaint { display: none; } .ppt { margin: 0; width: 100%; } .apps { justify-self: center; }
   .nat-wall .kidsea { display: none; }
   .tray { padding: 10px 10px 0; } .tray-lip { margin: 8px -10px 0; font-size: .58rem; padding: 6px 10px; } .tpot { width: 38px; }
   .tip { left: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: .66rem; padding: 6px 11px 6px 8px; }
-  .tip.must { font-size: .74rem; padding: 8px 13px 8px 9px; }
   .s-intro .now-pic { width: 62%; justify-self: center; }
   .hey { font-size: 4.6rem; }
   .jobpic { aspect-ratio: auto; height: 17vh; margin: -2px -2px 4px; width: calc(100% + 4px); border-width: 2px; }
@@ -806,32 +824,40 @@ body.hover #arrow svg { transform: scale(1.5); }
       </div>
       <p class="say" hidden><b>PAINT!</b> A little set of poster colours and one brush. Every. Single. Birthday. He never quite understood why. The truth? I just love cool stationery.</p>
     </div>
-    <button class="next"><small>next</small><span>My first art crime</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then I took it further</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-collage" data-gated>
-    <div class="tip must tally"><i aria-hidden="true">🖐</i><span>drag 3 photos onto the thermocol · <b class="n">0</b>/3</span></div>
-    <span class="sticker-hi" style="left:26%;bottom:20%;--r:6deg" aria-hidden="true"><b style="color:#8a0f2c;font-family:"Yatra One",serif">ओ</b><b style="color:#ff4b3e;font-family:"Mukta",sans-serif;font-weight:800">शिट!</b></span>
+    <div class="tip must tally"><i aria-hidden="true">🖐</i><span>drag photos onto the thermocol · <b class="n">0</b>/3</span></div>
+    <span class="sticker-hi" style="right:20%;bottom:6%;--r:6deg" aria-hidden="true"><b style="color:#8a0f2c;font-family:"Yatra One",serif">ओ</b><b style="color:#ff4b3e;font-family:"Mukta",sans-serif;font-weight:800">शिट!</b></span>
     <div class="board"></div>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">Exhibit A: Papa's <span class="loop">birthday.</span></h2>
+      <h2 class="disp pop" style="--d:.1">Then I took it a little <span class="loop">further.</span></h2>
       <div class="frame pop" style="--d:.3"><span class="hand" lang="hi">पापा के लिए ♥</span></div>
-      <p class="story pop" style="--d:.4">I took all of Papa's old photos out of the albums and made him a wall hanging. Thermocol, glitter, lots of glitter.</p>
+      <p class="story pop" style="--d:.4">More art, more craft. For Papa's birthday, I pulled his old photos out of the family albums and stuck them on thermocol to make him a wall hanging. With glitter. Lots of glitter.</p>
       <p class="done hand" hidden>Mom said I was ruining them. <br>Totally worth it.</p>
     </div>
     <button class="next"><small>next</small><span>Then: school PowerPoint</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-school" data-gated>
-    <div class="tip"><i aria-hidden="true">👆</i><span>pick a WordArt or a theme</span></div>
-    <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#ff7a1a;font-family:&quot;Khand&quot;,sans-serif;font-weight:700">PPT</b><b style="color:#2f6bff;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">क्वीन</b></span>
+    <div class="tip"><i aria-hidden="true">👆</i><span>doodle in Paint · pick a WordArt</span></div>
+    <span class="sticker-hi" style="left:4%;top:13%;--r:-8deg" aria-hidden="true"><b style="color:#ff7a1a;font-family:&quot;Khand&quot;,sans-serif;font-weight:700">PPT</b><b style="color:#2f6bff;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">क्वीन</b></span>
     <div class="inner school-grid">
       <div class="copy">
-        <h2 class="disp pop" style="--d:.1">At school, I lived for <span class="loop">Odyssey.</span></h2>
-        <p class="pop" style="--d:.3">Back in 2015, LFS Jamshedpur's yearly fest had a PowerPoint competition. Hardly anyone signed up for it. I did. There was a slide limit, <span class="hand">and I went way over it.</span> No Canva back then. Just Microsoft PowerPoint, endless WordArt, templates and animations.</p>
-        <p class="pop" style="--d:.5">At home it was MS Paint and PowerPoint collages. Looking back, I was so curious about all of it. <span class="hand">It never struck me that this could be a career.</span></p>
+        <h2 class="disp pop" style="--d:.1">It started with <span class="loop">PowerPoint</span> and Paint.</h2>
+        <p class="pop" style="--d:.3">At LFS Jamshedpur, our yearly fest was called Odyssey, and it had a PowerPoint competition. Out of so many students, I was often the only one who signed up. <span class="hand">I even went over the slide limit.</span></p>
+        <p class="pop" style="--d:.5">At home, it was MS Paint. It never struck me this could be a career.</p>
       </div>
-      <div class="ppt pop" style="--d:.4" aria-label="An old PowerPoint window playing a slide with fly-in animations">
+      <div class="apps pop" style="--d:.4">
+      <div class="mspaint" aria-label="An MS Paint window. Draw on the canvas.">
+        <div class="mp-bar"><i></i><span>untitled - Paint</span></div>
+        <div class="mp-tabs"><span class="file">File</span><span class="on">Home</span><span>View</span></div>
+        <div class="mp-ribbon"><span class="mp-tool" title="Pencil">✏️</span><span class="mp-tool" title="Fill">🪣</span><span class="mp-tool" title="Shapes">⬭</span>
+          <div class="mp-pal"><button class="mp-c" style="--c:#000" data-c="#000" aria-label="colour #000"></button><button class="mp-c" style="--c:#7f7f7f" data-c="#7f7f7f" aria-label="colour #7f7f7f"></button><button class="mp-c" style="--c:#e8322b" data-c="#e8322b" aria-label="colour #e8322b"></button><button class="mp-c" style="--c:#ff7a1a" data-c="#ff7a1a" aria-label="colour #ff7a1a"></button><button class="mp-c" style="--c:#ffd400" data-c="#ffd400" aria-label="colour #ffd400"></button><button class="mp-c" style="--c:#16a34a" data-c="#16a34a" aria-label="colour #16a34a"></button><button class="mp-c" style="--c:#1f5fe0" data-c="#1f5fe0" aria-label="colour #1f5fe0"></button><button class="mp-c" style="--c:#8b5cf6" data-c="#8b5cf6" aria-label="colour #8b5cf6"></button><button class="mp-c" style="--c:#ff4f9a" data-c="#ff4f9a" aria-label="colour #ff4f9a"></button><button class="mp-c" style="--c:#fff" data-c="#fff" aria-label="colour #fff"></button></div></div>
+        <canvas class="mp-canvas" width="440" height="230"></canvas>
+      </div>
+      <div class="ppt" aria-label="An old PowerPoint window playing a slide with fly-in animations">
         <div class="ppt-bar"><i></i><i></i><i></i><span>Odyssey_FINAL_v3.pptx · PowerPoint 2010</span></div>
         <div class="ppt-tabs"><span class="file">File</span><span>Home</span><span class="on">Insert</span><span>Design</span><span>Transitions</span><span>Animations</span></div>
         <div class="ppt-ribbon">
@@ -854,6 +880,7 @@ body.hover #arrow svg { transform: scale(1.5); }
           </div>
         </div>
         <button class="ppt-play">▶ Play the slide</button>
+      </div>
       </div>
     </div>
     <button class="next"><small>next</small><span>Then… engineering?!</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -1174,13 +1201,30 @@ body.hover #arrow svg { transform: scale(1.5); }
   function stepBack() { const s = scenes[cur]; const st = +s.dataset.step || 0; if (st > 0) { s.dataset.step = st - 1; setStepLabel(s); return true; } return false; }
   const forward = (x, y) => { if (stepFwd()) return; go(cur + 1, x, y); };
   const backward = (x, y) => { if (stepBack()) return; go(cur - 1, x, y); };
-  const advance = (x, y) => { const s = scenes[cur]; if (s.hasAttribute('data-gated') && !s.classList.contains('open')) return; forward(x, y); };
+  // If a slide asks the visitor to do something and they skip it, do it for them, then move on.
+  const AUTO = {
+    feel: () => { if (!feel.classList.contains('open')) { for (let i = 0; i < 14; i++) blob(); setLv(1); sfx('confetti'); open(feel); } return 900; },
+    gift: () => { if (!gift.classList.contains('unwrapped')) { $('.gift', gift).click(); return 1500; } return 0; },
+    collage: () => autoCollage(),
+    drive: () => { if (!drv.classList.contains('lit')) { plugIn(); return 2900; } return 0; }
+  };
+  let autoBusy = false;
+  const proceed = (x, y) => {
+    const s = scenes[cur];
+    if (s.hasAttribute('data-gated') && !s.classList.contains('open')) {
+      if (autoBusy) return;
+      const f = AUTO[key(s)], wait = f ? f() : 0;
+      if (wait) { autoBusy = true; setTimeout(() => { autoBusy = false; if (scenes[cur] === s) forward(x, y); }, wait); return; }
+    }
+    forward(x, y);
+  };
+  const advance = proceed;
 
-  $$('.next').forEach(b => b.addEventListener('click', e => { const r = b.getBoundingClientRect(); forward(e.clientX || r.right - 40, e.clientY || r.top + r.height / 2); }));
+  $$('.next').forEach(b => b.addEventListener('click', e => { const r = b.getBoundingClientRect(); proceed(e.clientX || r.right - 40, e.clientY || r.top + r.height / 2); }));
   $('.back').addEventListener('click', () => go(cur - 1, 40, 40));
   $('.replay').addEventListener('click', e => { sfx('boing'); go(0, e.clientX, e.clientY); });
   addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); const s = scenes[cur]; if (s.hasAttribute('data-gated') && !s.classList.contains('open')) return; forward(); }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); proceed(); }
     if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); backward(); }
   });
   let wheelAcc = 0, wheelLock = 0;
@@ -1272,8 +1316,8 @@ body.hover #arrow svg { transform: scale(1.5); }
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
   const PHOTOS = [['Papa & baby me', 'img/papa5.jpg'], ['Papa, cooking outdoors', 'img/papa1.jpg'], ['Papa & me', 'img/papa2.jpg'], ['waterfall day', 'img/papa3.jpg'], ['Papa & Mom', 'img/papa4.jpg']];
   function collageEnter(el) {
-    board.innerHTML = ''; frame.classList.remove('full'); $('.tally span', el).innerHTML = 'drag 3 photos onto the thermocol · <b class="n">0</b>/3'; $('.tally', el).classList.remove('ok'); $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
-    const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
+    board.innerHTML = ''; frame.classList.remove('full'); $('.tally span', el).innerHTML = 'drag photos onto the thermocol · <b class="n">0</b>/3'; $('.tally', el).classList.remove('ok'); $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
+    const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.09, .14], [.8, .13], [.07, .44], [.82, .43], [.1, .72], [.79, .71]];
     PHOTOS.slice(0, 6).forEach(([cap, a, b], i) => {
       const p = document.createElement('div'); p.className = 'photo';
       p.innerHTML = b === undefined ? `<div class="img real" style="background: url('${a}')"></div><div class="cap">${cap}</div>` : `<div class="img" style="background: radial-gradient(circle at 50% 40%, var(${b}) 0 20%, transparent 21%), radial-gradient(ellipse at 50% 100%, var(${b}) 0 36%, transparent 37%), var(${a})"></div><div class="cap">${cap}</div>`;
@@ -1283,6 +1327,18 @@ body.hover #arrow svg { transform: scale(1.5); }
       p.animate([{ transform: `translate(${(W / 2 - spots[i][0] * W) * .8}px, ${(H / 2 - spots[i][1] * H) * .8}px) scale(.2) rotate(200deg)` }, { transform: 'none' }], { duration: 900, delay: 300 + i * 90, easing: 'cubic-bezier(.3,1.4,.5,1)', fill: 'backwards' });
       board.appendChild(p);
     });
+  }
+  function autoCollage() {
+    if (col.classList.contains('open')) return 0;
+    const f = frame.getBoundingClientRect(), r = col.getBoundingClientRect();
+    const ps = $$('.photo', board).filter(p => !p.classList.contains('in')).slice(0, 3 - $$('.photo.in', board).length);
+    ps.forEach((p, i) => later(() => {
+      p.style.transition = 'left .5s cubic-bezier(.3,1.3,.5,1), top .5s cubic-bezier(.3,1.3,.5,1)';
+      p.style.left = f.left - r.left + f.width * (.18 + i * .26) - p.offsetWidth / 2 + 'px'; p.style.top = f.top - r.top + f.height * .5 - p.offsetHeight / 2 + 'px';
+      p.classList.add('in'); p.style.zIndex = ++zi; later(() => { glitter(f.left + f.width * (.18 + i * .26), f.top + f.height / 2); p.style.transition = ''; }, 450);
+    }, i * 260));
+    later(() => { $('.n', col).textContent = 3; frame.classList.add('full'); $('.tally span', col).textContent = 'done! tap next'; $('.tally', col).classList.add('ok'); $('.story', col).hidden = true; $('.done', col).hidden = false; open(col); }, 1100);
+    return 1900;
   }
   function glitter(x, y) {
     sfx('sparkle');
@@ -1463,6 +1519,22 @@ body.hover #arrow svg { transform: scale(1.5); }
     const sl = $('.ppt-slide'); sl.classList.remove('t1', 't2', 't3'); sl.classList.add(b.dataset.t);
     $$('.tpl').forEach(x => x.classList.toggle('sel', x === b)); sfx('click');
   }));
+  // MS Paint: a real little canvas to doodle on, with a doodle already on it
+  const mpc = $('.mp-canvas'), mpx = mpc.getContext('2d'); let mpColor = '#e8322b', mpDown = false, mpLast = null;
+  function mpSeed() {
+    mpx.fillStyle = '#fff'; mpx.fillRect(0, 0, 440, 230); mpx.lineCap = mpx.lineJoin = 'round';
+    mpx.strokeStyle = '#ffd400'; mpx.lineWidth = 6; mpx.beginPath(); mpx.arc(370, 50, 24, 0, 7); mpx.stroke();
+    for (let a = 0; a < 6.28; a += .8) { mpx.beginPath(); mpx.moveTo(370 + Math.cos(a) * 32, 50 + Math.sin(a) * 32); mpx.lineTo(370 + Math.cos(a) * 44, 50 + Math.sin(a) * 44); mpx.stroke(); }
+    mpx.strokeStyle = '#e8322b'; mpx.lineWidth = 5; mpx.strokeRect(80, 110, 110, 80); mpx.beginPath(); mpx.moveTo(70, 112); mpx.lineTo(135, 60); mpx.lineTo(200, 112); mpx.stroke();
+    mpx.strokeStyle = '#16a34a'; mpx.beginPath(); mpx.moveTo(0, 205); mpx.quadraticCurveTo(220, 180, 440, 210); mpx.stroke();
+    mpx.fillStyle = '#1f5fe0'; mpx.font = 'bold 22px Comic Sans MS, cursive'; mpx.fillText('my house!!', 230, 150);
+  }
+  mpSeed();
+  const mpPos = e => { const r = mpc.getBoundingClientRect(); return [(e.clientX - r.left) * 440 / r.width, (e.clientY - r.top) * 230 / r.height]; };
+  mpc.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); mpDown = true; mpLast = mpPos(e); mpc.setPointerCapture(e.pointerId); });
+  mpc.addEventListener('pointermove', e => { if (!mpDown) return; const p = mpPos(e); mpx.strokeStyle = mpColor; mpx.lineWidth = 5; mpx.beginPath(); mpx.moveTo(...mpLast); mpx.lineTo(...p); mpx.stroke(); mpLast = p; });
+  addEventListener('pointerup', () => { mpDown = false; });
+  $$('.mp-c').forEach(b => b.addEventListener('click', () => { mpColor = b.dataset.c; $$('.mp-c').forEach(x => x.classList.toggle('sel', x === b)); sfx('click'); }));
   $('.ppt-play').addEventListener('click', () => { sfx('boing'); const pp = $('.ppt'); pp.classList.remove('run'); void pp.offsetWidth; pp.classList.add('run'); });
 
   /* ---------- cut-paper stars around framed photos ---------- */
@@ -1484,7 +1556,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     const pieces = $$('.pop', sc).filter(el => !el.closest('.board'));
     pieces.forEach((el, i) => {
       el.classList.remove('pop');
-      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt, .nat-wall, .versions, .cert');
+      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt, .apps, .nat-wall, .versions, .cert');
       const head = el.matches('h1, h2, .name, .psst, .eyebrow, .name-rev');
       el.classList.add(pic ? 'b-r' : head ? 'b-l' : 'b-u');
       el.style.setProperty('--d', (.15 + i * .32).toFixed(2));
