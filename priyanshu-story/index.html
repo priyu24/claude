@@ -294,6 +294,37 @@ p { margin: 0; }
 .s-grad h2 { font-size: clamp(2rem, 5.4vw, 4.4rem); max-width: 14ch; }
 .s-grad p { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 600; max-width: 34ch; }
 .gnote { font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: var(--yellow); transform: rotate(-3deg); }
+.s-school { --bg: #3fc1e8; --fg: var(--ink); }
+.s-school::before { background: linear-gradient(rgba(255,255,255,.18) 2px, transparent 2px) 0 0 / 100% 34px; }
+.school-grid { grid-template-columns: 1fr 1.05fr; align-items: center; gap: clamp(24px, 4vw, 56px); width: min(100%, 1100px); }
+.s-school .copy { display: grid; gap: 16px; justify-items: center; min-width: 0; }
+.s-school h2 { font-size: clamp(2rem, 5vw, 4rem); max-width: 14ch; }
+.s-school p { font-size: clamp(1.02rem, 2vw, 1.3rem); font-weight: 600; max-width: 38ch; }
+.s-school p .hand { color: #8a0f2c; }
+.ppt { width: min(520px, 100%); background: #ece9e2; border: 2px solid #1d1424; border-radius: 6px; box-shadow: 8px 8px 0 #1d1424; overflow: hidden; display: grid; text-align: left; transform: rotate(-1.5deg); }
+.ppt-bar { display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: linear-gradient(90deg, #c43e1c, #e8703a); color: #fff; font: 700 .78rem/1 Tahoma, Verdana, sans-serif; }
+.ppt-bar i { width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,.7); }
+.ppt-bar span { margin-left: 6px; }
+.ppt-body { display: grid; grid-template-columns: 70px 1fr; gap: 8px; padding: 8px; }
+.ppt-thumbs { display: grid; gap: 6px; align-content: start; }
+.ppt-thumbs b { aspect-ratio: 4 / 3; background: #fff; border: 1px solid #aaa; }
+.ppt-thumbs b:first-child { outline: 2px solid #e8703a; }
+.ppt-slide { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background: linear-gradient(160deg, #1e3c8c, #6c2bd9); overflow: hidden; border: 1px solid #555; }
+.pa { position: absolute; color: #fff; font-family: "Comic Sans MS", "Chalkboard SE", cursive; font-weight: 700; opacity: 0; }
+.a1 { left: 8%; top: 10%; font-size: clamp(1.4rem, 3vw, 2.2rem); color: #ffe14d; text-shadow: 2px 2px 0 #c43e1c; }
+.a2 { left: 10%; top: 42%; font-size: clamp(.9rem, 1.6vw, 1.15rem); }
+.a3 { left: 12%; top: 58%; font-size: clamp(.9rem, 1.6vw, 1.15rem); }
+.a4 { right: 8%; bottom: 10%; font-size: clamp(1rem, 2vw, 1.4rem); background: linear-gradient(#ff0, #f0f, #0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.a5 { right: 12%; top: 12%; font-size: 2.2rem; }
+.ppt.run .a1 { animation: pFly .7s .1s ease-out forwards; }
+.ppt.run .a2 { animation: pFly .6s .8s ease-out forwards; }
+.ppt.run .a3 { animation: pSpin .8s 1.4s ease-out forwards; }
+.ppt.run .a4 { animation: pZoom .6s 2.2s cubic-bezier(.3,1.8,.5,1) forwards; }
+.ppt.run .a5 { animation: pZoom .5s 2.8s cubic-bezier(.3,1.8,.5,1) forwards; }
+@keyframes pFly { from { transform: translateX(-120%); opacity: 1; } to { transform: none; opacity: 1; } }
+@keyframes pSpin { from { transform: rotate(-720deg) scale(0); opacity: 1; } to { transform: none; opacity: 1; } }
+@keyframes pZoom { from { transform: scale(0); opacity: 1; } to { transform: scale(1); opacity: 1; } }
+.ppt-play { justify-self: center; margin: 4px 0 10px; font: 700 .85rem Tahoma, Verdana, sans-serif; background: #fff; border: 2px solid #1d1424; border-radius: 4px; padding: 5px 14px; color: #1d1424; }
 .s-eng p { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 600; max-width: 36ch; }
 
 /* ---------- 6 pen drive ---------- */
@@ -475,6 +506,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .school-grid { grid-template-columns: 1fr; gap: 14px; } .s-school h2 { font-size: 1.8rem; } .s-school p { font-size: .92rem; } .ppt { width: min(320px, 92vw); }
   .snd { font-size: .72rem; padding: 4px 9px; }
   .count { display: none; } .back { white-space: nowrap; padding: 4px 9px; font-size: .72rem; }
   .voice-cap { bottom: auto; top: calc(64px + env(safe-area-inset-top, 0px)); font-size: .8rem; }
@@ -582,7 +614,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="strip"><button class="tpot" style="--c:#f6f6f2; --i:0" data-c="#f6f6f2" aria-label="White"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#f6f6f2"/><rect x="10" y="64" width="34" height="9" fill="#f6f6f2"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#f6f6f2"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#f6f6f2"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#f6f6f2"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#1f4fe0; --i:1" data-c="#1f4fe0" aria-label="Blue"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#1f4fe0"/><rect x="10" y="64" width="34" height="9" fill="#1f4fe0"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#1f4fe0"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#1f4fe0"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#1f4fe0"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#ffd400; --i:2" data-c="#ffd400" aria-label="Yellow"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#ffd400"/><rect x="10" y="64" width="34" height="9" fill="#ffd400"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#ffd400"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#ffd400"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#ffd400"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#f21d1d; --i:3" data-c="#f21d1d" aria-label="Red"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#f21d1d"/><rect x="10" y="64" width="34" height="9" fill="#f21d1d"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#f21d1d"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#f21d1d"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#f21d1d"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#0d8a6a; --i:4" data-c="#0d8a6a" aria-label="Green"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#0d8a6a"/><rect x="10" y="64" width="34" height="9" fill="#0d8a6a"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#0d8a6a"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#0d8a6a"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#0d8a6a"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button><button class="tpot" style="--c:#14203f; --i:5" data-c="#14203f" aria-label="Navy"><svg viewBox="0 0 60 78" aria-hidden="true"><path d="M50 30 L60 26 L60 42 L50 44 Z" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.95)" stroke-width="1.2"/><ellipse cx="27" cy="73" rx="17" ry="4.5" fill="#14203f"/><rect x="10" y="64" width="34" height="9" fill="#14203f"/><ellipse cx="27" cy="64" rx="17" ry="4" fill="rgba(0,0,0,.18)"/><path d="M5 26 L8 60 Q27 70 46 60 L49 26 Z" fill="#14203f"/><path d="M38 27 L36 62 Q42 61 46 60 L49 26 Z" fill="rgba(0,0,0,.14)"/><path d="M10 30 L12 58" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="#14203f"/><ellipse cx="27" cy="26" rx="22" ry="7" fill="rgba(255,255,255,.28)"/><ellipse cx="20" cy="24.5" rx="7" ry="2" fill="rgba(255,255,255,.75)"/><path class="drip" d="M42 27 Q44 27 44 33 L44 42 Q44 46 41.5 46 Q39 46 39 42 L39 31 Q39 27 42 27 Z" fill="#14203f"/><ellipse cx="27" cy="22" rx="25" ry="8" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="2.2"/><g class="lid"><ellipse cx="27" cy="14" rx="25" ry="8" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/><ellipse cx="20" cy="12" rx="8" ry="2" fill="rgba(255,255,255,.8)"/></g></svg></button></div>
         <span class="brushy" aria-hidden="true"></span>
       </div>
-      <p class="say" hidden>A ₹15 paint set, from my granddad. Little pots stuck in a row, and one brush. <span class="hand">Tap a pot to paint!</span></p>
+      <p class="say" hidden>A ₹15 paint set. Every single birthday. My granddad never understood why. The truth? I just love cool stationery. <span class="hand">Tap a pot to paint!</span></p>
     </div>
     <button class="next">Why paint? Because of him. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -617,13 +649,37 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">Exhibit A: Papa's <span class="loop">birthday.</span></h2>
       <div class="frame pop" style="--d:.3"><span class="hand" lang="hi">पापा के लिए ♥</span></div>
-      <p class="story pop" style="--d:.4">I pulled photos out of the family albums, stuck them on thermocol and added glitter. Lots of glitter.</p>
+      <p class="story pop" style="--d:.4">I took all of Papa's old photos out of the albums and made him a wall hanging. Thermocol, glitter, lots of glitter.</p>
       <span class="tally pop" style="--d:.6">Stick 3 photos on the thermocol · <b class="n">0</b>/3</span>
-      <p class="done hand" hidden>The albums? Ruined. Me? Scolded. <br>Totally worth it.</p>
+      <p class="done hand" hidden>Mom said I was ruining them. <br>Totally worth it.</p>
     </div>
-    <button class="next">That was the creative gene. I just didn't know it yet… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next">Then came school, and PowerPoint… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
+  <section class="scene s-school" data-gated>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#ff7a1a;font-family:&quot;Khand&quot;,sans-serif;font-weight:700">PPT</b><b style="color:#2f6bff;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">क्वीन</b></span>
+    <div class="inner school-grid">
+      <div class="copy">
+        <h2 class="disp pop" style="--d:.1">At school, I lived for <span class="loop">Odyssey.</span></h2>
+        <p class="pop" style="--d:.3">LFS Jamshedpur's big yearly event had a PowerPoint competition. I went all out on the animations. And I was everyone's go-to for project covers <span class="hand">(anything to skip the writing inside).</span></p>
+      </div>
+      <div class="ppt pop" style="--d:.4" aria-label="An old PowerPoint window playing a slide with fly-in animations">
+        <div class="ppt-bar"><i></i><i></i><i></i><span>Odyssey_FINAL.ppt</span></div>
+        <div class="ppt-body">
+          <div class="ppt-thumbs"><b></b><b></b><b></b><b></b></div>
+          <div class="ppt-slide">
+            <span class="pa a1">My Topic</span>
+            <span class="pa a2">✦ fly in from left</span>
+            <span class="pa a3">✦ spin!</span>
+            <span class="pa a4">★ WordArt ★</span>
+            <span class="pa a5">💥</span>
+          </div>
+        </div>
+        <button class="ppt-play">▶ Play the slide</button>
+      </div>
+    </div>
+    <button class="next">Fun fact: this whole story is a slide deck. Some things never change. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
   <section class="scene s-eng" data-teaser>
     <span class="sticker-hi" style="left:5%;bottom:16%;--r:-6deg" aria-hidden="true"><b style="color:#8b5cf6;font-family:"Mukta",sans-serif;font-weight:800">नो</b><b style="color:#ff7a1a;font-family:"Khand","Mukta",sans-serif;font-weight:700">WAY</b></span>
     <div class="inner">
@@ -648,7 +704,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   <section class="scene s-drive" data-gated>
     <span class="sticker-hi" style="right:7%;top:16%;--r:9deg" aria-hidden="true"><b style="color:#12b76a;font-family:"Mukta",sans-serif;font-weight:800">जुगाड़</b><b style="color:#ffc21a;font-family:"Pacifico",cursive">mode on</b></span>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">“What's Photoshop?” Found out on a <span class="loop">pen drive.</span></h2>
+      <h2 class="disp pop" style="--d:.1">Second year, a senior said: learn Photoshop. Found it on a <span class="loop">pen drive.</span></h2>
       <div class="rig pop" style="--d:.3">
         <div class="laptop">
           <div class="scr"><span class="ps">Ps</span><div class="load"><span>copying Photoshop_FINAL_final(2).exe</span><i><b></b></i></div></div>
@@ -684,7 +740,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">I made posters. <span class="loop">So many</span> posters.</h2>
       <div class="wall pop" style="--d:.3" aria-label="A wall of college posters"><div class="bad" style="--c1:#ff00cc;--c2:#00ffea;--r:-6deg;--i:0"><b style="font-family:Impact, sans-serif">FEST</b><i>ALL ARE WELCOME!!!</i></div><div class="bad" style="--c1:#ffe600;--c2:#ff2a00;--r:4deg;--i:1"><b style="font-family:"Comic Sans MS", cursive">WORKSHOP</b><i>register NOW</i><em>cringe</em></div><div class="bad" style="--c1:#00c853;--c2:#2962ff;--r:-3deg;--i:2"><b style="font-family:Georgia, serif">EVENT</b><i>★ ★ ★ ★ ★</i></div><div class="bad" style="--c1:#7c4dff;--c2:#ff4081;--r:5deg;--i:3"><b style="font-family:Impact, sans-serif">CLUB</b><i>join us!!</i><em>why?!</em></div><div class="bad" style="--c1:#ff6d00;--c2:#ffd600;--r:-5deg;--i:4"><b style="font-family:"Comic Sans MS", cursive">CONTEST</b><i>prizes worth ₹₹₹</i></div><div class="bad" style="--c1:#00b8d4;--c2:#76ff03;--r:3deg;--i:5"><b style="font-family:Georgia, serif">MAGAZINE</b><i>issue no. 1</i><em>oof</em></div></div>
-      <p class="pop" style="--d:.6">Every fest, every club, every event. Looking back? They're really bad. <span class="hand">I love them anyway.</span></p>
+      <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Looking back, they're bad. I love them anyway.</span></p>
     </div>
     <button class="next">Then came the internships. Tiny ones. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -693,7 +749,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">The pay? Let's just say I wasn't in it for the <span class="loop">money.</span></h2>
       <div class="meterbox pop" style="--d:.3"><span class="amt" aria-live="polite">₹0</span><span class="per">/ month</span><span class="pstamp">UNPAID</span></div>
-      <p class="lesson">Unpaid. Then ₹1,000 a month. Then ₹2,000. I did them anyway, and learned the real lesson: <span class="hand">money didn't matter yet. Putting myself out there did.</span></p>
+      <p class="lesson">Digital marketing first, then graphic and visual design. Unpaid, then ₹1,000 a month, then ₹2,000. I did them anyway, and learned the real lesson: <span class="hand">money didn't matter yet. Putting myself out there did.</span></p>
     </div>
     <button class="next">Then came the big one. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -756,7 +812,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   </section>
 
   <section class="scene s-end">
-    <span class="sticker-hi" style="right:6%;top:13%;--r:-6deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">बस</b><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">इतना ही</b></span>
+    <span class="sticker-hi" style="right:5%;bottom:9%;--r:-6deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">बस</b><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">इतना ही</b></span>
     <div class="inner end-grid">
       <figure class="hero-collage pop" style="--d:.15">
         <img src="img/collage.webp" alt="A collage of photos of Priyanshu with her name written across it">
@@ -766,10 +822,11 @@ body.hover #arrow svg { transform: scale(1.5); }
         <span class="eyebrow pop" style="--d:.4">so, this is me</span>
         <h2 class="name-rev pop" style="--d:.5"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
         <ul class="facts pop" style="--d:.65">
-          <li><b>Designing</b> WebCenter Go at Esko, Bengaluru</li>
-          <li><b>7+ years</b> of turning curiosity into design</li>
-          <li><b>Obsessed</b> with colour, still asks “why?”</li>
-          <li><b>Happiest</b> in the hills, by a river, behind a camera</li>
+          <li><b>Product designer</b> at Esko, Bengaluru, owning WebCenter Go</li>
+          <li>Can pull off a <b>10-hour design marathon</b> without being too grumpy</li>
+          <li>The <b>fun factor</b> at work, and first to say it if an idea doesn't vibe</li>
+          <li>Learning <b>photography</b>, exploring cities, finding zen in <b>food</b> (eating and cooking)</li>
+          <li><b>Volunteers in schools</b> and writes, obviously</li>
         </ul>
         <div class="ministrip pop" style="--d:.8" aria-label="More photos of Priyanshu"></div>
         <button class="replay rewind pop" style="--d:1">↺ Rewind the story</button>
@@ -820,6 +877,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       later(() => open(el), 2400);
     } },
     grad: { enter: el => later(() => open(el), 1800) },
+    school: { enter: el => { const pp = $('.ppt', el); pp.classList.remove('run'); later(() => pp.classList.add('run'), 1600); later(() => open(el), 4200); } },
     feel: { enter: feelEnter, leave: feelLeave },
     gift: { enter: el => { el.classList.remove('unwrapped'); $$('.splat, .stroke', el).forEach(s => s.remove()); $('.say', el).hidden = true; } },
     collage: { enter: collageEnter },
@@ -1089,22 +1147,23 @@ body.hover #arrow svg { transform: scale(1.5); }
   });
   /* ---------- voice: first-person narration per slide (browser text-to-speech, off until tapped) ---------- */
   const NARR = {
-    intro: "Hi, I'm Priyanshu. I've been designing for seven years. Want to know how I got here? Let me tell you my story.",
-    feel: "This was me as a kid. Always curious. Always asking why. Press and hold to see what my head was like.",
-    gift: "For my birthday, I wanted just one thing from my granddad. Go on, open it.",
+    intro: "Hi! I'm Priyanshu. Designer for seven plus years. Let's dive into who I am. Buckle up!",
+    feel: "This was me as a kid. My interest in design blossomed without me even realizing it. I was just always curious.",
+    gift: "Every birthday, I asked my grandpa for paint. He never understood why. The truth? I just love cool stationery. Go on, open it.",
     dada: "My granddad spent his whole career at Tata Motors. But at heart, he was an artist. He hand-made the banners for every birthday. Like this one, for mine.",
-    collage: "For Papa's birthday, I emptied the family albums onto thermocol. With glitter. I got scolded. Totally worth it.",
+    collage: "Once, I took all of Papa's old photos and made him a wall hanging. Mom was so mad. She said I was ruining them. Totally worth it.",
+    school: "At LFS Jamshedpur, I lived for Odyssey, the PowerPoint competition. I went all out on the animations. Fun fact, this whole story is a slide deck. Some things never change.",
     eng: "Then, like every other Indian kid, I ended up in engineering. Designer wasn't even on the list.",
-    drive: "In college, a senior told me to learn Photoshop. What's Photoshop? I found out, on a pen drive.",
+    drive: "Second year of engineering, a senior introduced me to Photoshop. I found a copy, and started playing around. Making posters.",
     crowd: "A few friends copied it with me. One by one, they stopped. I didn't.",
     icare: "Then I was made Design Head at iCare. That's when it clicked. Okay. I can actually do this.",
-    posters: "I made posters. So many posters. Looking back, they're really bad. I love them anyway.",
-    hustle: "The internships paid nothing. Then a thousand rupees. Then two thousand. I did them anyway.",
+    posters: "iCare events, department fests, winners' posters that became bulletin board celebs, the department magazine. Then COVID crashed the party.",
+    hustle: "I wanted to explore beyond being a developer. So, internships. Digital marketing, then graphic design, then visual design. The pay? Let's not talk about it.",
     break: "Then came the big one. Cuemath, for a whole year. Then Headout.",
-    code: "In fourth year, I was writing HTML and CSS, and watching my designs come alive. Then I found UI UX. Design, without the coding. That was it.",
+    code: "During those internships, I discovered product design. Design, without the coding. So I took the plunge.",
     grad: "Four years later, I graduated. An engineering degree in one hand, and a design job in the other.",
     montage: "From posters to products. FastJobs, foundit, and now Esko, where I design WebCenter Go.",
-    end: "So, this is me. Priyanshu Gupta. Still that curious kid. Thanks for listening."
+    end: "So, that's me. Priyanshu. I can pull off a ten hour design marathon without being too grumpy. Questions? Fire away!"
   };
   const synth = window.speechSynthesis, snd = $('.snd');
   const cap = document.createElement('div'); cap.className = 'voice-cap'; cap.hidden = true; cap.setAttribute('aria-live', 'polite'); document.body.appendChild(cap);
@@ -1145,6 +1204,8 @@ body.hover #arrow svg { transform: scale(1.5); }
     if (soundOn) narrate(key(scenes[cur])); else { synth && synth.cancel(); cap.hidden = true; }
   });
 
+  $('.ppt-play').addEventListener('click', () => { const pp = $('.ppt'); pp.classList.remove('run'); void pp.offsetWidth; pp.classList.add('run'); });
+
   /* ---------- cut-paper stars around framed photos ---------- */
   const STARC = ['#ff4b3e', '#2f6bff', '#ff5fae', '#ff7a1a', '#3fc1e8', '#ffc21a', '#1f3bb3'];
   const starSVG = c => `<svg viewBox="0 0 100 100"><path d="M50 2 L61 36 L98 38 L68 60 L80 96 L50 74 L20 96 L32 60 L2 38 L39 36 Z" fill="${c}"/></svg>`;
@@ -1164,7 +1225,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     const pieces = $$('.pop', sc).filter(el => !el.closest('.board'));
     pieces.forEach((el, i) => {
       el.classList.remove('pop');
-      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age');
+      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt');
       const head = el.matches('h1, h2, .name, .psst, .eyebrow, .name-rev');
       el.classList.add(pic ? 'b-r' : head ? 'b-l' : 'b-u');
       el.style.setProperty('--d', (.15 + i * .32).toFixed(2));
