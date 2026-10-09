@@ -1077,7 +1077,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- 4: collage ---------- */
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
-  const PHOTOS = [['Papa & baby me', 'img/papa5.jpg'], ['Papa, cooking outdoors', 'img/papa1.jpg'], ['Papa & me', 'img/papa2.jpg'], ['waterfall day', 'img/papa3.jpg'], ['Papa & me, again', 'img/papa4.jpg']];
+  const PHOTOS = [['Papa & baby me', 'img/papa5.jpg'], ['Papa, cooking outdoors', 'img/papa1.jpg'], ['Papa & me', 'img/papa2.jpg'], ['waterfall day', 'img/papa3.jpg'], ['Papa & Mom', 'img/papa4.jpg']];
   function collageEnter(el) {
     board.innerHTML = ''; frame.classList.remove('full'); $('.tally', el).hidden = false; $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
     const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
@@ -1212,7 +1212,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   [['img/hills-selfie.jpg', 'hill-town selfie'], ['img/river.jpg', 'in the river'], ['img/ropeway.jpg', 'in a cable car'], ['img/sunset.jpg', 'sea at sunset'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
     const f = document.createElement('figure'); f.className = 'mini'; f.tabIndex = 0; f.style.margin = '0 0 0 -12px';
     f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
-    f.innerHTML = `<img src="${src}" alt="Priyanshu: ${alt}">`; strip.appendChild(f);
+    f.innerHTML = `<img src="${src}" alt="${alt}">`; strip.appendChild(f);
   });
   /* ---------- sound effects (Web Audio, synthesised; no voice). Starts after the first tap; the pill mutes it. ---------- */
   const snd = $('.snd');
