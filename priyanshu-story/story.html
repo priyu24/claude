@@ -609,7 +609,9 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
-  .jobpic { display: none; }
+  .jobpic { aspect-ratio: auto; height: 17vh; margin: -2px -2px 4px; width: calc(100% + 4px); border-width: 2px; }
+  .s-montage h2 { font-size: 1.6rem; } .s-montage .inner { gap: 10px; }
+  .now-job { padding: 12px 14px 14px !important; } .now-job b { font-size: 2rem !important; } .now-job .when { font-size: .8rem !important; }
   .split { grid-template-columns: 1fr; gap: 14px; }
   .split h2, .s-home h2 { font-size: 1.8rem; } .split p { font-size: .9rem; }
   .nat-wall { order: -1; justify-self: center; width: 78%; gap: 8px; } .nat-wall figcaption { font-size: .8rem; }
