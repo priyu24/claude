@@ -1054,7 +1054,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- 4: collage ---------- */
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
-  const PHOTOS = [['me, all dressed up', 'img/kid.jpg'], ['Dada & me', 'img/birthday.jpg'], ['head tilt, always', 'img/tilt.jpg'], ['tiny & very serious', 'img/temple.jpg'], ['that grin', 'img/smile.jpg'], ['too much glue', '--ink', '--yellow']];
+  const PHOTOS = [['Papa & baby me', 'img/papa5.jpg'], ['Papa, cooking outdoors', 'img/papa1.jpg'], ['Papa & me', 'img/papa2.jpg'], ['waterfall day', 'img/papa3.jpg'], ['Papa & me, again', 'img/papa4.jpg'], ['head tilt, always', 'img/tilt.jpg']];
   function collageEnter(el) {
     board.innerHTML = ''; frame.classList.remove('full'); $('.tally', el).hidden = false; $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
     const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.03, .14], [.82, .12], [.02, .62], [.84, .6], [.16, .82], [.7, .84]];
