@@ -131,6 +131,9 @@ p { margin: 0; }
 .next:hover svg { animation-duration: .5s !important; }
 @keyframes nudge { 50% { transform: translateX(10px) rotate(-4deg); } }
 
+/* story paragraphs use the italic serif she picked */
+.scene .inner p:not(.say):not(.done) { font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 500; letter-spacing: 0; }
+.scene .inner p .hand, .scene .inner .say, .scene .inner .done { font-style: normal; }
 /* one consistent instruction chip per slide, bottom-left */
 .tip { position: absolute; z-index: 5; left: max(16px, 4vw); bottom: calc(30px + env(safe-area-inset-bottom, 0px)); margin: 0; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 10px; border-radius: 99px; background: rgba(23,20,31,.78); color: #fff; font: 700 .78rem/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
 .tip i { font-style: normal; font-size: 1.05rem; letter-spacing: 0; }
@@ -256,7 +259,7 @@ p { margin: 0; }
 .brush { width: clamp(220px, 30vw, 320px); height: auto; max-width: 100%; transform: rotate(-8deg); filter: drop-shadow(3px 4px 0 rgba(23,20,31,.35)); animation: rise .7s .7s cubic-bezier(.3,1.7,.5,1) both; }
 .s-gift .say b { font-family: var(--font-display); font-weight: 400; font-size: 1.6em; color: #e8322b; display: block; line-height: 1; margin-bottom: 4px; }
 .s-gift .say { margin-bottom: clamp(0px, 4vh, 40px);  font-size: clamp(1.1rem, 2.4vw, 1.4rem); font-weight: 600; max-width: 34ch; }
-.stroke { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+.stroke { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
 .stroke path { fill: none; stroke-linecap: round; stroke-dasharray: 3000; stroke-dashoffset: 3000; animation: brush .9s cubic-bezier(.5,0,.2,1) forwards; }
 @keyframes brush { to { stroke-dashoffset: 0; } }
 .splat { position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; animation: splat .4s cubic-bezier(.2,1.6,.4,1) both; }
@@ -286,6 +289,8 @@ p { margin: 0; }
 .s-icare .icare-copy p { max-width: 34ch; }
 .chips-ic { display: flex; flex-wrap: wrap; gap: 8px; }
 .chips-ic span { background: var(--ink); color: var(--yellow); font-weight: 800; font-size: .9rem; padding: 6px 14px; border-radius: 99px; }
+.yay { display: inline-block; animation: yay 1.2s ease-in-out infinite; }
+@keyframes yay { 50% { transform: rotate(-14deg) scale(1.25); } }
 .s-icare .clicked { font-size: clamp(1.5rem, 2.8vw, 2.2rem); color: #fff; transform: rotate(-2deg); text-shadow: 2px 2px 0 rgba(23,20,31,.25); }
 .cert { position: relative; margin: 0; justify-self: end; width: min(560px, 100%); background: #fff; padding: 10px; border-radius: 4px; transform: rotate(2deg); box-shadow: 0 30px 60px -24px rgba(0,0,0,.55); }
 .cert img { display: block; width: 100%; height: auto; max-width: 100%; }
@@ -341,6 +346,20 @@ p { margin: 0; }
 .form { display: grid; gap: 10px; background: #fffdf8; color: var(--ink); padding: 22px 26px 26px; border-radius: 6px; transform: rotate(2deg); box-shadow: 0 24px 50px -24px rgba(0,0,0,.45); min-width: 0; width: min(340px, 100%); position: relative;
   background-image: repeating-linear-gradient(transparent 0 33px, rgba(47,107,255,.15) 33px 34px); }
 .form-h { font-weight: 800; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #c3123f; margin-bottom: 4px; }
+.xroads { position: relative; display: flex; gap: clamp(18px, 3vw, 40px); align-items: flex-end; justify-self: center; padding-bottom: 20px; }
+.post { position: relative; display: grid; gap: 10px; justify-items: center; padding-bottom: 70px; }
+.post::before { content: ""; position: absolute; left: 50%; top: 22px; bottom: 0; width: 12px; margin-left: -6px; background: linear-gradient(90deg, #6b4423, #9a6a3a 50%, #6b4423); border-radius: 4px; z-index: 0; }
+.post::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 70px; height: 14px; margin-left: -35px; background: rgba(23,20,31,.25); border-radius: 50%; }
+.post-h { position: relative; z-index: 1; background: var(--ink); color: var(--yellow); font: 800 .72rem var(--font-body); letter-spacing: .14em; text-transform: uppercase; padding: 5px 12px; border-radius: 99px; }
+.arm { position: relative; z-index: 1; display: block; min-width: 150px; padding: 9px 26px; background: #fffdf6; color: var(--ink); font: 700 1.05rem var(--font-body); border: 2.5px solid var(--ink); box-shadow: 4px 4px 0 rgba(23,20,31,.35); }
+.arm.r { clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%); transform: translateX(22px) rotate(-3deg); padding-right: 34px; }
+.arm.l { clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%); transform: translateX(-22px) rotate(3deg); padding-left: 34px; text-align: right; }
+.arm.tick { background: var(--yellow); }
+.arm.tick::after { content: " ✓"; color: #c3123f; font-weight: 900; }
+.arm.ghost { opacity: .55; }
+.arm.cut { background: #ffd9d9; text-decoration: line-through 3px #c3123f; opacity: 1; }
+.s-eng .xroads .form-note { right: -10px; bottom: 30px; }
+.s-eng.open .xroads .form-note { animation: pop .5s cubic-bezier(.3,1.6,.5,1) both; opacity: 1; }
 .opt { display: flex; align-items: center; gap: 12px; font-family: var(--font-hand); font-size: 1.6rem; line-height: 1.2; position: relative; }
 .opt .box { width: 22px; height: 22px; border: 2.5px solid var(--ink); border-radius: 4px; position: relative; flex: none; }
 .opt.tick .box::after { content: "✓"; position: absolute; left: -2px; top: -16px; font-size: 2rem; color: #c3123f; animation: pop .4s cubic-bezier(.3,1.8,.5,1) both; }
@@ -447,7 +466,8 @@ p { margin: 0; }
 .pendrive .body { flex: 1; border-radius: 0 10px 10px 0; background: linear-gradient(110deg, var(--red), var(--pink), var(--purple), var(--blue)); display: grid; place-items: center; font-size: .6rem; font-weight: 800; color: #fff; letter-spacing: .08em; }
 .s-drive:not(.copying):not(.lit) .pendrive { animation: hover 2.2s ease-in-out infinite; }
 @keyframes hover { 50% { translate: 0 -8px; } }
-.s-drive .say { font-size: clamp(1.1rem, 2.4vw, 1.4rem); font-weight: 600; min-height: 1.5em; }
+.s-drive .say { position: relative; z-index: 3; background: rgba(23,20,31,.85); padding: 10px 18px; border-radius: 14px; font-size: clamp(1.4rem, 3vw, 2.2rem); font-family: var(--font-hand); color: var(--yellow); min-height: 1.5em; line-height: 1.15; text-shadow: 2px 2px 0 rgba(0,0,0,.4); max-width: 26ch; }
+.s-drive .say:empty { display: none; }
 
 /* ---------- 7 crowd ---------- */
 .s-crowd { --bg: var(--purple); }
@@ -501,9 +521,11 @@ p { margin: 0; }
 
 .s-break { --bg: #ff5fae; --fg: var(--ink); }
 .interns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-.icard { background: var(--c); color: #fff; border-radius: 16px; padding: 14px 18px; display: grid; gap: 2px; text-align: left; min-width: 0; width: min(280px, 80vw); box-shadow: 5px 5px 0 rgba(23,20,31,.85); }
+.ic-art { width: 120px; height: 70px; margin-bottom: 4px; }
+.icard { background: var(--c); color: #fff; border-radius: 16px; padding: 14px 18px; display: grid; gap: 2px; text-align: left; min-width: 0; width: min(460px, 86vw); padding: 24px 26px !important; box-shadow: 7px 7px 0 rgba(23,20,31,.85); }
 .icard:first-child { transform: rotate(-2deg); } .icard:last-child { transform: rotate(2deg); }
-.icard b { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 800; font-size: 1.7rem; }
+.icard b { font-family: var(--font-display); font-weight: 400; font-size: 2.3rem; line-height: 1.05; }
+.icard span { font-size: 1.05rem; } .icard small { font-size: .95rem; }
 .icard span { font-weight: 800; } .icard small { opacity: .85; line-height: 1.35; }
 
 .s-code { --bg: #efe9df; --fg: var(--ink); }
@@ -715,7 +737,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-grad .inner { grid-template-columns: 1fr; gap: 14px; }
   .s-grad .grads { order: -1; }
   .s-grad .grad { width: min(170px, 44vw); }
-  .s-eng .form { order: -1; width: min(280px, 86vw); padding: 16px 20px; } .opt { font-size: 1.3rem; }
+  .s-eng .xroads { order: -1; transform: scale(.72); margin: -30px 0 -40px; } .s-eng .wtf { font-size: 1.4rem; }
   .s-eng h2 { font-size: 1.9rem; }
 
   .now svg { left: 100%; top: -4px; width: 46px; height: 36px; transform: scaleY(-1) rotate(-20deg); }
@@ -892,17 +914,17 @@ body.hover #arrow svg { transform: scale(1.5); }
     <span class="sticker-hi" style="left:5%;bottom:16%;--r:-6deg" aria-hidden="true"><b style="color:#8b5cf6;font-family:"Mukta",sans-serif;font-weight:800">नो</b><b style="color:#ff7a1a;font-family:"Khand","Mukta",sans-serif;font-weight:700">WAY</b></span>
     <div class="inner">
       <div class="copy">
-        <h2 class="disp pop" style="--d:.1">Then, like every other Indian kid, I ended up in <span class="loop">engineering.</span></h2>
-        <p class="pop" style="--d:.5">After 12th, “designer” wasn't even on the list. So, engineering college. Not what I would have picked, but it turned out to be for the best.</p>
+        <h2 class="disp pop" style="--d:.1">Then came the <span class="loop">crossroads.</span></h2>
+        <p class="pop" style="--d:.4">After 10th, I took science. After 12th, like every other Indian kid, engineering: Information Science &amp; Technology, a close cousin of computer science. “Designer” wasn't even on the map.</p>
         <span class="wtf pop" style="--d:.9" lang="hi">भाई, ये क्या हो रहा था?</span>
-        <span class="tr pop" style="--d:1.1">(bro, what the f*** was happening?)</span>
+        <span class="tr pop" style="--d:1.1">(bro, what was even happening?)</span>
       </div>
-<div class="form pop" style="--d:.3" aria-label="After 12th: choose your career. Engineer gets ticked. Designer was not even an option.">
-        <span class="form-h">After 12th · choose your career</span>
-        <span class="opt" data-k="doc"><i class="box"></i>Doctor</span>
-        <span class="opt" data-k="eng"><i class="box"></i>Engineer</span>
-        <span class="opt ghost" data-k="des"><i class="box"></i>Designer?</span>
-        <span class="form-note hand">not even on the list</span>
+      <div class="xroads pop" style="--d:.3" aria-label="Two signposts. After 10th: science is ticked. After 12th: engineering is ticked, and design is crossed out because it was not an option.">
+        <div class="post"><span class="post-h">after 10th</span>
+          <span class="arm r" data-k="sci">Science</span><span class="arm l">Commerce</span><span class="arm r">Arts</span></div>
+        <div class="post"><span class="post-h">after 12th</span>
+          <span class="arm l">Medicine</span><span class="arm r" data-k="eng">Engineering</span><span class="arm l ghost" data-k="des">Design?</span></div>
+        <span class="form-note hand">not even on the map</span>
       </div>
     </div>
     <button class="next"><small>next</small><span>Enter: Photoshop</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -912,7 +934,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="tip must"><i aria-hidden="true">🖐</i><span>drag the pen drive into the laptop</span></div>
     <span class="sticker-hi" style="right:7%;top:16%;--r:9deg" aria-hidden="true"><b style="color:#12b76a;font-family:"Mukta",sans-serif;font-weight:800">जुगाड़</b><b style="color:#ffc21a;font-family:"Pacifico",cursive">mode on</b></span>
     <div class="inner">
-      <h2 class="disp pop" style="--d:.1">Second year, a senior said: learn Photoshop. Found it on a <span class="loop">pen drive.</span></h2>
+      <h2 class="disp pop" style="--d:.1">First year. A senior said: learn Photoshop. Then he lent me a <span class="loop">pen drive.</span></h2>
       <div class="rig pop" style="--d:.3">
         <div class="laptop">
           <div class="scr"><span class="ps">Ps</span><div class="load"><span>copying Photoshop_FINAL_final(2).exe</span><i><b></b></i></div></div>
@@ -942,12 +964,11 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="icare-copy">
         <h2 class="disp pop" style="--d:.15">I was made Design Head at <span class="loop">iCare.</span></h2>
         <p class="pop" style="--d:.4">My first real design role, at a student-driven group for community service. Two years of posters, events and a lot of learning.</p>
-        <div class="chips-ic pop" style="--d:.55"><span>2019 – 2021</span><span>Convention Award 2021 🏆</span></div>
-        <p class="clicked hand pop" style="--d:.7">That's when it clicked: okay, I can actually do this.</p>
+        <p class="clicked hand pop" style="--d:.6">That's when it clicked: okay, I can actually do this. <span class="yay">🎉</span></p>
       </div>
       <figure class="cert pop" style="--d:.3">
         <img src="img/icare-cert.jpg" alt="Certificate of Achievement from The iCare Group awarding Priyanshu Gupta as Design Head, Convention Award 2021">
-        <div class="seal" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>2019 – 2021</span></div>
+        <div class="seal" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>hurray!</span></div>
       </figure>
     </div>
     <button class="next"><small>next</small><span>Cue: so many posters</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -958,7 +979,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">I made posters. <span class="loop">So many</span> posters.</h2>
       <div class="wall pop" aria-label="Priyanshu's college posters"><figure class="realp" style="--r:-5deg;--i:0"><img src="img/p-expo.jpg" alt="Auto Expo / Art Expo 2020"></figure><figure class="realp" style="--r:3deg;--i:1"><img src="img/p-duet.jpg" alt="Duet dance competition"><em>oof</em></figure><figure class="realp" style="--r:4deg;--i:3"><img src="img/p-dance.jpg" alt="Dance: solo, duet, faceoff, group"><em>cringe?</em></figure><figure class="realp" style="--r:-4deg;--i:4"><img src="img/p-green.jpg" alt="Keep our earth green plantation drive"></figure></div>
-      <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Looking back? I love them anyway.</span></p>
+      <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Looking back? Such a learning. I made every one of them without really knowing what I was doing.</span></p>
     </div>
     <button class="next"><small>next</small><span>Then: tiny internships</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -977,10 +998,10 @@ body.hover #arrow svg { transform: scale(1.5); }
     <span class="sticker-hi" style="right:7%;top:16%;--r:7deg" aria-hidden="true"><b style="color:#2f6bff;font-family:"Khand","Mukta",sans-serif;font-weight:700">YES</b><b style="color:#8a0f2c;font-family:"Mukta",sans-serif;font-weight:800">बेबी</b></span>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">Then I landed <span class="loop">Cuemath.</span></h2>
-      <p class="pop" style="--d:.3">A proper internship, and a big deal for me. I stayed for about a year, all through third year. Then came Headout.</p>
+      <p class="pop" style="--d:.3">A proper internship, and a big deal for me. I stayed for about a year, all through third year, and mastered Adobe Illustrator along the way. Then came Headout.</p>
       <div class="interns">
-        <div class="icard pop" style="--d:.5; --c:var(--red)"><b>Cuemath</b><span>Graphic Designer · intern</span><small>Aug 2020 – Jun 2021 · illustrations that explain maths</small></div>
-        <div class="icard pop" style="--d:.7; --c:var(--purple)"><b>Headout</b><span>Visual Designer · intern</span><small>May – Nov 2021 · visual design for the website</small></div>
+        <div class="icard pop" style="--d:.5; --c:var(--red)"><svg class="ic-art" viewBox="0 0 120 70" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="9" fill="#330000" stroke="#ff9a00" stroke-width="3"/><text x="24" y="33" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="20" fill="#ff9a00">Ai</text><path d="M56 56 C 70 10, 96 10, 114 40" fill="none" stroke="#fff" stroke-width="3"/><path d="M56 56 L 78 20 M114 40 L 100 8" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="3 3"/><rect x="52" y="52" width="8" height="8" fill="#fff"/><rect x="110" y="36" width="8" height="8" fill="#fff"/><circle cx="78" cy="20" r="3.5" fill="#fff"/><circle cx="100" cy="8" r="3.5" fill="#fff"/></svg><b>Cuemath</b><span>Graphic Designer · intern</span><small>Aug 2020 – Jun 2021 · where I mastered Adobe Illustrator, making illustrations that explain maths</small></div>
+        <div class="icard pop" style="--d:.7; --c:var(--purple)"><svg class="ic-art" viewBox="0 0 120 70" aria-hidden="true"><path d="M6 14 h78 a8 8 0 0 0 0 16 v8 a8 8 0 0 0 0 16 h-78 z" fill="#fff"/><path d="M60 16 v36" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4 4"/><text x="30" y="40" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="13" fill="#8b5cf6">TICKET</text><circle cx="104" cy="22" r="10" fill="#ffc21a"/><path d="M92 58 l10 -14 l8 9 l6 -6 l4 11z" fill="#fff" fill-opacity=".85"/></svg><b>Headout</b><span>Visual Designer · intern</span><small>May – Nov 2021 · visual design for the website: travel experiences and tickets</small></div>
       </div>
     </div>
     <button class="next"><small>next</small><span>Then I found UX</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -990,12 +1011,12 @@ body.hover #arrow svg { transform: scale(1.5); }
     <span class="sticker-hi" style="right:7%;top:15%;--r:-9deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">वाह</b><b style="color:#2f6bff;font-family:"Khand","Mukta",sans-serif;font-weight:700">WOW</b></span>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">My design brain went: <span class="loop">wow.</span></h2>
-      <p class="pop" style="--d:.3">Between the college magazine and front-end projects, I was writing HTML and CSS. And seeing my designs come alive on screen?</p>
+      <p class="pop" style="--d:.3">In college, my branch was Information Science &amp; Technology, close to computer science. I loved the front-end bits: HTML, CSS, a little JavaScript, and the mini projects we were assigned. Seeing my designs come alive on screen?</p>
       <div class="ide pop" style="--d:.45">
         <pre class="src" aria-label="Code being typed"><code></code></pre>
         <div class="out" aria-label="Live preview"><div class="out-in"></div></div>
       </div>
-      <p class="reveal">Then a senior told me about UI/UX: designing what lives on a screen, <span class="hand">without the coding.</span> That was it. That was my thing.</p>
+      <p class="reveal">Then a senior introduced me to UI/UX: basically, product design. All the building, <span class="hand">without the coding.</span> Wow. That was my thing.</p>
     </div>
     <button class="next"><small>next</small><span>So I went all in</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -1005,7 +1026,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <div class="copy">
         <h2 class="disp pop" style="--d:.1">Four years later: <span class="loop">graduated.</span></h2>
-        <p class="pop" style="--d:.4">Class of 2021. An engineering degree in one hand, and a design job offer in the other.</p>
+        <p class="pop" style="--d:.4">Class of 2021. An engineering degree in hand, and a heart fully set on design.</p>
         <span class="hand gnote pop" style="--d:.8">walked in an engineer, walked out a designer</span>
       </div>
       <div class="grads pop" style="--d:.3">
@@ -1151,10 +1172,11 @@ body.hover #arrow svg { transform: scale(1.5); }
     hustle: { enter: hustleEnter },
     code: { enter: codeEnter },
     'eng': { enter: el => {
-      $$('.opt', el).forEach(o => o.classList.remove('tick', 'cut'));
-      later(() => $('.opt[data-k="eng"]', el).classList.add('tick'), 1300);
-      later(() => $('.opt[data-k="des"]', el).classList.add('cut'), 1900);
-      later(() => open(el), 2400);
+      $$('.arm', el).forEach(o => o.classList.remove('tick', 'cut'));
+      later(() => { $('.arm[data-k="sci"]', el).classList.add('tick'); sfx('click'); }, 1300);
+      later(() => { $('.arm[data-k="eng"]', el).classList.add('tick'); sfx('click'); }, 2000);
+      later(() => { $('.arm[data-k="des"]', el).classList.add('cut'); sfx('thump'); }, 2700);
+      later(() => open(el), 3000);
     } },
     grad: { enter: el => later(() => open(el), 1800) },
     school: { enter: el => { const pp = $('.ppt', el); pp.classList.remove('run'); later(() => pp.classList.add('run'), 1600); later(() => open(el), 4200); } },
