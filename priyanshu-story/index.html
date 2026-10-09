@@ -470,7 +470,7 @@ p { margin: 0; }
 .s-code .reveal .hand { color: var(--red); font-size: 1.2em; }
 .s-montage .inner { width: min(100%, 1100px); }
 .s-montage h2 { font-size: clamp(2rem, 5vw, 3.8rem); }
-.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px !important; gap: 14px; width: 100%; text-align: left; }
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr 1.7fr; align-items: center; gap: 18px !important; gap: 14px; width: 100%; text-align: left; }
 .job { background: var(--c); color: var(--t); border-radius: 16px; padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; box-shadow: 5px 5px 0 rgba(23,20,31,.85); transform: rotate(var(--r)); opacity: 0; min-width: 0; }
 .job.in { animation: slamJ .45s cubic-bezier(.3,1.7,.5,1) forwards; }
 @keyframes slamJ { from { opacity: 0; transform: rotate(var(--r)) scale(2.2); } to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
@@ -478,7 +478,14 @@ p { margin: 0; }
 .job .role { font-weight: 800; font-size: .98rem; line-height: 1.25; }
 .job .when { font-size: .92rem; line-height: 1.4; opacity: .9; }
 .job b { font-variation-settings: "SOFT" 100; font-weight: 800; }
-.job:last-child { box-shadow: 5px 5px 0 rgba(23,20,31,.85), 0 0 0 3px var(--yellow); }
+.job:last-child { box-shadow: 8px 8px 0 rgba(23,20,31,.85), 0 0 0 4px var(--yellow); }
+.now-job { padding: 22px 26px 26px !important; gap: 8px !important; }
+.now-job b { font-size: clamp(2.6rem, 5vw, 4.2rem) !important; line-height: 1; }
+.now-job .role { font-size: 1.15rem !important; }
+.now-job .when { font-size: 1.02rem !important; opacity: 1 !important; }
+.here { justify-self: start; background: var(--green); color: #fff; font-weight: 800; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 99px; }
+.scene.open .here, .job.in .here { animation: livePulse 1.6s ease-in-out infinite; }
+@keyframes livePulse { 50% { box-shadow: 0 0 0 7px rgba(18,183,106,.25); } }
 .stamp { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, 0) rotate(var(--r)); padding: .2em .5em; border-radius: 14px; background: var(--c); color: var(--t, #fff); font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 5vw, 3.4rem); line-height: 1; white-space: nowrap; box-shadow: 6px 6px 0 var(--ink); opacity: 0; }
 .stamp.in { animation: slam .45s cubic-bezier(.3,1.7,.5,1) forwards; }
 @keyframes slam { from { opacity: 0; transform: translate(-50%, 0) rotate(var(--r)) scale(3); } to { opacity: 1; transform: translate(-50%, 0) rotate(var(--r)) scale(1); } }
@@ -877,7 +884,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <ol class="jobs">
         <li class="job" style="--c:var(--blue); --t:#fff; --r:-2deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · my first job, at a startup · Champion's Award</span></li>
         <li class="job" style="--c:var(--ink); --t:#fff; --r:1.5deg"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · formerly Monster India, born from Monster.com, one of the first job portals on the internet · Trailblazer Annual Award</span></li>
-        <li class="job" style="--c:var(--paper); --t:var(--ink); --r:-1deg"><b>Esko</b><span class="role">UX Designer · now</span><span class="when">Jan 2025 – present · One of the world's leading packaging software companies. I work on WebCenter Go.</span></li>
+        <li class="job now-job" style="--c:var(--paper); --t:var(--ink); --r:-1.5deg"><span class="here">● I work here now</span><b>Esko</b><span class="role">UX Designer</span><span class="when">Jan 2025 – present · One of the world's leading packaging software companies. I work on WebCenter Go.</span></li>
       </ol>
     </div>
     <button class="next">So, who is that curious kid today? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
