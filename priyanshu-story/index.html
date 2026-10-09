@@ -162,6 +162,9 @@ p { margin: 0; }
 .feel-copy { display: grid; gap: 14px; justify-items: start; min-width: 0; }
 .s-feel .lead { font-size: clamp(1.4rem, 2.6vw, 2rem); color: var(--yellow); }
 .kid-pic { transform: rotate(-4deg); width: min(330px, 100%); }
+.kid2 { position: absolute; z-index: 4; width: 40%; right: -12%; bottom: -22%; margin: 0; padding: 6px 6px 4px; rotate: 12deg; }
+.kid2 img { aspect-ratio: auto; }
+.kid2 figcaption { font-size: 1rem; }
 .intro-line { font-family: var(--font-tease); font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.7rem); max-width: 30ch; line-height: 1.45; color: var(--ink); }
 .hl { color: inherit; padding: 0 .2em; margin: 0 -.05em; font-weight: 800; -webkit-box-decoration-break: clone; box-decoration-break: clone; border-radius: .25em .6em .3em .5em; background: linear-gradient(transparent 12%, var(--c) 12%, var(--c) 92%, transparent 92%) no-repeat 0 0 / 0% 100%; }
 .hl.y { --c: #ffc21a; } .hl.p { --c: #ffb3d1; }
@@ -541,6 +544,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .kid2 { width: 52%; right: -40%; bottom: -6%; }
   .dada-me { display: none; }
   .school-grid { grid-template-columns: 1fr; gap: 14px; } .s-school h2 { font-size: 1.8rem; } .s-school p { font-size: .86rem; } .s-school .copy p + p { display: none; } .ppt { width: min(300px, 88vw); } .ppt-thumbs { display: none; } .ppt-body { grid-template-columns: 1fr; } .ppt-ribbon { gap: 6px; } .wa { width: 22px; height: 22px; font-size: .9rem; } .wa-gallery { grid-template-columns: repeat(6, 22px); } .tpl-gallery { grid-template-columns: repeat(3, 26px); } .tpl { width: 26px; height: 22px; }
   .snd { font-size: .72rem; padding: 4px 9px; }
@@ -628,6 +632,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <figure class="starframe kid-pic" data-stars="8">
         <img src="img/kid.jpg" alt="Young Priyanshu in a red lehenga, grinning">
         <figcaption class="hand">this is me, as a kid</figcaption>
+        <figure class="snap kid2"><img src="img/beach-me.jpg" alt="Little Priyanshu in a red top, standing in the sea"><figcaption>beach day</figcaption></figure>
       </figure>
       <div class="feel-copy">
       <span class="lead hand">and this was me as a kid…</span>
