@@ -112,7 +112,7 @@ p { margin: 0; }
   position: absolute; z-index: 4; right: max(16px, 4vw); bottom: calc(26px + env(safe-area-inset-bottom, 0px));
   display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap;
   font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 700; font-size: clamp(1.25rem, 2.4vw, 1.9rem); line-height: 1; color: var(--fg, var(--paper));
-  padding: 10px 12px 10px 18px; border-radius: 99px; border: 2px solid currentColor;
+  padding: 6px 0;
   transition: transform .3s, opacity .4s, background .2s;
 }
 .next small { font: 800 .62rem/1 var(--font-body); font-style: normal; letter-spacing: .16em; text-transform: uppercase; opacity: .7; padding-top: 2px; }
@@ -557,6 +557,7 @@ p { margin: 0; }
 .name-rev { margin: 0; font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1.02; white-space: nowrap; }
 .name-rev [lang="hi"] { font-family: "Amita", "Yatra One", serif; font-weight: 700; color: var(--pink); }
 .name-rev .en { font-family: "Amita", "Yeseva One", serif; font-weight: 700; color: var(--yellow); }
+.motto { font-family: var(--font-hand); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15; color: #fff; max-width: 24ch; transform: rotate(-1.5deg); border-left: 4px solid var(--pink); padding-left: 14px; }
 .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .facts li { font-size: clamp(.95rem, 1.5vw, 1.1rem); line-height: 1.35; color: rgba(255,255,255,.82); padding-left: 22px; position: relative; }
 .facts li::before { content: "✦"; position: absolute; left: 0; color: var(--pink); }
@@ -619,7 +620,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .cozy { grid-template-columns: 1fr 1fr; gap: 10px; } .ccard { padding: 12px; } .ccard span { font-size: .78rem; } .ccard b { font-size: 1.05rem; } .ccard i { font-size: 1.4rem; }
   .versions { order: -1; justify-self: center; height: 200px; width: 86%; } .ver b { padding: 10px; font-size: 1.05rem; }
   .s-retell .copy p + p { display: none; }
-  .next { font-size: 1.05rem; padding: 7px 8px 7px 12px; gap: 8px; } .next svg { width: 36px; }
+  .next { font-size: 1.05rem; padding: 4px 0; gap: 8px; } .next svg { width: 36px; }
   .s-icare .inner { grid-template-columns: 1fr; gap: 16px; } .cert { order: -1; justify-self: center; width: 92%; } .cert .seal { width: 84px; left: -18px; bottom: -26px; } .cert .seal b { font-size: 1.1rem; } .cert .seal span { font-size: .45rem; }
   .kid2 { width: 52%; right: -40%; bottom: -6%; }
   .dada-me { display: none; }
@@ -638,7 +639,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .hero-collage .tag { font-size: 1rem; bottom: -16px; }
   .end-copy { justify-items: start; }
   .facts li { font-size: .85rem; text-align: left; }
-  .facts li:nth-child(n+3) { display: none; }
+  .facts li:nth-child(n+3) { display: none; } .motto { font-size: 1.15rem; }
   .mini { width: 58px; }
         .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
   .bad { width: 76px; } .realp { width: 82px; } .realp:hover { transform: scale(1.4); }
@@ -995,7 +996,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     <button class="next"><small>next</small><span>So, who am I today?</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-end">
-    <span class="sticker-hi" style="right:5%;bottom:9%;--r:-6deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">बस</b><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">इतना ही</b></span>
+    <span class="sticker-hi" style="right:4%;bottom:3%;--r:-6deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">बस</b><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">इतना ही</b></span>
     <div class="inner end-grid">
       <figure class="hero-collage pop" style="--d:.15">
         <img src="img/collage-hd.webp" alt="A collage of photos of Priyanshu with her name written across it">
@@ -1004,7 +1005,8 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="end-copy">
         <span class="eyebrow pop" style="--d:.4">so, this is me</span>
         <h2 class="name-rev pop" style="--d:.5"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
-        <ul class="facts pop" style="--d:.65">
+        <p class="motto pop" style="--d:.6">“forever at war with myself, because I know I can do better.”</p>
+        <ul class="facts pop" style="--d:.7">
           <li><b>Product designer</b> at Esko, Bengaluru, working on WebCenter Go</li>
           <li><b>Empathetic and endlessly curious.</b> Always asking “why does it work this way?”</li>
           <li>Can pull off a <b>10-hour design marathon</b> without being too grumpy</li>
