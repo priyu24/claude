@@ -203,7 +203,7 @@ p { margin: 0; }
 .s-eng .eq { color: #fff; }
 .s-eng .eq { position: absolute; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: clamp(.9rem, 1.8vw, 1.3rem); opacity: .35; animation: drift linear infinite; white-space: nowrap; z-index: 1; }
 @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-120vh); } }
-.s-eng h2 { font-size: clamp(2rem, 6vw, 5rem); max-width: 16ch; }
+.s-eng h2 { font-size: clamp(1.8rem, 4.6vw, 3.8rem); max-width: 16ch; }
 .s-eng .wtf { font-family: var(--font-hand); font-size: clamp(1.6rem, 3.4vw, 2.8rem); white-space: nowrap; color: var(--ink); position: relative; display: inline-block; transform: rotate(-3deg); }
 .s-eng.play .wtf { animation: glitch 2.6s 1.4s infinite; }
 @keyframes glitch { 0%, 86%, 100% { transform: rotate(-3deg); text-shadow: none; } 88% { transform: rotate(2deg) translateX(6px); text-shadow: -4px 0 var(--grey), 4px 0 #555; } 92% { transform: rotate(-6deg) translateX(-6px); } 95% { transform: rotate(0) skewX(12deg); } }
@@ -219,6 +219,23 @@ p { margin: 0; }
 .grad:hover img, .grad:focus-visible img, .grad.color img { filter: none; }
 .grad .peek { position: absolute; right: -18px; top: -22px; font-size: 1.3rem; color: var(--paper); transform: rotate(8deg); transition: opacity .4s; }
 .grad:hover .peek, .grad.color .peek { opacity: 0; }
+.form { display: grid; gap: 10px; background: #fffdf8; color: var(--ink); padding: 22px 26px 26px; border-radius: 6px; transform: rotate(2deg); box-shadow: 0 24px 50px -24px rgba(0,0,0,.45); min-width: 0; width: min(340px, 100%); position: relative;
+  background-image: repeating-linear-gradient(transparent 0 33px, rgba(47,107,255,.15) 33px 34px); }
+.form-h { font-weight: 800; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #c3123f; margin-bottom: 4px; }
+.opt { display: flex; align-items: center; gap: 12px; font-family: var(--font-hand); font-size: 1.6rem; line-height: 1.2; position: relative; }
+.opt .box { width: 22px; height: 22px; border: 2.5px solid var(--ink); border-radius: 4px; position: relative; flex: none; }
+.opt.tick .box::after { content: "✓"; position: absolute; left: -2px; top: -16px; font-size: 2rem; color: #c3123f; animation: pop .4s cubic-bezier(.3,1.8,.5,1) both; }
+.opt.ghost { opacity: .45; }
+.opt.ghost.cut::after { content: ""; position: absolute; left: 30px; right: -6px; top: 52%; height: 3px; background: #c3123f; transform: rotate(-4deg); transform-origin: left; animation: cutin .35s ease-out both; }
+@keyframes cutin { from { transform: rotate(-4deg) scaleX(0); } }
+.form-note { position: absolute; right: -24px; bottom: -18px; background: var(--yellow); padding: 2px 12px; border-radius: 99px; font-size: 1.15rem; transform: rotate(-6deg); opacity: 0; }
+.s-eng.open .form-note { animation: pop .5s cubic-bezier(.3,1.6,.5,1) both; opacity: 1; }
+.s-grad { --bg: #ffc21a; --fg: var(--ink); }
+.s-grad .inner { grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(24px, 5vw, 64px); width: min(100%, 1080px); }
+.s-grad .copy { display: grid; gap: 18px; justify-items: center; min-width: 0; }
+.s-grad h2 { font-size: clamp(2rem, 5.4vw, 4.4rem); max-width: 14ch; }
+.s-grad p { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 600; max-width: 34ch; }
+.gnote { font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: #c3123f; transform: rotate(-3deg); }
 .s-eng p { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 600; max-width: 36ch; }
 
 /* ---------- 6 pen drive ---------- */
@@ -420,8 +437,10 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-crowd .batch { width: min(200px, 54vw); }
   .s-crowd h2 { font-size: 1.7rem; }
   .s-eng .inner { grid-template-columns: 1fr; gap: 14px; }
-  .s-eng .grads { order: -1; }
-  .s-eng .grad { width: min(170px, 44vw); }
+  .s-grad .inner { grid-template-columns: 1fr; gap: 14px; }
+  .s-grad .grads { order: -1; }
+  .s-grad .grad { width: min(170px, 44vw); }
+  .s-eng .form { order: -1; width: min(280px, 86vw); padding: 16px 20px; } .opt { font-size: 1.3rem; }
   .s-eng h2 { font-size: 1.9rem; }
 
   .now svg { left: 100%; top: -4px; width: 46px; height: 36px; transform: scaleY(-1) rotate(-20deg); }
@@ -525,18 +544,17 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <div class="copy">
         <h2 class="disp pop" style="--d:.1">Then, like every other Indian kid, I ended up in <span class="loop">engineering.</span></h2>
-        <p class="pop" style="--d:.5">Engineering college. Not what I would have picked. But it turned out to be for the best.</p>
+        <p class="pop" style="--d:.5">After 12th, “designer” wasn't even on the list. So, engineering college. Not what I would have picked, but it turned out to be for the best.</p>
         <span class="wtf pop" style="--d:.9" lang="hi">भाई, ये क्या हो रहा था?</span>
         <span class="hint pop" style="--d:1.1">(bro, what the f*** was happening?)</span>
       </div>
-<div class="grads pop" style="--d:.3">
-        <figure class="snap grad batch-g" tabindex="0" aria-label="Priyanshu's graduating batch throwing caps">
-          <img src="img/batch.jpg" alt="Priyanshu's graduating batch throwing their caps in the air"><figcaption>the whole batch</figcaption>
-        </figure>
-        <figure class="snap grad" tabindex="0" aria-label="Priyanshu receiving an engineering degree, class of 2021">
-          <img src="img/grad.jpg" alt="Priyanshu receiving the engineering degree certificate at the Class of 2021 graduation">
-          <figcaption>engineering degree ✓ · class of 2021</figcaption>
-                  </figure>
+<div class="form pop" style="--d:.3" aria-label="After 12th: choose your career. Engineer gets ticked. Designer was not even an option.">
+        <span class="form-h">After 12th · choose your career</span>
+        <span class="opt" data-k="doc"><i class="box"></i>Doctor</span>
+        <span class="opt" data-k="eng"><i class="box"></i>Engineer</span>
+        <span class="opt" data-k="ca"><i class="box"></i>CA</span>
+        <span class="opt ghost" data-k="des"><i class="box"></i>Designer?</span>
+        <span class="form-note hand">not even on the list</span>
       </div>
     </div>
     <button class="next">In college I joined a bunch of clubs. Then a senior said: learn Photoshop. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
@@ -612,6 +630,25 @@ body.hover #arrow svg { transform: scale(1.5); }
     </div>
     <button class="next">So I went all in. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
+  <section class="scene s-grad" data-teaser>
+    <div class="inner">
+      <div class="copy">
+        <h2 class="disp pop" style="--d:.1">Four years later: <span class="loop">graduated.</span></h2>
+        <p class="pop" style="--d:.4">Class of 2021. An engineering degree in one hand, and a design job offer in the other.</p>
+        <span class="hand gnote pop" style="--d:.8">walked in an engineer, walked out a designer</span>
+      </div>
+      <div class="grads pop" style="--d:.3">
+        <figure class="snap grad batch-g" tabindex="0" aria-label="Priyanshu's graduating batch throwing caps">
+          <img src="img/batch.jpg" alt="Priyanshu's graduating batch throwing their caps in the air"><figcaption>the whole batch</figcaption>
+        </figure>
+        <figure class="snap grad" tabindex="0" aria-label="Priyanshu receiving an engineering degree, class of 2021">
+          <img src="img/grad.jpg" alt="Priyanshu receiving the engineering degree certificate at the Class of 2021 graduation">
+          <figcaption>engineering degree ✓ · class of 2021</figcaption>
+                  </figure>
+      </div>
+    </div>
+    <button class="next">And that first job? A design one. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
   <section class="scene s-montage" data-gated>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">From posters to <span class="loop">products.</span></h2>
@@ -680,7 +717,13 @@ body.hover #arrow svg { transform: scale(1.5); }
     break: { enter: el => later(() => open(el), 1800) },
     hustle: { enter: hustleEnter },
     code: { enter: codeEnter },
-    'eng': { enter: el => { later(() => open(el), 2200); } },
+    'eng': { enter: el => {
+      $$('.opt', el).forEach(o => o.classList.remove('tick', 'cut'));
+      later(() => $('.opt[data-k="eng"]', el).classList.add('tick'), 1300);
+      later(() => $('.opt[data-k="des"]', el).classList.add('cut'), 1900);
+      later(() => open(el), 2400);
+    } },
+    grad: { enter: el => later(() => open(el), 1800) },
     feel: { enter: feelEnter, leave: feelLeave },
     gift: { enter: el => { el.classList.remove('unwrapped'); $$('.splat, .stroke', el).forEach(s => s.remove()); $('.say', el).hidden = true; } },
     collage: { enter: collageEnter },
