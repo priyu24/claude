@@ -1,7 +1,7 @@
 <title>Priyanshu's Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Amita:wght@700&family=Khand:wght@600;700&family=Yatra+One&family=Instrument+Serif:ital@0;1&family=Shantell+Sans:ital,wght@0,600;0,800;1,700&family=Caveat+Brush&family=Pacifico&family=Hanken+Grotesk:wght@400;600;800&family=Mukta:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Amita:wght@700&family=Khand:wght@600;700&family=Yatra+One&family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght,SOFT@1,9..144,500..800,100&family=Caveat+Brush&family=Pacifico&family=Hanken+Grotesk:wght@400;600;800&family=Mukta:wght@500;700;800&display=swap">
 <style>
 /* Layout: no scrolling page. A stage of full-screen scenes, one at a time, like a picture book.
    Each scene floods in as a paint circle from wherever you clicked. Single deliberate visual world (every colour explicit). */
@@ -18,7 +18,7 @@
   --font-display: "Yeseva One", "Yatra One", Georgia, serif;
   --font-body: "Hanken Grotesk", "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: "Caveat Brush", "Yatra One", "Comic Sans MS", cursive;
-  --font-tease: "Shantell Sans", "Comic Sans MS", cursive;
+  --font-tease: "Fraunces", Georgia, serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -111,7 +111,7 @@ p { margin: 0; }
 .next {
   position: absolute; z-index: 4; right: max(16px, 4vw); bottom: calc(26px + env(safe-area-inset-bottom, 0px));
   display: flex; align-items: center; gap: 12px; max-width: min(80vw, 520px); text-align: right;
-  font-family: var(--font-tease); font-style: italic; font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.9rem); line-height: 1.1; color: var(--fg, var(--paper));
+  font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 600; font-size: clamp(1.3rem, 2.7vw, 2rem); line-height: 1.1; color: var(--fg, var(--paper));
   transition: transform .3s, opacity .4s;
 }
 .next svg { width: clamp(64px, 9vw, 104px); flex: none; overflow: visible; }
@@ -164,8 +164,8 @@ p { margin: 0; }
 .kid2 { position: absolute; z-index: 4; width: 40%; right: -12%; bottom: -22%; margin: 0; padding: 6px 6px 4px; rotate: 12deg; }
 .kid2 img { aspect-ratio: auto; }
 .kid2 figcaption { font-size: 1rem; }
-.intro-line { font-family: var(--font-tease); font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.7rem); max-width: 30ch; line-height: 1.45; color: var(--ink); }
-.hl { color: inherit; padding: 0 .2em; margin: 0 -.05em; font-weight: 800; -webkit-box-decoration-break: clone; box-decoration-break: clone; border-radius: .25em .6em .3em .5em; background: linear-gradient(transparent 12%, var(--c) 12%, var(--c) 92%, transparent 92%) no-repeat 0 0 / 0% 100%; }
+.intro-line { font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 500; font-size: clamp(1.15rem, 2.4vw, 1.7rem); max-width: 30ch; line-height: 1.45; color: var(--ink); }
+.hl { color: inherit; padding: 0 .2em; margin: 0 -.05em; font-weight: 700; -webkit-box-decoration-break: clone; box-decoration-break: clone; border-radius: .25em .6em .3em .5em; background: linear-gradient(transparent 12%, var(--c) 12%, var(--c) 92%, transparent 92%) no-repeat 0 0 / 0% 100%; }
 .hl.y { --c: #ffc21a; } .hl.p { --c: #ffb3d1; }
 .scene.play .hl { animation: hlIn .7s ease-out forwards; }
 .scene.play .hl.y { animation-delay: 1.2s; } .scene.play .hl.p { animation-delay: 1.8s; }
@@ -245,7 +245,13 @@ p { margin: 0; }
 
 /* ---------- 4 collage ---------- */
 .s-collage { --bg: var(--pink); }
-.s-collage .inner, .s-crowd .inner, .s-icare .inner { justify-items: center; text-align: center; }
+.s-collage .inner, .s-crowd .inner { justify-items: center; text-align: center; }
+.s-icare .inner { grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(28px, 5vw, 72px); width: min(100%, 1160px); }
+.icare-copy { display: grid; gap: 18px; min-width: 0; }
+.cert { position: relative; margin: 0; justify-self: end; width: min(560px, 100%); background: #fff; padding: 10px; border-radius: 4px; transform: rotate(2deg); box-shadow: 0 30px 60px -24px rgba(0,0,0,.55); }
+.cert img { display: block; width: 100%; height: auto; max-width: 100%; }
+.cert .seal { position: absolute; left: -48px; bottom: -42px; width: 130px; }
+.cert .seal b { font-size: 1.7rem; } .cert .seal span { font-size: .6rem; }
 .s-collage h2 { font-size: clamp(1.9rem, 5vw, 4rem); max-width: 18ch; }
 .s-collage .board { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .s-collage .board .photo { pointer-events: auto; }
@@ -543,6 +549,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .s-icare .inner { grid-template-columns: 1fr; gap: 16px; } .cert { order: -1; justify-self: center; width: 92%; } .cert .seal { width: 84px; left: -18px; bottom: -26px; } .cert .seal b { font-size: 1.1rem; } .cert .seal span { font-size: .45rem; }
   .kid2 { width: 52%; right: -40%; bottom: -6%; }
   .dada-me { display: none; }
   .school-grid { grid-template-columns: 1fr; gap: 14px; } .s-school h2 { font-size: 1.8rem; } .s-school p { font-size: .86rem; } .s-school .copy p + p { display: none; } .ppt { width: min(300px, 88vw); } .ppt-thumbs { display: none; } .ppt-body { grid-template-columns: 1fr; } .ppt-ribbon { gap: 6px; } .wa { width: 22px; height: 22px; font-size: .9rem; } .wa-gallery { grid-template-columns: repeat(6, 22px); } .tpl-gallery { grid-template-columns: repeat(3, 26px); } .tpl { width: 26px; height: 22px; }
@@ -779,9 +786,14 @@ body.hover #arrow svg { transform: scale(1.5); }
   <section class="scene s-icare" data-teaser>
     <span class="sticker-hi" style="right:7%;top:16%;--r:10deg" aria-hidden="true"><b style="color:#ff4b3e;font-family:"Mukta",sans-serif;font-weight:800">बॉस</b><b style="color:#2f6bff;font-family:"Khand","Mukta",sans-serif;font-weight:700">LADY</b></span>
     <div class="inner">
-      <div class="seal pop" style="--d:.2" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>student-run · college</span></div>
-      <h2 class="disp pop" style="--d:.45">I was made Design Head at <span class="loop">iCare.</span></h2>
-      <p class="pop" style="--d:.7">My first real design role. That's when it clicked: <span class="hand">okay, I can actually do this.</span></p>
+      <div class="icare-copy">
+        <h2 class="disp pop" style="--d:.15">I was made Design Head at <span class="loop">iCare.</span></h2>
+        <p class="pop" style="--d:.4">A student-driven group for community service and skill development, 2019 to 2021. My first real design role. That's when it clicked: <span class="hand">okay, I can actually do this.</span></p>
+      </div>
+      <figure class="cert pop" style="--d:.3">
+        <img src="img/icare-cert.jpg" alt="Certificate of Achievement from The iCare Group awarding Priyanshu Gupta as Design Head, Convention Award 2021">
+        <div class="seal" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>2019 – 2021</span></div>
+      </figure>
     </div>
     <button class="next">So what does a new design head do? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
