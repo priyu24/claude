@@ -247,7 +247,12 @@ p { margin: 0; }
 .s-collage { --bg: var(--pink); }
 .s-collage .inner, .s-crowd .inner { justify-items: center; text-align: center; }
 .s-icare .inner { grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(28px, 5vw, 72px); width: min(100%, 1160px); }
-.icare-copy { display: grid; gap: 18px; min-width: 0; }
+.icare-copy { display: grid; gap: 16px; min-width: 0; }
+.s-icare h2 { font-size: clamp(2rem, 4.6vw, 3.8rem); max-width: 12ch; }
+.s-icare .icare-copy p { max-width: 34ch; }
+.chips-ic { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips-ic span { background: var(--ink); color: var(--yellow); font-weight: 800; font-size: .9rem; padding: 6px 14px; border-radius: 99px; }
+.s-icare .clicked { font-size: clamp(1.5rem, 2.8vw, 2.2rem); color: #fff; transform: rotate(-2deg); text-shadow: 2px 2px 0 rgba(23,20,31,.25); }
 .cert { position: relative; margin: 0; justify-self: end; width: min(560px, 100%); background: #fff; padding: 10px; border-radius: 4px; transform: rotate(2deg); box-shadow: 0 30px 60px -24px rgba(0,0,0,.55); }
 .cert img { display: block; width: 100%; height: auto; max-width: 100%; }
 .cert .seal { position: absolute; left: -48px; bottom: -42px; width: 130px; }
@@ -407,7 +412,7 @@ p { margin: 0; }
 .s-icare { --bg: #ff7a1a; --fg: var(--ink); }
 .s-icare h2 { font-size: clamp(2rem, 5.4vw, 4.2rem); max-width: 16ch; }
 .s-icare p { font-size: clamp(1.05rem, 2.2vw, 1.4rem); font-weight: 600; max-width: 34ch; }
-.s-icare p .hand { font-size: 1.25em; color: var(--paper); }
+
 .seal { width: clamp(150px, 20vw, 210px); aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 5px solid var(--ink); outline: 3px dashed var(--ink); outline-offset: -16px; display: grid; place-content: center; text-align: center; gap: 2px; transform: rotate(-10deg); color: var(--ink); background: var(--yellow); }
 .seal b { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; }
 .seal span { font-weight: 800; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
@@ -788,7 +793,9 @@ body.hover #arrow svg { transform: scale(1.5); }
     <div class="inner">
       <div class="icare-copy">
         <h2 class="disp pop" style="--d:.15">I was made Design Head at <span class="loop">iCare.</span></h2>
-        <p class="pop" style="--d:.4">A student-driven group for community service and skill development, 2019 to 2021. My first real design role. That's when it clicked: <span class="hand">okay, I can actually do this.</span></p>
+        <p class="pop" style="--d:.4">My first real design role, at a student-driven group for community service. Two years of posters, events and a lot of learning.</p>
+        <div class="chips-ic pop" style="--d:.55"><span>2019 – 2021</span><span>Convention Award 2021 🏆</span></div>
+        <p class="clicked hand pop" style="--d:.7">That's when it clicked: okay, I can actually do this.</p>
       </div>
       <figure class="cert pop" style="--d:.3">
         <img src="img/icare-cert.jpg" alt="Certificate of Achievement from The iCare Group awarding Priyanshu Gupta as Design Head, Convention Award 2021">
