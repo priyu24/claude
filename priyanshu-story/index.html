@@ -111,11 +111,14 @@ p { margin: 0; }
 /* ---------- the next arrow (the cliffhanger) ---------- */
 .next {
   position: absolute; z-index: 4; right: max(16px, 4vw); bottom: calc(26px + env(safe-area-inset-bottom, 0px));
-  display: flex; align-items: center; gap: 12px; max-width: min(80vw, 520px); text-align: right;
-  font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 600; font-size: clamp(1.3rem, 2.7vw, 2rem); line-height: 1.1; color: var(--fg, var(--paper));
-  transition: transform .3s, opacity .4s;
+  display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap;
+  font-family: var(--font-tease); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 700; font-size: clamp(1.25rem, 2.4vw, 1.9rem); line-height: 1; color: var(--fg, var(--paper));
+  padding: 10px 12px 10px 18px; border-radius: 99px; border: 2px solid currentColor;
+  transition: transform .3s, opacity .4s, background .2s;
 }
-.next svg { width: clamp(64px, 9vw, 104px); flex: none; overflow: visible; }
+.next small { font: 800 .62rem/1 var(--font-body); font-style: normal; letter-spacing: .16em; text-transform: uppercase; opacity: .7; padding-top: 2px; }
+.next:hover { transform: translateX(4px); }
+.next svg { width: clamp(46px, 5vw, 64px); flex: none; overflow: visible; }
 .next svg path { fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
 .next .shaft { stroke-dasharray: 140; stroke-dashoffset: 140; }
 .scene.open .next .shaft { animation: drawArrow .7s .2s ease-out forwards; }
@@ -469,6 +472,46 @@ p { margin: 0; }
 .s-code.open .reveal { opacity: 1; }
 .s-code .reveal .hand { color: var(--red); font-size: 1.2em; }
 .s-montage .inner { width: min(100%, 1100px); }
+.split { grid-template-columns: 1fr 1.05fr; align-items: center; gap: clamp(24px, 5vw, 72px); width: min(100%, 1140px); }
+.split .copy { display: grid; gap: 16px; min-width: 0; }
+.split h2 { font-size: clamp(2rem, 4.6vw, 3.8rem); max-width: 13ch; }
+.split p { font-size: clamp(1.02rem, 1.9vw, 1.25rem); font-weight: 600; max-width: 38ch; line-height: 1.5; }
+.split p .hand { font-size: 1.2em; }
+.s-nature { --bg: #0b8fa8; }
+.s-nature::before { background: repeating-radial-gradient(circle at 80% 120%, rgba(255,255,255,.08) 0 2px, transparent 2px 26px); }
+.s-nature .hand { color: var(--yellow); }
+.nat-wall { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; justify-self: end; width: min(460px, 100%); }
+.nat-wall .snap { margin: 0; transform: rotate(var(--r)); padding: 7px 7px 4px; transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
+.nat-wall .snap:hover { transform: rotate(0) scale(1.08); z-index: 2; }
+.nat-wall img { aspect-ratio: 4 / 5; object-fit: cover; }
+.nat-wall figcaption { font-size: 1.05rem; }
+.s-home { --bg: #ffe3ec; --fg: var(--ink); }
+.s-home::before { background: radial-gradient(circle, rgba(255,95,174,.18) 2px, transparent 2.5px) 0 0 / 26px 26px; }
+.s-home h2 { font-size: clamp(2rem, 4.6vw, 3.8rem); max-width: 18ch; }
+.cozy { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
+.ccard { position: relative; background: #fff; border-radius: 20px; padding: 20px 18px 18px; display: grid; gap: 6px; align-content: start; box-shadow: 6px 6px 0 var(--c); border: 2px solid var(--ink); min-width: 0; transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
+.ccard:nth-child(odd) { transform: rotate(-1.5deg); } .ccard:nth-child(even) { transform: rotate(1.5deg); }
+.ccard:hover { transform: rotate(0) translateY(-6px); }
+.ccard i { font-style: normal; font-size: 2rem; }
+.ccard b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+.ccard span { font-size: .95rem; line-height: 1.45; }
+.ccard .bar { display: block; height: 6px; border-radius: 99px; background: #eee; overflow: hidden; margin-top: 6px; }
+.ccard .bar u { display: block; height: 100%; width: 0; background: #e50914; }
+.s-home.play .ccard .bar u { animation: watch 3s 1.4s ease-out forwards; }
+@keyframes watch { to { width: 62%; } }
+.ccard small { font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .55; }
+.s-retell { --bg: #4b2bd6; }
+.s-retell .hand { color: var(--yellow); }
+.versions { position: relative; justify-self: end; width: min(440px, 100%); height: 340px; }
+.ver { position: absolute; left: calc(var(--i) * 9%); top: calc(var(--i) * 17%); width: 66%; background: #fff; color: var(--ink); border-radius: 10px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 rgba(23,20,31,.6); overflow: hidden; transform: rotate(calc((var(--i) - 1.5) * 3deg)); }
+.ver .vbar { display: flex; align-items: center; gap: 5px; padding: 6px 10px; background: #eee; border-bottom: 2px solid var(--ink); font-size: .75rem; font-weight: 800; }
+.ver .vbar i { width: 8px; height: 8px; border-radius: 50%; background: #ccc; }
+.ver .vbar i:first-child { background: #ff5f57; } .ver .vbar i:nth-child(2) { background: #febc2e; } .ver .vbar i:nth-child(3) { background: #28c840; margin-right: 6px; }
+.ver b { display: block; padding: 22px 14px; font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; }
+.ver.cur { box-shadow: 6px 6px 0 rgba(23,20,31,.6), 0 0 0 4px var(--yellow); }
+.ver.cur b { color: #ff5fae; }
+.s-retell.play .ver { animation: verIn .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(.8s + var(--i) * .3s); }
+@keyframes verIn { from { transform: translateY(40px) scale(.8); opacity: 0; } }
 .s-montage h2 { font-size: clamp(2rem, 5vw, 3.8rem); }
 .jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr 1.7fr; align-items: center; gap: 18px !important; gap: 14px; width: 100%; text-align: left; }
 .job { background: var(--c); color: var(--t); border-radius: 16px; padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; box-shadow: 5px 5px 0 rgba(23,20,31,.85); transform: rotate(var(--r)); opacity: 0; min-width: 0; }
@@ -563,6 +606,13 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .split { grid-template-columns: 1fr; gap: 14px; }
+  .split h2, .s-home h2 { font-size: 1.8rem; } .split p { font-size: .9rem; }
+  .nat-wall { order: -1; justify-self: center; width: 78%; gap: 8px; } .nat-wall figcaption { font-size: .8rem; }
+  .cozy { grid-template-columns: 1fr 1fr; gap: 10px; } .ccard { padding: 12px; } .ccard span { font-size: .78rem; } .ccard b { font-size: 1.05rem; } .ccard i { font-size: 1.4rem; }
+  .versions { order: -1; justify-self: center; height: 200px; width: 86%; } .ver b { padding: 10px; font-size: 1.05rem; }
+  .s-retell .copy p + p { display: none; }
+  .next { font-size: 1.05rem; padding: 7px 8px 7px 12px; gap: 8px; } .next svg { width: 36px; }
   .s-icare .inner { grid-template-columns: 1fr; gap: 16px; } .cert { order: -1; justify-self: center; width: 92%; } .cert .seal { width: 84px; left: -18px; bottom: -26px; } .cert .seal b { font-size: 1.1rem; } .cert .seal span { font-size: .45rem; }
   .kid2 { width: 52%; right: -40%; bottom: -6%; }
   .dada-me { display: none; }
@@ -642,7 +692,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <figcaption class="hand">this is me ✦</figcaption>
       </figure>
     </div>
-    <button class="next">Let me rewind. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Let me rewind</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-feel" data-gated>
@@ -662,7 +712,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <p class="after">It took me 27 years to notice: I was always more curious than everyone around me. <span class="hand">(Still am.)</span></p>
       </div>
     </div>
-    <button class="next">So what did a curious kid like me want for a birthday? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>My one birthday wish</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-gift" data-gated>
@@ -677,7 +727,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       </div>
       <p class="say" hidden>A ₹15 paint set. Every single birthday. My granddad never understood why. The truth? I just love cool stationery. <span class="hand">Tap a pot to paint!</span></p>
     </div>
-    <button class="next">Why paint? Because of him. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Why paint? Granddad.</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-dada" data-teaser>
@@ -702,7 +752,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <span class="callout c-me" style="--t:2.6s">me!</span>
       </figure>
         </div>
-    <button class="next">Me? I mostly got scolded. Usually for art and craft. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>My first art crime</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-collage" data-gated>
@@ -715,7 +765,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <span class="tally pop" style="--d:.6">Stick 3 photos on the thermocol · <b class="n">0</b>/3</span>
       <p class="done hand" hidden>Mom said I was ruining them. <br>Totally worth it.</p>
     </div>
-    <button class="next">Then came school, and PowerPoint… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then: school PowerPoint</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-school" data-gated>
@@ -751,7 +801,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <button class="ppt-play">▶ Play the slide</button>
       </div>
     </div>
-    <button class="next">Fun fact: this whole story is a slide deck. Some things never change. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then… engineering?!</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-eng" data-teaser>
     <span class="sticker-hi" style="left:5%;bottom:16%;--r:-6deg" aria-hidden="true"><b style="color:#8b5cf6;font-family:"Mukta",sans-serif;font-weight:800">नो</b><b style="color:#ff7a1a;font-family:"Khand","Mukta",sans-serif;font-weight:700">WAY</b></span>
@@ -770,7 +820,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <span class="form-note hand">not even on the list</span>
       </div>
     </div>
-    <button class="next">In college I joined a bunch of clubs. Then a senior said: learn Photoshop. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Enter: Photoshop</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-drive" data-gated>
@@ -786,7 +836,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       </div>
       <p class="say">Drag the pen drive into the laptop.</p>
     </div>
-    <button class="next">A few friends copied it too… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>A few friends joined</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-crowd" data-gated>
@@ -795,7 +845,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <h2 class="disp line">A few friends copied it with me.</h2>
       <div class="dots"></div>
     </div>
-    <button class="next">And then something big happened. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then, something big</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
   <section class="scene s-icare" data-teaser>
@@ -812,7 +862,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="seal" aria-hidden="true"><span>Design Head</span><b>iCare</b><span>2019 – 2021</span></div>
       </figure>
     </div>
-    <button class="next">So what does a new design head do? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Cue: so many posters</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-posters" data-teaser>
     <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#2f6bff;font-family:"Mukta",sans-serif;font-weight:800">सो MUCH</b><b style="color:#ff4b3e;font-family:"Mukta",sans-serif;font-weight:800">ड्रामा</b></span>
@@ -821,7 +871,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="wall pop" aria-label="Priyanshu's college posters"><figure class="realp" style="--r:-5deg;--i:0"><img src="img/p-expo.jpg" alt="Auto Expo / Art Expo 2020"></figure><figure class="realp" style="--r:3deg;--i:1"><img src="img/p-duet.jpg" alt="Duet dance competition"><em>oof</em></figure><figure class="realp" style="--r:4deg;--i:3"><img src="img/p-dance.jpg" alt="Dance: solo, duet, faceoff, group"><em>cringe?</em></figure><figure class="realp" style="--r:-4deg;--i:4"><img src="img/p-green.jpg" alt="Keep our earth green plantation drive"></figure></div>
       <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Hover to zoom. Looking back? I love them anyway.</span></p>
     </div>
-    <button class="next">Then came the internships. Tiny ones. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then: tiny internships</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-hustle" data-gated>
     <span class="sticker-hi" style="right:7%;bottom:18%;--r:-8deg" aria-hidden="true"><b style="color:#12b76a;font-family:"Mukta",sans-serif;font-weight:800">पैसा?</b><b style="color:#ffc21a;font-family:"Pacifico",cursive">later</b></span>
@@ -830,7 +880,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="meterbox pop" style="--d:.3"><span class="amt" aria-live="polite">₹0</span><span class="per">/ month</span><span class="pstamp">UNPAID</span></div>
       <p class="lesson">Digital marketing first, then graphic and visual design. Unpaid, then ₹1,000 a month, then ₹2,000. I did them anyway, and learned the real lesson: <span class="hand">money didn't matter yet. Putting myself out there did.</span></p>
     </div>
-    <button class="next">Then came the big one. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then, the big one</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-break" data-teaser>
     <span class="sticker-hi" style="right:7%;top:16%;--r:7deg" aria-hidden="true"><b style="color:#2f6bff;font-family:"Khand","Mukta",sans-serif;font-weight:700">YES</b><b style="color:#8a0f2c;font-family:"Mukta",sans-serif;font-weight:800">बेबी</b></span>
@@ -842,7 +892,7 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="icard pop" style="--d:.7; --c:var(--purple)"><b>Headout</b><span>Visual Designer · intern</span><small>May – Nov 2021 · visual design for the website</small></div>
       </div>
     </div>
-    <button class="next">Meanwhile, in fourth year, I found something else… <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>Then I found UX</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-code" data-gated>
     <span class="sticker-hi" style="right:7%;top:15%;--r:-9deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">वाह</b><b style="color:#2f6bff;font-family:"Khand","Mukta",sans-serif;font-weight:700">WOW</b></span>
@@ -855,7 +905,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       </div>
       <p class="reveal">Then a senior told me about UI/UX: designing what lives on a screen, <span class="hand">without the coding.</span> That was it. That was my thing.</p>
     </div>
-    <button class="next">So I went all in. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>So I went all in</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-grad" data-teaser>
     <span class="sticker-hi" style="left:5%;top:16%;--r:-7deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">फ़ाइनली</b><b style="color:#ff5fae;font-family:"Khand","Mukta",sans-serif;font-weight:700">!!</b></span>
@@ -875,7 +925,7 @@ body.hover #arrow svg { transform: scale(1.5); }
                   </figure>
       </div>
     </div>
-    <button class="next">And that first job? A design one. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>My first design job</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
   <section class="scene s-montage" data-gated>
     <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">लेट्स</b><b style="color:#ff5fae;font-family:"Khand","Mukta",sans-serif;font-weight:700">GO</b></span>
@@ -887,9 +937,56 @@ body.hover #arrow svg { transform: scale(1.5); }
         <li class="job now-job" style="--c:var(--paper); --t:var(--ink); --r:-1.5deg"><span class="here">● I work here now</span><b>Esko</b><span class="role">UX Designer</span><span class="when">Jan 2025 – present · One of the world's leading packaging software companies. I work on WebCenter Go.</span></li>
       </ol>
     </div>
-    <button class="next">So, who is that curious kid today? <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+    <button class="next"><small>next</small><span>But that's just work…</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
 
+  <section class="scene s-nature" data-teaser>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#2f6bff;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">पानी</b><b style="color:#ff5fae;font-family:&quot;Pacifico&quot;,cursive">baby</b></span>
+    <div class="inner split">
+      <div class="copy">
+        <h2 class="disp pop" style="--d:.1">Off the clock? Find me near <span class="loop">water.</span></h2>
+        <p class="pop" style="--d:.3">I love swimming. I love to travel. Parks and lakes are my go-to.</p>
+        <p class="pop" style="--d:.45"><span class="hand">Basically, anything involving nature.</span></p>
+      </div>
+      <div class="nat-wall pop" style="--d:.35">
+        <figure class="snap" style="--r:-6deg"><img src="img/river.jpg" alt="Priyanshu sitting in a river"><figcaption>in the water, obviously</figcaption></figure>
+        <figure class="snap" style="--r:5deg"><img src="img/sunset.jpg" alt="Priyanshu by the sea at sunset"><figcaption>sea + sunset</figcaption></figure>
+        <figure class="snap" style="--r:4deg"><img src="img/forest.jpg" alt="Priyanshu among tall trees"><figcaption>tall trees</figcaption></figure>
+        <figure class="snap" style="--r:-5deg"><img src="img/net.jpg" alt="Priyanshu up in the hills"><figcaption>up in the hills</figcaption></figure>
+      </div>
+    </div>
+    <button class="next"><small>next</small><span>And at home?</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-home" data-teaser>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:-8deg" aria-hidden="true"><b style="color:#ff5fae;font-family:&quot;Yatra One&quot;,serif">फ़िल्मी</b><b style="color:#ffc21a;font-family:&quot;Khand&quot;,sans-serif;font-weight:700">MUCH?</b></span>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">At home, it's <span class="loop">rom-coms</span> and recipes.</h2>
+      <div class="cozy">
+        <div class="ccard pop" style="--d:.3; --c:#ff5fae"><i>🎬</i><b>Rom-coms. Always.</b><span>Only have 90 minutes? I'll watch it in five sittings. It still counts.</span><em class="bar"><u></u></em><small>continue watching</small></div>
+        <div class="ccard pop" style="--d:.45; --c:#ffc21a"><i>📖</i><b>Currently reading</b><span><strong>Funny Story</strong>. Romance, obviously. I stopped reading for a while, and now I'm back.</span></div>
+        <div class="ccard pop" style="--d:.6; --c:#12b76a"><i>🍳</i><b>Cooking</b><span>Eating and cooking are my zen place.</span></div>
+        <div class="ccard pop" style="--d:.75; --c:#3fc1e8"><i>🪴</i><b>Decorating</b><span>I can't leave my space alone. Something is always moving.</span></div>
+      </div>
+    </div>
+    <button class="next"><small>next</small><span>A small confession…</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-retell" data-teaser>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:7deg" aria-hidden="true"><b style="color:#ffc21a;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">सेल्फ़</b><b style="color:#fff;font-family:&quot;Pacifico&quot;,cursive">obsessed?</b></span>
+    <div class="inner split">
+      <div class="copy">
+        <h2 class="disp pop" style="--d:.1">I keep <span class="loop">retelling</span> this story.</h2>
+        <p class="pop" style="--d:.3">Once as a coded website. Once in Figma Make. Once as an article on Medium. And now, this. Maybe I'm a little self-obsessed. Or maybe I just can't stop asking how to tell it better.</p>
+        <p class="pop" style="--d:.5"><span class="hand">I write on Medium. My portfolio revamp is taking forever. And I've started many Instagram channels and stayed consistent with none. Shout-out to me.</span></p>
+      </div>
+      <div class="versions pop" style="--d:.35">
+        <div class="ver" style="--i:0"><span class="vbar"><i></i><i></i><i></i>v1 · code</span><b>&lt;my-story&gt;</b></div>
+        <div class="ver" style="--i:1"><span class="vbar"><i></i><i></i><i></i>v2 · Figma Make</span><b>✦ prototype</b></div>
+        <div class="ver" style="--i:2"><span class="vbar"><i></i><i></i><i></i>v3 · Medium</span><b>“My story”</b></div>
+        <div class="ver cur" style="--i:3"><span class="vbar"><i></i><i></i><i></i>v4 · you are here</span><b>this one ✦</b></div>
+      </div>
+    </div>
+    <button class="next"><small>next</small><span>So, who am I today?</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
   <section class="scene s-end">
     <span class="sticker-hi" style="right:5%;bottom:9%;--r:-6deg" aria-hidden="true"><b style="color:#ff5fae;font-family:"Yatra One",serif">बस</b><b style="color:#ffc21a;font-family:"Mukta",sans-serif;font-weight:800">इतना ही</b></span>
     <div class="inner end-grid">
@@ -901,11 +998,11 @@ body.hover #arrow svg { transform: scale(1.5); }
         <span class="eyebrow pop" style="--d:.4">so, this is me</span>
         <h2 class="name-rev pop" style="--d:.5"><span lang="hi">प्रियांशु</span> <span class="en">Gupta</span></h2>
         <ul class="facts pop" style="--d:.65">
-          <li><b>Product designer</b> at Esko, Bengaluru, owning WebCenter Go</li>
+          <li><b>Product designer</b> at Esko, Bengaluru, working on WebCenter Go</li>
+          <li><b>Empathetic and endlessly curious.</b> Always asking “why does it work this way?”</li>
           <li>Can pull off a <b>10-hour design marathon</b> without being too grumpy</li>
-          <li>The <b>fun factor</b> at work, and first to say it if an idea doesn't vibe</li>
-          <li>Learning <b>photography</b>, exploring cities, finding zen in <b>food</b> (eating and cooking)</li>
-          <li><b>Volunteers in schools</b> and writes, obviously</li>
+          <li>Water baby, traveller, <b>rom-com loyalist</b>, home cook</li>
+          <li>Writes on Medium, <b>volunteers in schools</b></li>
         </ul>
         <div class="ministrip pop" style="--d:.8" aria-label="More photos of Priyanshu"></div>
         <button class="replay rewind pop" style="--d:1">↺ Rewind the story</button>
@@ -945,6 +1042,9 @@ body.hover #arrow svg { transform: scale(1.5); }
     'intro': { enter: el => later(() => open(el), 1100) },
     'dada': { enter: el => later(() => open(el), 1800) },
     icare: { enter: el => later(() => open(el), 1800) },
+    nature: { enter: el => later(() => open(el), 1800) },
+    home: { enter: el => later(() => open(el), 2000) },
+    retell: { enter: el => later(() => open(el), 2200) },
     posters: { enter: el => later(() => open(el), 1800) },
     break: { enter: el => later(() => open(el), 1800) },
     hustle: { enter: hustleEnter },
@@ -1224,7 +1324,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- finale: a fanned strip of photos (none repeated from the story) ---------- */
   const strip = $('.ministrip');
-  [['img/hills-selfie.jpg', 'hill-town selfie'], ['img/river.jpg', 'in the river'], ['img/ropeway.jpg', 'in a cable car'], ['img/sunset.jpg', 'sea at sunset'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
+  [['img/hills-selfie.jpg', 'hill-town selfie'], ['img/ropeway.jpg', 'in a cable car'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
     const f = document.createElement('figure'); f.className = 'mini'; f.tabIndex = 0; f.style.margin = '0 0 0 -12px';
     f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
     f.innerHTML = `<img src="${src}" alt="${alt}">`; strip.appendChild(f);
@@ -1306,7 +1406,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     const pieces = $$('.pop', sc).filter(el => !el.closest('.board'));
     pieces.forEach((el, i) => {
       el.classList.remove('pop');
-      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt');
+      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt, .nat-wall, .versions, .cert');
       const head = el.matches('h1, h2, .name, .psst, .eyebrow, .name-rev');
       el.classList.add(pic ? 'b-r' : head ? 'b-l' : 'b-u');
       el.style.setProperty('--d', (.15 + i * .32).toFixed(2));
