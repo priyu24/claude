@@ -1330,7 +1330,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   /* ---------- finale: a fanned strip of photos (none repeated from the story) ---------- */
   const strip = $('.ministrip');
-  [['img/park2.jpg', 'laughing on the grass'], ['img/hills-selfie.jpg', 'hill-town selfie'], ['img/ropeway.jpg', 'in a cable car'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
+  [['img/hilltop.jpg', 'capturing the view'], ['img/park2.jpg', 'laughing on the grass'], ['img/hills-selfie.jpg', 'hill-town selfie'], ['img/ropeway.jpg', 'in a cable car'], ['img/h3.jpg', 'garden stairs'], ['img/pout.jpg', 'pout selfie']].forEach(([src, alt], i) => {
     const f = document.createElement('figure'); f.className = 'mini'; f.tabIndex = 0; f.style.margin = '0 0 0 -12px';
     f.style.setProperty('--r', [-8, 5, -3, 7, -6, 4, -5][i] + 'deg');
     f.innerHTML = `<img src="${src}" alt="${alt}">`; strip.appendChild(f);
