@@ -232,6 +232,8 @@ p { margin: 0; }
 .s-dada .copy { display: grid; gap: 18px; min-width: 0; }
 .s-dada h2 { font-size: clamp(2rem, 4vw, 3.3rem); }
 .s-dada .memory { justify-self: end; }
+.dada-me { width: clamp(110px, 12vw, 160px); margin: 6px 0 0 0; rotate: -6deg; }
+.dada-me figcaption { font-size: 1.05rem; }
 .s-dada h2 .hand { font-size: 1.15em; color: var(--yellow); display: inline-block; transform: rotate(-4deg); }
 .s-dada p { font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 36ch; line-height: 1.5; }
 @keyframes drop { from { transform: translateY(-260px) rotate(40deg); } }
@@ -538,6 +540,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 .photo .img.real { background-size: cover !important; background-position: center 25% !important; filter: none; }
 
 @media (max-width: 720px) {
+  .dada-me { display: none; }
   .school-grid { grid-template-columns: 1fr; gap: 14px; } .s-school h2 { font-size: 1.8rem; } .s-school p { font-size: .86rem; } .s-school .copy p + p { display: none; } .ppt { width: min(300px, 88vw); } .ppt-thumbs { display: none; } .ppt-body { grid-template-columns: 1fr; } .ppt-ribbon { gap: 6px; } .wa { width: 22px; height: 22px; font-size: .9rem; } .wa-gallery { grid-template-columns: repeat(6, 22px); } .tpl-gallery { grid-template-columns: repeat(3, 26px); } .tpl { width: 26px; height: 22px; }
   .snd { font-size: .72rem; padding: 4px 9px; }
   .count { display: none; } .back { white-space: nowrap; padding: 4px 9px; font-size: .72rem; }
@@ -651,12 +654,13 @@ body.hover #arrow svg { transform: scale(1.5); }
   </section>
 
   <section class="scene s-dada" data-teaser>
-    <span class="sticker-hi" style="left:4%;bottom:14%;--r:-8deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Yatra One",serif">मेरे</b><b style="color:#ff5fae;font-family:"Khand","Mukta",sans-serif;font-weight:700">HERO</b></span>
+    <span class="sticker-hi" style="left:19%;bottom:24%;--r:-8deg" aria-hidden="true"><b style="color:#ffc21a;font-family:"Yatra One",serif">मेरे</b><b style="color:#ff5fae;font-family:"Khand","Mukta",sans-serif;font-weight:700">HERO</b></span>
     <div class="inner">
       <div class="copy">
         <h2 class="disp pop" style="--d:.1">Creative genes? <span class="nowrap">Blame my <span class="loop">granddad.</span></span></h2>
         <p class="pop" style="--d:.35">He spent his whole career at Tata Motors, right up to retirement. But at heart, he was an artist.</p>
         <p class="pop" style="--d:.55">Every cousin's wedding, every birthday, he hand-made the banners and decorations himself. Like this one, for mine.</p>
+        <figure class="snap dada-me pop" style="--d:.75"><img src="img/dada-me.jpg" alt="Little Priyanshu in red, sitting on her granddad's lap"><figcaption>me &amp; my granddad</figcaption></figure>
       </div>
       <figure class="snap memory pop" style="--d:.2" aria-label="Dada holding baby Priyanshu under a Happy Birthday to Priyanshu banner. Click to add stickers.">
         <div class="pic"><img src="img/birthday.jpg" alt="Priyanshu's grandfather holding baby Priyanshu at a birthday party with the family, under the Happy Birthday to Priyanshu banner he made"></div>
