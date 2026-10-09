@@ -379,12 +379,17 @@ p { margin: 0; }
 .s-posters h2, .s-hustle h2, .s-break h2, .s-code h2 { font-size: clamp(1.9rem, 4.6vw, 3.6rem); max-width: 20ch; }
 .s-posters p, .s-break p, .s-code p { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; max-width: 46ch; }
 .s-posters p .hand { font-size: 1.25em; color: #8a0f2c; }
-.wall { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(8px, 1.4vw, 16px); max-width: 760px; }
+.wall { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: clamp(8px, 1.4vw, 16px); max-width: 900px; }
+.realp { position: relative; margin: 0; align-self: flex-start; height: max-content; width: clamp(80px, 11vw, 150px); background: #fff; padding: 5px; box-shadow: 0 14px 24px -12px rgba(0,0,0,.6); transform: rotate(var(--r)); transition: transform .25s cubic-bezier(.3,1.6,.5,1); cursor: zoom-in; }
+.realp::before { content: ""; position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a80, #c3123f); box-shadow: 0 2px 3px rgba(0,0,0,.4); z-index: 2; }
+.realp img { display: block; width: 100%; height: auto; max-width: 100%; }
+.realp:hover, .realp:focus-within { transform: rotate(0) scale(1.9); z-index: 5; }
+.realp em { position: absolute; right: -8px; bottom: 12px; transform: rotate(-14deg); font: 400 1.05rem var(--font-hand); color: var(--red); background: var(--paper); padding: 0 6px; border: 2px solid var(--red); font-style: normal; }
 .bad { position: relative; width: clamp(84px, 11vw, 120px); aspect-ratio: 3 / 4; max-width: 100%; background: linear-gradient(160deg, var(--c1), var(--c2)); color: #fff; border: 3px solid #fff; box-shadow: 0 10px 20px -10px rgba(0,0,0,.5); transform: rotate(var(--r)); display: grid; place-content: center; text-align: center; gap: 4px; padding: 6px; overflow: hidden; }
 .bad b { font-size: clamp(.62rem, 1.15vw, .88rem); white-space: nowrap; text-shadow: 2px 2px 0 #000, -1px -1px 0 #f0f; letter-spacing: .02em; }
 .bad i { font-size: .62rem; font-style: normal; color: #ff0; text-shadow: 1px 1px 0 #000; }
 .bad em { position: absolute; right: -6px; bottom: 10px; transform: rotate(-14deg); font: 400 1.05rem var(--font-hand); color: var(--red); background: var(--paper); padding: 0 6px; border: 2px solid var(--red); }
-.s-posters.play .bad { animation: slapP .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(.4s + var(--i) * .12s); }
+.s-posters.play .realp { animation: slapP .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(.4s + var(--i) * .12s); }
 @keyframes slapP { from { transform: rotate(calc(var(--r) * 4)) scale(1.8); opacity: 0; } }
 
 .s-hustle { --bg: var(--ink); --fg: var(--paper); }
@@ -524,7 +529,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .facts li:nth-child(n+3) { display: none; }
   .mini { width: 58px; }
         .ide { grid-template-columns: 1fr; } .src { min-height: 120px; } .out { display: none; }
-  .bad { width: 76px; }
+  .bad { width: 76px; } .realp { width: 82px; } .realp:hover { transform: scale(1.4); }
   .jobs { grid-template-columns: 1fr !important; }
   .job .when { font-size: .74rem !important; }
   .jobs { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -739,8 +744,8 @@ body.hover #arrow svg { transform: scale(1.5); }
     <span class="sticker-hi" style="right:6%;top:15%;--r:8deg" aria-hidden="true"><b style="color:#2f6bff;font-family:"Mukta",sans-serif;font-weight:800">सो MUCH</b><b style="color:#ff4b3e;font-family:"Mukta",sans-serif;font-weight:800">ड्रामा</b></span>
     <div class="inner">
       <h2 class="disp pop" style="--d:.1">I made posters. <span class="loop">So many</span> posters.</h2>
-      <div class="wall pop" style="--d:.3" aria-label="A wall of college posters"><div class="bad" style="--c1:#ff00cc;--c2:#00ffea;--r:-6deg;--i:0"><b style="font-family:Impact, sans-serif">FEST</b><i>ALL ARE WELCOME!!!</i></div><div class="bad" style="--c1:#ffe600;--c2:#ff2a00;--r:4deg;--i:1"><b style="font-family:"Comic Sans MS", cursive">WORKSHOP</b><i>register NOW</i><em>cringe</em></div><div class="bad" style="--c1:#00c853;--c2:#2962ff;--r:-3deg;--i:2"><b style="font-family:Georgia, serif">EVENT</b><i>★ ★ ★ ★ ★</i></div><div class="bad" style="--c1:#7c4dff;--c2:#ff4081;--r:5deg;--i:3"><b style="font-family:Impact, sans-serif">CLUB</b><i>join us!!</i><em>why?!</em></div><div class="bad" style="--c1:#ff6d00;--c2:#ffd600;--r:-5deg;--i:4"><b style="font-family:"Comic Sans MS", cursive">CONTEST</b><i>prizes worth ₹₹₹</i></div><div class="bad" style="--c1:#00b8d4;--c2:#76ff03;--r:3deg;--i:5"><b style="font-family:Georgia, serif">MAGAZINE</b><i>issue no. 1</i><em>oof</em></div></div>
-      <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Looking back, they're bad. I love them anyway.</span></p>
+      <div class="wall pop" aria-label="Priyanshu's college posters"><figure class="realp" style="--r:-5deg;--i:0"><img src="img/p-expo.jpg" alt="Auto Expo / Art Expo 2020"></figure><figure class="realp" style="--r:3deg;--i:1"><img src="img/p-duet.jpg" alt="Duet dance competition"><em>oof</em></figure><figure class="realp" style="--r:-2deg;--i:2"><img src="img/p-film.jpg" alt="Short film competition"></figure><figure class="realp" style="--r:4deg;--i:3"><img src="img/p-dance.jpg" alt="Dance: solo, duet, faceoff, group"><em>cringe?</em></figure><figure class="realp" style="--r:-4deg;--i:4"><img src="img/p-green.jpg" alt="Keep our earth green plantation drive"></figure></div>
+      <p class="pop" style="--d:.6">iCare events, department fests, winners' posters that became bulletin-board celebs, even the department magazine. Then COVID crashed the party. <span class="hand">Hover to zoom. Looking back? I love them anyway.</span></p>
     </div>
     <button class="next">Then came the internships. Tiny ones. <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
