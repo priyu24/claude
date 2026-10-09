@@ -527,6 +527,7 @@ p { margin: 0; }
 .job b { font-variation-settings: "SOFT" 100; font-weight: 800; }
 .job:last-child { box-shadow: 8px 8px 0 rgba(23,20,31,.85), 0 0 0 4px var(--yellow); }
 .now-job { padding: 22px 26px 26px !important; gap: 8px !important; }
+.esko-pic { aspect-ratio: 16 / 7.5; transform: rotate(1.2deg); margin: 2px -6px 4px; width: calc(100% + 12px); }
 .now-job b { font-size: clamp(2.6rem, 5vw, 4.2rem) !important; line-height: 1; }
 .now-job .role { font-size: 1.15rem !important; }
 .now-job .when { font-size: 1.02rem !important; opacity: 1 !important; }
@@ -632,7 +633,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .s-intro .intro-line { font-size: .95rem; }
   .sticker-hi b { font-size: 1.5rem; } .sticker-hi b + b { font-size: 1.2rem; }
   .sticker-hi { top: auto !important; bottom: 92px !important; left: 14px !important; right: auto !important; }
-  .s-end .sticker-hi { display: none; }
+  .s-end .sticker-hi, .s-montage .sticker-hi { display: none; }
   .end-grid { grid-template-columns: 1fr; gap: 14px; justify-items: start; text-align: left; }
   .hero-collage { max-width: 100%; }
   .hero-collage .tag { font-size: 1rem; bottom: -16px; }
@@ -941,7 +942,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       <ol class="jobs">
         <li class="job" style="--c:var(--blue); --t:#fff; --r:-2deg"><b>FastJobs</b><span class="role">UI/UX → Senior UI/UX Designer</span><span class="when">Nov 2021 – Jul 2023 · my first job, at a startup · Champion's Award</span></li>
         <li class="job" style="--c:var(--ink); --t:#fff; --r:1.5deg"><img class="jobpic" src="img/foundit-team.jpg" alt="Priyanshu with the foundit team at a company event"><b>foundit</b><span class="role">UX Designer</span><span class="when">Jul 2023 – Nov 2024 · formerly Monster India, born from Monster.com, one of the first job portals on the internet · Trailblazer Annual Award</span></li>
-        <li class="job now-job" style="--c:var(--paper); --t:var(--ink); --r:-1.5deg"><span class="here">● I work here now</span><b>Esko</b><span class="role">UX Designer</span><span class="when">Jan 2025 – present · One of the world's leading packaging software companies. I work on WebCenter Go.</span></li>
+        <li class="job now-job" style="--c:var(--paper); --t:var(--ink); --r:-1.5deg"><span class="here">● I work here now</span><img class="jobpic esko-pic" src="img/esko-team.jpg" alt="Priyanshu with the Esko team at an outdoor team event"><b>Esko</b><span class="role">UX Designer</span><span class="when">Jan 2025 – present · One of the world's leading packaging software companies. I work on WebCenter Go.</span></li>
       </ol>
     </div>
     <button class="next"><small>next</small><span>But that's just work…</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
