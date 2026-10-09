@@ -479,7 +479,8 @@ p { margin: 0; }
 .s-nature { --bg: #0b8fa8; }
 .s-nature::before { background: repeating-radial-gradient(circle at 80% 120%, rgba(255,255,255,.08) 0 2px, transparent 2px 26px); }
 .s-nature .hand { color: var(--yellow); }
-.nat-wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; justify-self: end; width: min(500px, 100%); }
+.nat-wall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; justify-self: end; width: min(540px, 100%); }
+.nat-wall .snap:not(.wide) figcaption { font-size: .85rem; }
 .nat-wall .wide { grid-column: 1 / -1; }
 .nat-wall .wide img { aspect-ratio: 16 / 9.6 !important; object-position: center 40%; }
 .nat-wall .snap { margin: 0; transform: rotate(var(--r)); padding: 7px 7px 4px; transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
@@ -953,7 +954,8 @@ body.hover #arrow svg { transform: scale(1.5); }
       <div class="nat-wall pop" style="--d:.35">
         <figure class="snap wide" style="--r:-2deg"><img src="img/float.jpg" alt="Priyanshu floating on her back in clear water, eyes closed, smiling"><figcaption>my happy place: floating</figcaption></figure>
         <figure class="snap" style="--r:-6deg"><img src="img/river.jpg" alt="Priyanshu sitting in a river"><figcaption>river days</figcaption></figure>
-        <figure class="snap" style="--r:5deg"><img src="img/sunset.jpg" alt="Priyanshu by the sea at sunset"><figcaption>sea + sunset</figcaption></figure>
+        <figure class="snap" style="--r:4deg"><img src="img/lake.jpg" alt="Priyanshu standing in a lake with mountains behind"><figcaption>lake + mountains</figcaption></figure>
+        <figure class="snap" style="--r:-3deg"><img src="img/sunset.jpg" alt="Priyanshu by the sea at sunset"><figcaption>sea + sunset</figcaption></figure>
         <figure class="snap" style="--r:-5deg"><img src="img/park.jpg" alt="Priyanshu sitting on the grass in a park, smiling"><figcaption>park days</figcaption></figure>
       </div>
     </div>
