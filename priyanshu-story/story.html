@@ -169,14 +169,20 @@ p { margin: 0; }
 .s-intro[data-step="0"] .st0 { display: grid; }
 .s-intro:not([data-step="0"]) .st1 { display: grid; }
 .s-intro .st2 { display: none; margin-top: clamp(22px, 4vh, 40px); }
-.s-intro[data-step="1"] .st2 { display: grid; animation: inU .7s 2.4s cubic-bezier(.2,.8,.2,1) both; }
-.s-intro[data-step="1"] .hl { animation: hlIn .7s 3s ease-out forwards; }
+.s-intro[data-step="1"] .st2 { display: grid; animation: inU .7s 3.1s cubic-bezier(.2,.8,.2,1) both; }
+.s-intro[data-step="1"] .hl { animation: hlIn .7s 3.7s ease-out forwards; }
 .s-intro[data-step="1"] .hl.p { animation-delay: 3.6s; }
 .s-intro .intro-copy { position: relative; }
+.jrny { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.s-intro[data-step="0"] .jrny { display: none; }
+.jrny > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.jrny > svg path { fill: none; stroke: var(--ink); stroke-opacity: .55; stroke-width: 2.5; stroke-linecap: round; }
+.jstop { position: absolute; width: var(--sz); height: var(--sz); margin: calc(var(--sz) / -2) 0 0 calc(var(--sz) / -2); display: grid; place-items: center; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px #fff, 0 6px 12px -4px rgba(23,20,31,.45); transform: scale(0) rotate(var(--r)); animation: stick .45s cubic-bezier(.3,1.8,.5,1) forwards; }
+.jstop svg { width: 72%; height: auto; }
 .role-stk b:first-child { font-family: "Mukta", sans-serif; font-weight: 800; color: #ff5fae; }
 .role-stk b + b { font-family: "Khand", sans-serif; font-weight: 700; color: #2f6bff; letter-spacing: .04em; }
 .scene.play.s-intro .role-stk { animation: none; }
-.scene.play.s-intro[data-step="1"] .role-stk { animation: stick .55s 1.4s cubic-bezier(.3,1.8,.5,1) forwards; }
+.scene.play.s-intro[data-step="1"] .role-stk { animation: stick .55s 2.5s cubic-bezier(.3,1.8,.5,1) forwards; }
 .s-intro .st0 { justify-items: center; text-align: center; gap: 10px; justify-self: center; animation: popHey .8s cubic-bezier(.3,1.6,.5,1) both; }
 .s-intro .st1 .now-pic { animation: inL .9s cubic-bezier(.2,.9,.25,1.1) both; }
 .s-intro .st1 .intro-copy { animation: inR .9s .25s cubic-bezier(.2,.9,.25,1.1) both; }
@@ -1227,7 +1233,41 @@ body.hover #arrow svg { transform: scale(1.5); }
   const open = el => el.classList.add('open');
 
   /* ---------- scene hooks ---------- */
+  /* ---------- intro: a trail across the screen, paint → … → designer ---------- */
+  const introEl = scenes[0], JICONS = $$('.s-tools .tlogo').map(n => n.innerHTML);
+  function journey() {
+    $('.jrny', introEl)?.remove();
+    if (introEl.dataset.step !== '1' || scenes[cur] !== introEl) return;
+    const hr = introEl.getBoundingClientRect(), W = hr.width, mob = W < 720;
+    const rel = el => { const r = el.getBoundingClientRect(); return { l: r.left - hr.left, r: r.right - hr.left, t: r.top - hr.top, b: r.bottom - hr.top, cx: r.left - hr.left + r.width / 2, cy: r.top - hr.top + r.height / 2 }; };
+    const pic = rel($('.now-pic', introEl)), line = rel($('.intro-line', introEl)), ty = new DOMMatrix(getComputedStyle($('.st2', introEl)).transform).m42, stk = rel($('.role-stk', introEl)), tip = rel($('.tip', introEl));
+    line.b -= ty; // the line is still sliding up into place
+    let d;
+    if (!mob) {
+      const y = Math.min(Math.max(pic.b, line.b) + 44, tip.t - 26), sx = tip.l + 8, ex = stk.cx, ey = stk.cy + 44;
+      d = `M${sx} ${y} C ${sx + 220} ${y + 26}, ${W - 40} ${y + 30}, ${W - 46} ${(y + ey) / 2 + 40} S ${ex + 70} ${ey + 70}, ${ex} ${ey}`;
+    } else {
+      const gap = tip.t - line.b; if (gap < 30) return;
+      const y = line.b + Math.max(gap / 2, 17);
+      d = `M18 ${y} C ${W * .35} ${y - 22}, ${W * .65} ${y + 22}, ${W - 18} ${y}`;
+    }
+    const box = document.createElement('div'); box.className = 'jrny'; box.setAttribute('aria-hidden', 'true');
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${hr.height}"><path d="${d}"/></svg>`;
+    introEl.prepend(box);
+    const path = $('path', box), len = path.getTotalLength(), T0 = 500, DUR = 1900;
+    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+    path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: reduce ? 1 : DUR, delay: reduce ? 0 : T0, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'forwards' });
+    const sz = mob ? 30 : 44, n = JICONS.length;
+    JICONS.forEach((svg, i) => {
+      const f = mob ? (i + .5) / n : .04 + i * (.8 / (n - 1)), pt = path.getPointAtLength(len * f), at = reduce ? 0 : T0 + f * DUR;
+      const st = document.createElement('span'); st.className = 'jstop'; st.innerHTML = svg;
+      st.style.cssText = `left:${pt.x}px;top:${pt.y}px;--sz:${sz}px;--r:${(i % 2 ? 1 : -1) * rand(4, 10)}deg;animation-delay:${at}ms`;
+      box.append(st); later(() => sfx('tick'), at);
+    });
+  }
+  addEventListener('resize', () => { if (scenes[cur] === introEl && introEl.dataset.step === '1') journey(); });
   const hooks = {
+    intro: { enter: el => { if (el.dataset.step === '1') later(journey, 950); } },
     'intro': { enter: el => { el.dataset.step = 0; setStepLabel(el); later(() => open(el), 900); } },
     'dada': { enter: el => later(() => open(el), 1800) },
     icare: { enter: el => later(() => open(el), 1800) },
@@ -1289,7 +1329,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   }
   const STEP_LABELS = { intro: ['', 'Let me rewind'] };
   function setStepLabel(el) { const L = STEP_LABELS[key(el)]; if (L) $('.next span', el).textContent = L[+el.dataset.step || 0]; }
-  function stepFwd() { const s = scenes[cur]; const mx = +s.dataset.steps || 0, st = +s.dataset.step || 0; if (st < mx) { s.dataset.step = st + 1; setStepLabel(s); sfx('pop'); return true; } return false; }
+  function stepFwd() { const s = scenes[cur]; const mx = +s.dataset.steps || 0, st = +s.dataset.step || 0; if (st < mx) { s.dataset.step = st + 1; setStepLabel(s); if (s === introEl) later(journey, 60); sfx('pop'); return true; } return false; }
   function stepBack() { const s = scenes[cur]; const st = +s.dataset.step || 0; if (st > 0) { s.dataset.step = st - 1; setStepLabel(s); return true; } return false; }
   const forward = (x, y) => { if (stepFwd()) return; go(cur + 1, x, y); };
   const backward = (x, y) => { if (stepBack()) return; go(cur - 1, x, y); };
