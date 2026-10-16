@@ -577,6 +577,20 @@ p { margin: 0; }
 .s-home.play .ccard .bar u { animation: watch 3s 1.4s ease-out forwards; }
 @keyframes watch { to { width: 62%; } }
 .ccard small { font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .55; }
+.s-art { --bg: #fffaf0; --fg: var(--ink); }
+.s-art::before { background: linear-gradient(rgba(47,107,255,.09) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(47,107,255,.09) 1px, transparent 1px) 0 0 / 28px 28px; }
+.s-art h2 { font-size: clamp(2rem, 4.6vw, 3.8rem); max-width: 18ch; }
+.s-art p { max-width: 46ch; font-size: clamp(1rem, 2vw, 1.3rem); }
+.artwall { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(10px, 1.6vw, 20px); max-width: 1100px; margin-top: clamp(10px, 3vh, 28px); }
+.art { position: relative; margin: 0; border: 0; background: #fff; border-radius: 16px; padding: 7px; box-shadow: 0 0 0 2px rgba(23,20,31,.08), 0 14px 22px -14px rgba(23,20,31,.55); transform: rotate(var(--r)); transition: transform .25s cubic-bezier(.3,1.6,.5,1); cursor: zoom-in; }
+.art img { display: block; height: clamp(104px, 19vh, 178px); width: auto; max-width: 100%; border-radius: 10px; }
+.art:hover, .art:focus-visible { transform: rotate(0) scale(1.12); z-index: 3; outline: none; }
+.art em { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%) rotate(-4deg); white-space: nowrap; font: 400 1.1rem/1 var(--font-hand); font-style: normal; color: var(--pink); background: var(--paper); border: 2px solid var(--pink); border-radius: 6px; padding: 3px 8px; }
+.s-art.play .art { animation: slapP .5s cubic-bezier(.3,1.6,.5,1) backwards; animation-delay: calc(.5s + var(--i) * .09s); }
+.art-lb { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: rgba(23,20,31,.82); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); cursor: zoom-out; animation: lbIn .25s ease-out both; }
+.art-lb img { max-width: min(88vw, 900px); max-height: 80vh; width: auto; height: auto; border: 10px solid #fff; border-radius: 18px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); animation: lbPop .35s cubic-bezier(.3,1.6,.5,1) both; }
+.art-lb span { position: absolute; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); color: #fff; font: 700 .78rem/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+@keyframes lbIn { from { opacity: 0; } } @keyframes lbPop { from { transform: scale(.7) rotate(-4deg); } }
 .s-retell { --bg: #4b2bd6; }
 .s-retell .hand { color: var(--yellow); }
 .versions { position: relative; justify-self: end; width: min(440px, 100%); height: 340px; }
@@ -701,6 +715,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   .cozy { grid-template-columns: 1fr 1fr; gap: 10px; } .ccard { padding: 12px; } .ccard span { font-size: .78rem; } .ccard b { font-size: 1.05rem; } .ccard i { font-size: 1.4rem; }
   .versions { order: -1; justify-self: center; height: 200px; width: 86%; } .ver b { padding: 10px; font-size: 1.05rem; }
   .s-retell .copy p + p { display: none; }
+  .s-art h2 { font-size: 1.8rem; } .s-art p { font-size: .92rem; } .artwall { gap: 10px; } .art { padding: 4px; border-radius: 10px; } .art img { height: min(96px, 11vh); border-radius: 7px; } .s-art .sticker-hi { display: none; } .art em { font-size: .9rem; bottom: -12px; }
   .next { font-size: 1.05rem; padding: 4px 0; gap: 8px; } .next svg { width: 36px; }
   .s-icare .inner { grid-template-columns: 1fr; gap: 16px; } .cert { order: -1; justify-self: center; width: 92%; } .cert .seal { width: 84px; left: -18px; bottom: -26px; } .cert .seal b { font-size: 1.1rem; } .cert .seal span { font-size: .45rem; }
   .kid2 { width: 52%; right: -40%; bottom: -6%; }
@@ -1089,6 +1104,16 @@ body.hover #arrow svg { transform: scale(1.5); }
         <div class="ccard pop" style="--d:.6; --c:#12b76a"><i>🍳</i><b>Cooking</b><span>Eating and cooking are my zen place.</span></div>
         <div class="ccard pop" style="--d:.75; --c:#3fc1e8"><i>🪴</i><b>Decorating</b><span>I can't leave my space alone. Something is always moving.</span></div>
       </div>
+    </div>
+    <button class="next"><small>next</small><span>And I draw, too</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
+  </section>
+  <section class="scene s-art" data-teaser>
+    <div class="tip"><i aria-hidden="true">🖍️</i><span>tap a drawing to see it big</span></div>
+    <span class="sticker-hi" style="right:6%;top:15%;--r:7deg" aria-hidden="true"><b style="color:#ff5fae;font-family:&quot;Mukta&quot;,sans-serif;font-weight:800">आर्टिस्ट</b><b style="color:#2f6bff;font-family:&quot;Khand&quot;,sans-serif;font-weight:700">ALERT</b></span>
+    <div class="inner">
+      <h2 class="disp pop" style="--d:.1">Off the clock, I <span class="loop">doodle.</span></h2>
+      <p class="pop" style="--d:.3">Remember Dada, the artist? Turns out it runs in the family. Mostly frogs, apparently.</p>
+      <div class="artwall pop" style="--d:.45" aria-label="Priyanshu's drawings"><button class="art" style="--r:-4deg;--i:0" data-src="img/art-froggy.jpg" aria-label="See bigger: Froggy in a party hat"><img src="img/art-froggy.jpg" alt="Froggy in a party hat" loading="lazy"></button><button class="art" style="--r:3deg;--i:1" data-src="img/art-curls.jpg" aria-label="See bigger: A curly-haired girl wrapped in a flowered shawl"><img src="img/art-curls.jpg" alt="A curly-haired girl wrapped in a flowered shawl" loading="lazy"></button><button class="art" style="--r:-2deg;--i:2" data-src="img/art-self.jpg" aria-label="See bigger: Self-portrait on a blue scribble background"><img src="img/art-self.jpg" alt="Self-portrait on a blue scribble background" loading="lazy"><em>me, by me</em></button><button class="art" style="--r:4deg;--i:3" data-src="img/art-frog-pink.jpg" aria-label="See bigger: A wide-eyed frog on hot pink"><img src="img/art-frog-pink.jpg" alt="A wide-eyed frog on hot pink" loading="lazy"></button><button class="art" style="--r:-3deg;--i:4" data-src="img/art-star.jpg" aria-label="See bigger: A smiling star with stripy legs"><img src="img/art-star.jpg" alt="A smiling star with stripy legs" loading="lazy"></button><button class="art" style="--r:2deg;--i:5" data-src="img/art-glasses.jpg" aria-label="See bigger: A girl in big blue glasses and puzzle-print trousers"><img src="img/art-glasses.jpg" alt="A girl in big blue glasses and puzzle-print trousers" loading="lazy"></button><button class="art" style="--r:-5deg;--i:6" data-src="img/art-frog-heart.jpg" aria-label="See bigger: A frog making a heart: I love you"><img src="img/art-frog-heart.jpg" alt="A frog making a heart: I love you" loading="lazy"></button><button class="art" style="--r:3deg;--i:7" data-src="img/art-ghost.jpg" aria-label="See bigger: A cool ghost cat in sunglasses"><img src="img/art-ghost.jpg" alt="A cool ghost cat in sunglasses" loading="lazy"></button><button class="art" style="--r:-2deg;--i:8" data-src="img/art-blob.jpg" aria-label="See bigger: A little yellow blob waving"><img src="img/art-blob.jpg" alt="A little yellow blob waving" loading="lazy"></button></div>
     </div>
     <button class="next"><small>next</small><span>A small confession…</span> <svg viewBox="0 0 100 40"><path class="shaft" d="M4 26 C 30 6, 60 40, 92 18"/><path class="head" d="M78 8 L93 18 L80 31"/></svg></button>
   </section>
@@ -1547,6 +1572,20 @@ body.hover #arrow svg { transform: scale(1.5); }
   // stickers squeak when poked
   $$('.sticker-hi').forEach(st => st.addEventListener('pointerdown', () => sfx('boing')));
   $$('.realp, .mini, .tpot').forEach(el => el.addEventListener('pointerenter', () => sfx('tick')));
+  /* ---------- drawings: tap to see one big ---------- */
+  $$('.art').forEach(el => {
+    el.addEventListener('pointerenter', () => sfx('tick'));
+    el.addEventListener('click', e => {
+      e.stopPropagation(); sfx('pop');
+      const lb = document.createElement('div'), im = document.createElement('img');
+      lb.className = 'art-lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', $('img', el).alt);
+      im.src = el.dataset.src; im.alt = $('img', el).alt; lb.append(im); lb.insertAdjacentHTML('beforeend', '<span>tap anywhere to close</span>');
+      const close = () => { lb.remove(); removeEventListener('keydown', esc, true); el.focus(); };
+      const esc = ev => { if (ev.key === 'Escape') { ev.stopPropagation(); close(); } };
+      lb.addEventListener('click', ev => { ev.stopPropagation(); close(); });
+      addEventListener('keydown', esc, true); document.body.append(lb);
+    });
+  });
 
   $$('.wa').forEach(b => b.addEventListener('click', () => {
     const t = $('.ppt-slide .a1'); t.classList.remove('w1', 'w2', 'w3', 'w4', 'w5', 'w6'); t.classList.add(b.dataset.w);
@@ -1593,7 +1632,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     const pieces = $$('.pop', sc).filter(el => !el.closest('.board'));
     pieces.forEach((el, i) => {
       el.classList.remove('pop');
-      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt, .apps, .nat-wall, .versions, .cert');
+      const pic = el.matches('figure, .snap, .memory, .grads, .form, .wall, .ide, .rig, .interns, .gift, .seal, .frame, .ministrip, .hero-collage, .starframe, .age, .ppt, .apps, .nat-wall, .versions, .cert, .artwall');
       const head = el.matches('h1, h2, .name, .psst, .eyebrow, .name-rev');
       el.classList.add(pic ? 'b-r' : head ? 'b-l' : 'b-u');
       el.style.setProperty('--d', (.15 + i * .32).toFixed(2));
