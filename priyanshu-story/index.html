@@ -174,12 +174,10 @@ p { margin: 0; }
 .s-intro[data-step="1"] .hl { animation: hlIn .7s 3s ease-out forwards; }
 .s-intro[data-step="1"] .hl.p { animation-delay: 3.6s; }
 .s-intro .intro-copy { position: relative; }
-.role-stk { --r: -8deg; position: absolute; z-index: 3; left: 66%; top: 47%; display: grid; justify-items: center; line-height: .95; transform: rotate(-8deg) scale(0); filter: drop-shadow(0 6px 8px rgba(0,0,0,.28)); cursor: grab; }
-.role-stk b { display: block; white-space: nowrap; -webkit-text-stroke: .16em #fff; paint-order: stroke fill; }
-.role-stk b:first-child { font: 800 clamp(1.9rem, 4vw, 3.2rem)/1.1 "Mukta", sans-serif; color: #ff5fae; }
-.role-stk b + b { font: 700 clamp(1.5rem, 3vw, 2.4rem)/1 "Khand", sans-serif; color: #2f6bff; letter-spacing: .04em; margin-top: -.1em; }
-.s-intro[data-step="1"] .role-stk { animation: stick .55s 1.4s cubic-bezier(.3,1.8,.5,1) forwards; --r: -8deg; }
-.role-stk:hover { animation: wob .5s !important; transform: rotate(-8deg) scale(1.08); }
+.role-stk b:first-child { font-family: "Mukta", sans-serif; font-weight: 800; color: #ff5fae; }
+.role-stk b + b { font-family: "Khand", sans-serif; font-weight: 700; color: #2f6bff; letter-spacing: .04em; }
+.scene.play.s-intro .role-stk { animation: none; }
+.scene.play.s-intro[data-step="1"] .role-stk { animation: stick .55s 1.4s cubic-bezier(.3,1.8,.5,1) forwards; }
 .s-intro .st0 { justify-items: center; text-align: center; gap: 10px; justify-self: center; animation: popHey .8s cubic-bezier(.3,1.6,.5,1) both; }
 .s-intro .st1 .now-pic { animation: inL .9s cubic-bezier(.2,.9,.25,1.1) both; }
 .s-intro .st1 .intro-copy { animation: inR .9s .25s cubic-bezier(.2,.9,.25,1.1) both; }
@@ -790,6 +788,7 @@ body.hover #arrow svg { transform: scale(1.5); }
 
   <section class="scene s-intro" data-teaser data-steps="1" data-step="0">
     <div class="tip"><i aria-hidden="true">👆</i><span>tap next, press → or swipe</span></div>
+    <span class="sticker-hi role-stk" style="right:5%;top:10%;--r:8deg" role="img" aria-label="Designer"><b lang="hi">डिज़ाइनर</b><b>DESIGNER</b></span>
     <div class="inner intro-stage">
       <div class="st st0">
         <h1 class="hey">hey you <span class="wave">👋</span></h1>
@@ -807,7 +806,6 @@ body.hover #arrow svg { transform: scale(1.5); }
             <span class="blk b2"><span class="hi-w" lang="hi">गुप्ता</span></span>
             <span class="spk" style="left:-6%;top:6%" aria-hidden="true">✦</span><span class="spk s2" style="right:-5%;top:-4%" aria-hidden="true">✧</span><span class="spk" style="right:-8%;bottom:10%" aria-hidden="true">✦</span><span class="heart" style="left:-9%;bottom:4%" aria-hidden="true">♡</span>
           </h2>
-          <span class="role-stk" role="img" aria-label="Designer"><b lang="hi">डिज़ाइनर</b><b>DESIGNER</b></span>
           <div class="st2">
             <p class="intro-line">She's been <mark class="hl y">designing for 7+ years</mark>, and she thinks <mark class="hl p">you deserve the long version.</mark></p>
           </div>
@@ -1578,7 +1576,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     if (soundOn) sfx('pop');
   });
   // stickers squeak when poked
-  $$('.sticker-hi, .role-stk').forEach(st => st.addEventListener('pointerdown', () => sfx('boing')));
+  $$('.sticker-hi').forEach(st => st.addEventListener('pointerdown', () => sfx('boing')));
   $$('.realp, .mini, .tpot').forEach(el => el.addEventListener('pointerenter', () => sfx('tick')));
   /* ---------- drawings: tap to see one big ---------- */
   $$('.art').forEach(el => {
