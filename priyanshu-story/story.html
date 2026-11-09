@@ -818,6 +818,22 @@ body.hover #arrow svg { transform: scale(1.5); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: .01s !important; }
 }
+
+/* ---------- phones: a tap-through story, nothing to figure out ---------- */
+@media (max-width: 720px) {
+  .scene .tip, .sticker-hi:not(.role-stk) { display: none !important; }
+  .s-intro[data-step="0"] .tip { display: inline-flex !important; }
+  .s-journey .jline { display: none; } .jpile { width: min(200px, 54vw); } .jroll { font-size: 2.3rem; }
+  .s-dada .inner p + p { display: none; } .s-dada .memory { width: 62%; }
+  .s-school .copy p { display: none; }
+  .s-break > .inner > p, .icard small { display: none; } .icard b { font-size: 1.5rem; } .ic-art { width: 70px; height: 40px; }
+  .jobpic { display: none !important; }
+  .s-nature .inner p + p { display: none; }
+  .s-links > .inner > p, .lnk small, .lnk em { display: none; } .lnk { padding: 6px 12px 6px 6px; border-radius: 12px; } .lnk i { width: 30px; height: 30px; font-size: .9rem; border-radius: 8px; } .lgroup h3 { font-size: 1.1rem; margin-bottom: 6px; } .lgroups { gap: 10px; } .lrow { gap: 9px 10px; }
+  .s-end .facts, .s-end .ministrip { display: none; }
+  .s-feel .feel { transform: none !important; font-size: 2.3rem; }
+  .art, .tpot, .jchip, .realp, .ccard, .tool { pointer-events: none; }
+}
 </style>
 
 <div id="stage">
@@ -1252,6 +1268,8 @@ body.hover #arrow svg { transform: scale(1.5); }
   const scenes = $$('.scene'), N = scenes.length;
   let cur = -1, busy = false, timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const MOB = () => matchMedia('(max-width: 720px)').matches;
+  if (MOB()) { const it = document.querySelector('.s-intro .tip span'); if (it) it.textContent = 'tap anywhere to continue'; }
 
   /* ---------- progress bar ---------- */
   const prog = $('.prog');
@@ -1323,6 +1341,7 @@ body.hover #arrow svg { transform: scale(1.5); }
     void next.offsetWidth;
     next.classList.add('play');
     hooks[key(next)]?.enter?.(next);
+    if (MOB() && next.hasAttribute('data-gated')) later(() => { if (!next.classList.contains('open') && AUTO[key(next)]) AUTO[key(next)](); }, 1700);
     const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 20;
     const done = () => {
       if (prev) prev.classList.remove('on', 'play', 'open');
@@ -1380,10 +1399,14 @@ body.hover #arrow svg { transform: scale(1.5); }
     wheelAcc += e.deltaY; if (Math.abs(wheelAcc) > 90) { const d = Math.sign(wheelAcc); wheelAcc = 0; wheelLock = now + 1100; d > 0 ? advance() : backward(); }
   }, { passive: true });
   let tx0 = null;
-  addEventListener('touchstart', e => { tx0 = e.target.closest('.photo, .pendrive') ? null : [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
+  addEventListener('touchstart', e => { tx0 = !MOB() && e.target.closest('.photo, .pendrive') ? null : [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
   addEventListener('touchend', e => {
     if (!tx0) return; const t = e.changedTouches[0], dx = t.clientX - tx0[0], dy = t.clientY - tx0[1];
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) dx < 0 ? advance(t.clientX, t.clientY) : backward(t.clientX, t.clientY);
+    // phones: tap anywhere to go on, tap the left edge to go back (like stories)
+    else if (MOB() && Math.abs(dx) < 12 && Math.abs(dy) < 12 && !e.target.closest('a, button, input, canvas, [role="button"], .bar, .art-lb, .tpot')) {
+      e.preventDefault(); t.clientX < innerWidth * .28 ? backward(t.clientX, t.clientY) : advance(t.clientX, t.clientY);
+    }
   });
 
   /* ---------- 1: hold to feel ---------- */
@@ -1463,7 +1486,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   const col = $('.s-collage'), board = $('.board', col), frame = $('.frame', col);
   const PHOTOS = [['Papa & baby me', 'img/papa5.jpg'], ['Papa, cooking outdoors', 'img/papa1.jpg'], ['Papa & me', 'img/papa2.jpg'], ['waterfall day', 'img/papa3.jpg'], ['Papa & Mom', 'img/papa4.jpg']];
   function collageEnter(el) {
-    board.innerHTML = ''; frame.classList.remove('full'); $('.tally span', el).innerHTML = 'drag photos onto the thermocol · <b class="n">0</b>/3'; $('.tally', el).classList.remove('ok'); $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
+    el.dataset.auto = ''; board.innerHTML = ''; frame.classList.remove('full'); $('.tally span', el).innerHTML = 'drag photos onto the thermocol · <b class="n">0</b>/3'; $('.tally', el).classList.remove('ok'); $('.story', el).hidden = false; $('.done', el).hidden = true; $('.n', el).textContent = 0;
     const W = el.clientWidth, H = el.clientHeight, spots = W < 600 ? [[.03, .66], [.36, .64], [.69, .66], [.05, .77], [.38, .76], [.7, .78]] : [[.09, .14], [.8, .13], [.07, .44], [.82, .43], [.1, .72], [.79, .71]];
     PHOTOS.slice(0, 6).forEach(([cap, a, b], i) => {
       const p = document.createElement('div'); p.className = 'photo';
@@ -1477,6 +1500,7 @@ body.hover #arrow svg { transform: scale(1.5); }
   }
   function autoCollage() {
     if (col.classList.contains('open')) return 0;
+    if (col.dataset.auto === '1') return 1900; col.dataset.auto = '1';
     const f = frame.getBoundingClientRect(), r = col.getBoundingClientRect();
     const ps = $$('.photo', board).filter(p => !p.classList.contains('in')).slice(0, 3 - $$('.photo.in', board).length);
     ps.forEach((p, i) => later(() => {
@@ -1484,7 +1508,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       p.style.left = f.left - r.left + f.width * (.18 + i * .26) - p.offsetWidth / 2 + 'px'; p.style.top = f.top - r.top + f.height * .5 - p.offsetHeight / 2 + 'px';
       p.classList.add('in'); p.style.zIndex = ++zi; later(() => { glitter(f.left + f.width * (.18 + i * .26), f.top + f.height / 2); p.style.transition = ''; }, 450);
     }, i * 260));
-    later(() => { $('.n', col).textContent = 3; frame.classList.add('full'); $('.tally span', col).textContent = 'done! tap next'; $('.tally', col).classList.add('ok'); $('.story', col).hidden = true; $('.done', col).hidden = false; open(col); }, 1100);
+    later(() => { if ($('.n', col)) $('.n', col).textContent = 3; frame.classList.add('full'); $('.tally span', col).textContent = 'done! tap next'; $('.tally', col).classList.add('ok'); $('.story', col).hidden = true; $('.done', col).hidden = false; open(col); }, 1100);
     return 1900;
   }
   function glitter(x, y) {
@@ -1509,7 +1533,7 @@ body.hover #arrow svg { transform: scale(1.5); }
       const inside = cx > f.left && cx < f.right && cy > f.top && cy < f.bottom;
       if (inside && !p.classList.contains('in')) glitter(cx, cy);
       p.classList.toggle('in', inside);
-      const n = $$('.photo.in', board).length; $('.n', col).textContent = Math.min(n, 3);
+      const n = $$('.photo.in', board).length; if ($('.n', col)) $('.n', col).textContent = Math.min(n, 3);
       if (n >= 3 && !col.classList.contains('open')) { frame.classList.add('full'); $('.tally span', col).textContent = 'done! tap next'; $('.tally', col).classList.add('ok'); $('.story', col).hidden = true; $('.done', col).hidden = false; open(col); }
     };
     p.addEventListener('pointermove', mv); p.addEventListener('pointerup', up); p.addEventListener('pointercancel', up);
