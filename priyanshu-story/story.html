@@ -455,7 +455,7 @@ p { margin: 0; }
 .rig { position: relative; width: min(560px, 92vw); height: 290px; }
 .laptop { position: absolute; left: 50%; top: 10px; transform: translateX(-56%); width: min(320px, 64vw); }
 .laptop .scr { aspect-ratio: 16 / 10.5; max-width: 100%; background: #111; border: 12px solid #3a3842; border-radius: 14px 14px 4px 4px; display: grid; place-items: center; overflow: hidden; position: relative; }
-.laptop .scr .ps { width: 64px; height: 64px; border-radius: 12px; border: 3px solid #555; color: #555; display: grid; place-items: center; font-weight: 800; font-size: 1.6rem; transition: all .5s; }
+.laptop .scr .ps { width: 64px; height: 64px; border-radius: 12px; border: 3px solid #555; color: #555; display: grid; place-items: center; font-weight: 800; font-size: 1.6rem; transition: transform .5s, background .5s, color .5s, border-color .5s; }
 .laptop .load { position: absolute; left: 12%; right: 12%; bottom: 16%; display: none; gap: 6px; text-align: left; font-family: ui-monospace, Menlo, monospace; font-size: .62rem; color: #9be7c0; }
 .laptop .load i { height: 6px; border-radius: 4px; background: #333; overflow: hidden; display: block; }
 .laptop .load i b { display: block; height: 100%; width: 0; background: #9be7c0; transition: width 1.6s linear; }
